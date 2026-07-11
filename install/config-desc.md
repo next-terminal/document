@@ -16,6 +16,7 @@ This section controls data persistence.
 Database:
   Enabled: true
   Type: postgres
+  URL: ""
   Postgres:
     Hostname: localhost
     Port: 5432
@@ -27,6 +28,7 @@ Database:
 
 - **`Enabled`**: Enable database support. Default is `true`.
 - **`Type`**: Database type. Currently only `postgres` is supported.
+- **`URL`**: Database connection URL. When configured, this value takes precedence for connecting to the database; when empty, the `Postgres` settings below are used. Example: `postgres://next-terminal:next-terminal@localhost:5432/next-terminal?sslmode=disable`.
 - **`Postgres`**: PostgreSQL connection settings.
   - **`Hostname`**: Host address.
   - **`Port`**: Port number.

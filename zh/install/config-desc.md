@@ -16,6 +16,7 @@
 Database:
   Enabled: true
   Type: postgres
+  URL: ""
   Postgres:
     Hostname: localhost
     Port: 5432
@@ -27,6 +28,7 @@ Database:
 
 -   **`Enabled`**: 是否启用数据库，默认为 `true`。
 -   **`Type`**: 数据库类型，目前仅支持 `postgres`。
+-   **`URL`**: 数据库连接 URL。配置后会优先使用该参数连接数据库；为空时使用下方 `Postgres` 分项配置。例如：`postgres://next-terminal:next-terminal@localhost:5432/next-terminal?sslmode=disable`。
 -   **`Postgres`**: PostgreSQL 数据库的连接参数。
     -   **`Hostname`**: 主机地址。
     -   **`Port`**: 端口。
