@@ -1,76 +1,60 @@
-# 系统备份指南
+# 系统备份与恢复
+
+Next Terminal 已内置备份与恢复功能。管理员登录后，进入“系统设置 → 系统维护 → 备份与恢复”即可操作，无需下载或运行额外的备份脚本。
 
 ## 备份内容
 
-当前支持的备份项：
+系统备份文件使用 `.ntbak` 格式，包含：
 
-- 录屏文件（`data/recordings`）
-- Windows 挂载盘文件（`data/drive`）
-- PostgreSQL 逻辑备份（容器内执行 `pg_dump`，归档内文件为 `data/postgresql_dump.sql`）
-- CA 证书与私钥（`data/root_ca_*.pem`）
+- PostgreSQL 数据库
+- CA 证书与私钥
 
-## 前置条件
+备份不包含录屏文件和 Windows 挂载盘文件。如需完整备份部署数据，请另外备份 `data/recordings` 和 `data/drive`。
 
-1. 在部署目录执行（即 `docker-compose.yaml` 同级目录）。
-2. 安装 Python 3.6+（无外部依赖）。
-3. 安装 Docker Compose（`docker compose` 或 `docker-compose`）。
-4. 备份/恢复 PostgreSQL 时，数据库服务容器需要可执行 `pg_dump` / `psql`。
+## 手动备份
 
-## 下载脚本
+1. 进入“系统设置 → 系统维护 → 备份与恢复”。
+2. 点击“立即备份”。
+3. 等待备份任务完成。
+4. 在备份列表中下载生成的 `.ntbak` 文件，并将其保存到部署服务器之外的安全位置。
 
-```shell
-# 下载到当前目录（覆盖旧版本）
-wget -O backup_restore.py https://raw.githubusercontent.com/dushixiang/next-terminal/master/scripts/backup_restore.py
-```
+本地备份文件默认保存在 `data/backups`。建议下载一份副本，避免服务器或磁盘故障导致备份与原始数据同时丢失。
 
-```shell
-# 可选：赋予执行权限
-chmod +x backup_restore.py
-```
+## 定时备份与远端存储
 
-## 备份操作
+在“备份与恢复”页面可以设置：
 
-```shell
-# 交互式选择备份项（推荐）
-python3 backup_restore.py backup --interactive --workdir .
-```
+- 是否启用定时备份
+- 每日备份时间
+- 自动备份保留天数
+- 备份成功后上传到 S3、SFTP 或 WebDAV
 
-```shell
-# 指定备份项（示例）
-python3 backup_restore.py backup \
-  --workdir . \
-  --items drive,recordings,postgresql,ca \
-  --pg-service postgresql
-```
+启用远端上传前，请先测试连接，并确认远端目录有足够的存储空间。
 
-说明：
+## 恢复备份
 
-- PostgreSQL 备份通过 `docker compose exec -T <service> sh -lc "<pg_dump命令>"` 执行。
-- 默认服务名是 `postgresql`，如果你的服务名不同请用 `--pg-service` 指定。
-- 如需强制 Compose 命令，可用 `--compose-cmd 'docker compose'` 或 `--compose-cmd docker-compose`。
+可以通过以下两种方式恢复：
 
-## 数据恢复
+- 在备份列表中选择已有文件并点击恢复按钮。
+- 点击“上传并恢复”，从本地选择 `.ntbak` 文件。
+
+::: danger 恢复会覆盖当前数据库
+恢复操作会覆盖当前 PostgreSQL 数据库。系统会在恢复前自动创建一份安全备份，但仍建议先下载并保管当前备份。
+:::
+
+恢复完成后，重启 Next Terminal：
 
 ```shell
-# 交互式恢复（会自动选择最新 next-terminal-backup-*.tar.gz）
-python3 backup_restore.py restore --interactive --workdir .
+docker compose restart next-terminal
 ```
 
-```shell
-# 指定归档并恢复指定内容（示例）
-python3 backup_restore.py restore \
-  --workdir . \
-  --archive next-terminal-backup-20260324.tar.gz \
-  --items postgresql,ca \
-  --pg-service postgresql
-```
+## PostgreSQL client 版本
 
-说明：
+系统通过 Next Terminal 镜像内置的 `pg_dump` 和 `pg_restore` 执行数据库备份与恢复。Next Terminal 镜像必须与 PostgreSQL 服务端主版本匹配：
 
-- PostgreSQL 恢复通过 `docker compose exec -T <service> sh -lc "<psql命令>"` 执行。
-- 恢复完成后可按需检查服务：
+| PostgreSQL 服务端 | Next Terminal 镜像 | 内置 client |
+| --- | --- | --- |
+| PostgreSQL 16 | `dushixiang/next-terminal:latest` | PostgreSQL 16 |
+| PostgreSQL 18 | `dushixiang/next-terminal:latest-pg18` | PostgreSQL 18 |
 
-```shell
-docker compose ps
-docker compose logs -f
-```
+如果需要将 PostgreSQL 16 迁移到 PostgreSQL 18，请参考[从 PostgreSQL 16 迁移到 PostgreSQL 18](/zh/faq/postgresql-16-to-18)。

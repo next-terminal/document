@@ -1,78 +1,60 @@
-# Backup Guide
+# System Backup and Restore
 
-## What Gets Backed Up
+Next Terminal includes built-in backup and restore. After signing in as an administrator, open **System Settings → System Maintenance → Backup & Restore**. No external backup script is required.
 
-Current supported items:
+## Backup Contents
 
-- Session recordings (`data/recordings`)
-- Windows mapped drive files (`data/drive`)
-- PostgreSQL logical backup (runs `pg_dump` inside container, archived as `data/postgresql_dump.sql`)
-- CA certificate/key files (`data/root_ca_*.pem`)
+System backup files use the `.ntbak` format and include:
 
-## Prerequisites
+- The PostgreSQL database
+- CA certificates and private keys
 
-1. Run commands in the deployment directory (same level as `docker-compose.yaml`).
-2. Python 3.6+ is required (no external dependency).
-3. Docker Compose is required (`docker compose` or `docker-compose`).
-4. For PostgreSQL backup/restore, the DB service container must provide `pg_dump` / `psql`.
+Backups exclude session recordings and Windows mounted-drive files. To back up all deployment data, also back up `data/recordings` and `data/drive` separately.
 
-## Download Script
+## Manual Backup
 
-```shell
-# Download to current directory (overwrite old version)
-wget -O backup_restore.py https://raw.githubusercontent.com/dushixiang/next-terminal/master/scripts/backup_restore.py
-```
+1. Open **System Settings → System Maintenance → Backup & Restore**.
+2. Click **Back Up Now**.
+3. Wait for the backup task to finish.
+4. Download the generated `.ntbak` file from the backup list and store it safely outside the deployment server.
 
-```shell
-# Optional: make it executable
-chmod +x backup_restore.py
-```
+Local backup files are stored in `data/backups` by default. Keep a downloaded copy so that a server or disk failure does not destroy both the original data and its backups.
 
-## Backup
+## Scheduled Backups and Remote Storage
 
-Use `backup_restore.py`:
+The **Backup & Restore** page lets you configure:
 
-```shell
-# Interactive selection (recommended)
-python3 backup_restore.py backup --interactive --workdir .
-```
+- Scheduled backups
+- The daily backup time
+- Automatic-backup retention
+- Uploading successful backups to S3, SFTP, or WebDAV
 
-```shell
-# Explicit item selection (example)
-python3 backup_restore.py backup \
-  --workdir . \
-  --items drive,recordings,postgresql,ca \
-  --pg-service postgresql
-```
+Test the connection before enabling remote uploads, and make sure the remote destination has sufficient storage space.
 
-Notes:
+## Restore a Backup
 
-- PostgreSQL backup is executed via `docker compose exec -T <service> sh -lc "<pg_dump command>"`.
-- Default PostgreSQL service name is `postgresql`; override with `--pg-service` if needed.
-- You can force compose binary by `--compose-cmd 'docker compose'` or `--compose-cmd docker-compose`.
+You can restore a backup in either of these ways:
 
-## Restore
+- Select an existing file in the backup list and click its restore button.
+- Click **Upload and Restore** and select a local `.ntbak` file.
+
+::: danger Restoring overwrites the current database
+A restore overwrites the current PostgreSQL database. The system automatically creates a safety backup before restoring, but you should still download and retain a current backup first.
+:::
+
+After the restore finishes, restart Next Terminal:
 
 ```shell
-# Interactive restore (auto-picks latest next-terminal-backup-*.tar.gz)
-python3 backup_restore.py restore --interactive --workdir .
+docker compose restart next-terminal
 ```
 
-```shell
-# Explicit archive + items (example)
-python3 backup_restore.py restore \
-  --workdir . \
-  --archive next-terminal-backup-20260324.tar.gz \
-  --items postgresql,ca \
-  --pg-service postgresql
-```
+## PostgreSQL Client Version
 
-Notes:
+The system runs database backups and restores with `pg_dump` and `pg_restore` included in the Next Terminal image. The Next Terminal image must match the PostgreSQL server major version:
 
-- PostgreSQL restore is executed via `docker compose exec -T <service> sh -lc "<psql command>"`.
-- After restore, verify service status if needed:
+| PostgreSQL server | Next Terminal image | Included client |
+| --- | --- | --- |
+| PostgreSQL 16 | `dushixiang/next-terminal:latest` | PostgreSQL 16 |
+| PostgreSQL 18 | `dushixiang/next-terminal:latest-pg18` | PostgreSQL 18 |
 
-```shell
-docker compose ps
-docker compose logs -f
-```
+To migrate from PostgreSQL 16 to PostgreSQL 18, see [Migrate from PostgreSQL 16 to PostgreSQL 18](/faq/postgresql-16-to-18).

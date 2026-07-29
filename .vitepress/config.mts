@@ -111,7 +111,7 @@ const enFaqSidebar: DefaultTheme.SidebarItem[] = [
             {text: 'FAQ', link: '/faq/readme'},
             {text: 'CLI', link: '/faq/cli'},
             {text: 'System Properties', link: '/faq/property'},
-            {text: 'Backup & Restore', link: '/faq/backup'},
+            {text: 'Migrate PostgreSQL 16 to 18', link: '/faq/postgresql-16-to-18'},
             {text: 'Upgrade v1 to v2', link: '/faq/v1tov2'},
             {text: 'Upgrade Native Installation to v3.2.0+', link: '/faq/v3.2.0-native-upgrade'}
         ]
@@ -216,7 +216,7 @@ const zhFaqSidebar: DefaultTheme.SidebarItem[] = [
             {text: 'FAQ', link: '/zh/faq/readme'},
             {text: '命令行', link: '/zh/faq/cli'},
             {text: '系统配置表', link: '/zh/faq/property'},
-            {text: '备份恢复', link: '/zh/faq/backup'},
+            {text: 'PostgreSQL 16 迁移到 18', link: '/zh/faq/postgresql-16-to-18'},
             {text: 'v1 升级 v2', link: '/zh/faq/v1tov2'},
             {text: '原生安装升级到 v3.2.0+', link: '/zh/faq/v3.2.0-native-upgrade'}
         ]
