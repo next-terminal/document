@@ -19,8 +19,6 @@ PostgreSQL 的主版本不能通过将 `postgres:16` 直接修改为 `postgres:1
 | 迁移前 | `postgres:16` | `dushixiang/next-terminal:latest` | PostgreSQL 16 |
 | 迁移后 | `postgres:18` | `dushixiang/next-terminal:latest-pg18` | PostgreSQL 18 |
 
-如果使用阿里云镜像，请保留原镜像仓库地址，仅将 Next Terminal 标签由 `latest` 修改为 `latest-pg18`。
-
 ## 1. 确认当前版本
 
 进入 `docker-compose.yaml` 所在目录，检查 PostgreSQL 服务端和 Next Terminal 镜像内置 client 的版本：
@@ -87,12 +85,29 @@ postgresql:
   restart: always
 ```
 
+::: tip 中国大陆镜像加速
+中国大陆环境可以将 `postgres:18` 替换为阿里云加速镜像：
+
+```yaml
+image: registry.cn-beijing.aliyuncs.com/dushixiang/postgres:18
+```
+:::
+
 Next Terminal 服务改用内置 PostgreSQL 18 client 的镜像：
 
 ```yaml
 next-terminal:
   image: dushixiang/next-terminal:latest-pg18
 ```
+
+::: tip 中国大陆镜像加速
+中国大陆环境可以使用 Next Terminal 的阿里云加速镜像：
+
+```yaml
+next-terminal:
+  image: registry.cn-beijing.aliyuncs.com/dushixiang/next-terminal:latest-pg18
+```
+:::
 
 ::: warning 数据卷路径
 PostgreSQL 18 官方容器镜像调整了默认数据目录布局。使用 `postgres:18` 时，请同时将容器内的卷挂载路径更新为 `/var/lib/postgresql`，不要继续挂载到 `/var/lib/postgresql/data`。
