@@ -42,3 +42,38 @@ docker compose up -d
 ## Enable IPv6 (Optional)
 
 See the official Docker documentation: https://docs.docker.com/engine/daemon/ipv6/
+
+## Use PostgreSQL 18
+
+Next Terminal uses PostgreSQL 16 by default. To use PostgreSQL 18, edit `docker-compose.yaml` and make the following changes.
+
+Change the Next Terminal image from:
+
+```yaml
+dushixiang/next-terminal:latest
+```
+
+to:
+
+```yaml
+dushixiang/next-terminal:latest-pg18
+```
+
+Change the PostgreSQL image from:
+
+```yaml
+postgres:16
+```
+
+to:
+
+```yaml
+postgres:18
+```
+
+After making these changes, pull the new images and recreate the containers:
+
+```shell
+docker compose pull
+docker compose up -d
+```
