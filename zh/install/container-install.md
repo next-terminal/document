@@ -35,13 +35,24 @@ docker compose up -d
 
 ### 版本升级
 
-::: warning PostgreSQL 16 用户请注意
+PostgreSQL 16 和 PostgreSQL 18 均受支持。现有 PostgreSQL 16 部署可以继续使用，无需为了升级 Next Terminal 而迁移到 PostgreSQL 18。
+
+请确保 PostgreSQL 服务端与 Next Terminal 镜像内置的 PostgreSQL client 主版本一致：
+
+| PostgreSQL 服务端 | Next Terminal 镜像 |
+| --- | --- |
+| `postgres:16` | `dushixiang/next-terminal:latest` |
+| `postgres:18` | `dushixiang/next-terminal:latest-pg18` |
+
+如果使用阿里云镜像，请保留原有镜像仓库地址，并使用对应的标签。
+
+::: warning 仅在迁移到 PostgreSQL 18 时需要注意
 如果现有 `docker-compose.yaml` 使用的是 `postgres:16`，请勿直接将其修改为 `postgres:18`。PostgreSQL 的主版本不能通过更换容器镜像直接升级，PostgreSQL 18 也无法直接使用 PostgreSQL 16 的数据目录。
 
-请先按照[从 PostgreSQL 16 迁移到 PostgreSQL 18](/zh/faq/postgresql-16-to-18)完成数据库迁移。
+如需迁移到 PostgreSQL 18，请按照[从 PostgreSQL 16 迁移到 PostgreSQL 18](/zh/faq/postgresql-16-to-18)完成数据库迁移；不需要迁移时，请继续保留现有 PostgreSQL 16 配置。
 :::
 
-如果当前部署已经使用 PostgreSQL 18，可以执行以下命令升级 Next Terminal：
+确认 `docker-compose.yaml` 中的镜像版本组合正确后，无论使用 PostgreSQL 16 还是 PostgreSQL 18，都可以执行以下命令升级 Next Terminal：
 
 ```shell
 docker compose pull
