@@ -1,4 +1,13 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://next-terminal.typesafe.cn/sitemap.xml
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: GPTBot
+Disallow: /
+
+Sitemap: https://docs.next-terminal.typesafe.cn/sitemap.xml

@@ -1,20 +1,41 @@
 ---
 layout: doc
-title: Redirecting...
-description: Redirecting to the documentation quick start page.
+title: Next Terminal Documentation
+description: Official Next Terminal documentation for installation, secure remote access, asset management, gateways, authentication, operations audit, upgrades, and troubleshooting.
+head:
+  - - meta
+    - name: keywords
+      content: Next Terminal documentation, bastion host installation, Web SSH, remote access, operations audit
 ---
 
-<script setup>
-import { onMounted } from 'vue'
-import { useRouter } from 'vitepress'
+# Next Terminal Documentation
 
-const router = useRouter()
+Use this documentation to deploy Next Terminal, connect your first asset, configure secure access, and maintain an existing installation. Next Terminal brings SSH, RDP, VNC, SFTP, Telnet, Web assets, permissions, and operations audit into one self-hosted access platform.
 
-onMounted(() => {
-  router.go('/install/container-install')
-})
-</script>
+## Install and operate
 
-<meta http-equiv="refresh" content="0; url=/install/container-install">
+- [Check system requirements](/install/system-requirements) before choosing a host.
+- [Install with Docker Compose](/install/container-install) and initialize the administrator account.
+- [Configure a reverse proxy](/install/reverse-proxy) and preserve the [real client IP](/install/real-ip).
+- Plan availability with the [primary/standby deployment guide](/install/ha-primary-standby-guide).
 
-Redirecting to the documentation entry page...
+## Start using Next Terminal
+
+- Follow the [quick start](/usage/readme) to sign in and understand the dashboard.
+- Add and organize [assets and credentials](/usage/asset).
+- Connect through the [asset access workspace](/usage/access), [SSH proxy server](/usage/ssh-server), or [RDP proxy server](/usage/rdp-server).
+- Publish internal applications as [Web assets](/usage/website) or reach private networks through a [security gateway](/usage/agent-gateway).
+
+## Identity and access security
+
+- Enable [Passkey sign-in](/usage/passkey) or [TOTP two-factor authentication](/usage/otp).
+- Integrate applications with the [OIDC identity server](/usage/oidc_server).
+- Configure [HTTPS mutual TLS](/usage/mtls) when client-certificate authentication is required.
+
+## Maintain and troubleshoot
+
+- Start with the [FAQ and troubleshooting hub](/faq/readme).
+- Review [configuration options](/install/config-desc) and [system properties](/faq/property).
+- Back up before upgrades and follow the dedicated [PostgreSQL 16 to 18 migration guide](/faq/postgresql-16-to-18) only if you choose to migrate database major versions.
+
+For product positioning and capabilities, visit the [Next Terminal official website](https://next-terminal.typesafe.cn/). Version-specific behavior should always be checked against the documentation for the version you run.

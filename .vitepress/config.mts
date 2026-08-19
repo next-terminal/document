@@ -1,4 +1,18 @@
+import {existsSync} from 'node:fs'
+import {resolve} from 'node:path'
 import {defineConfig, type DefaultTheme} from 'vitepress'
+
+const docsOrigin = 'https://docs.next-terminal.typesafe.cn'
+
+function routeFromRelativePath(relativePath: string) {
+    const path = relativePath.replace(/(^|\/)index\.md$/, '$1').replace(/\.md$/, '')
+    return path ? `/${path}` : '/'
+}
+
+function alternatePath(relativePath: string) {
+    const source = relativePath.startsWith('zh/') ? relativePath.slice(3) : `zh/${relativePath}`
+    return existsSync(resolve(process.cwd(), source)) ? routeFromRelativePath(source) : undefined
+}
 
 const head: DefaultTheme.Config['head'] = [
     ['link', {rel: 'icon', href: '/logo.svg'}],
@@ -6,14 +20,13 @@ const head: DefaultTheme.Config['head'] = [
         name: 'keywords',
         content: 'Next Terminal, remote access, bastion host, operations audit, SSH, RDP, VNC, Telnet, open source'
     }],
-    ['meta', {property: 'og:title', content: 'Next Terminal - Secure Remote Access and Operations Audit'}],
+    ['meta', {property: 'og:title', content: 'Next Terminal Documentation - Secure Remote Access and Operations Audit'}],
     ['meta', {
         property: 'og:description',
-        content: 'Next Terminal is an open-source platform for secure remote access, asset management, and operations auditing.'
+        content: 'Official documentation for installing Next Terminal, managing assets, configuring secure remote access, and auditing operations.'
     }],
     ['meta', {property: 'og:type', content: 'website'}],
-    ['meta', {property: 'og:url', content: 'https://next-terminal.typesafe.cn'}],
-    ['meta', {property: 'og:image', content: 'https://next-terminal.typesafe.cn/logo.svg'}],
+    ['meta', {property: 'og:image', content: `${docsOrigin}/logo.svg`}],
     [
         'script',
         {
@@ -30,7 +43,7 @@ const enNav: DefaultTheme.NavItem[] = [
     {text: 'FAQ', link: '/faq/readme', activeMatch: '^/faq/'},
     {text: 'Blog', link: '/blog/secure-access', activeMatch: '^/blog/'},
     {text: 'API Docs', link: '/api/certificate', activeMatch: '^/api/'},
-    {text: 'Official Website', link: 'https://www.next-terminal.com'}
+    {text: 'Official Website', link: 'https://next-terminal.typesafe.cn/'}
 ]
 
 const zhNav: DefaultTheme.NavItem[] = [
@@ -39,7 +52,7 @@ const zhNav: DefaultTheme.NavItem[] = [
     {text: '常见问题', link: '/zh/faq/readme', activeMatch: '^/zh/faq/'},
     {text: '博客文章', link: '/zh/blog/secure-access', activeMatch: '^/zh/blog/'},
     {text: 'API 文档', link: '/zh/api/certificate', activeMatch: '^/zh/api/'},
-    {text: '官网地址', link: 'https://www.next-terminal.com'}
+    {text: '官网地址', link: 'https://next-terminal.typesafe.cn/'}
 ]
 
 const enInstallSidebar: DefaultTheme.SidebarItem[] = [
@@ -265,10 +278,48 @@ const zhSidebar: DefaultTheme.Sidebar = {
 
 export default defineConfig({
     title: 'Next Terminal',
-    description: 'Open-source platform for secure remote access and operations audit.',
+    description: 'Official documentation for Next Terminal secure remote access, asset management, and operations audit.',
     head,
     sitemap: {
-        hostname: 'https://next-terminal.typesafe.cn'
+        hostname: 'https://docs.next-terminal.typesafe.cn'
+    },
+    transformPageData(pageData) {
+        if (!pageData.description) {
+            const chinese = pageData.relativePath.startsWith('zh/')
+            pageData.description = chinese
+                ? `${pageData.title}：Next Terminal 官方安装、配置与使用说明。`
+                : `${pageData.title}: official Next Terminal installation, configuration, and usage guidance.`
+        }
+    },
+    transformHead({pageData}) {
+        const route = routeFromRelativePath(pageData.relativePath)
+        const canonical = `${docsOrigin}${route}`
+        const chinese = pageData.relativePath.startsWith('zh/')
+        const alternate = alternatePath(pageData.relativePath)
+        const result: DefaultTheme.Config['head'] = [
+            ['link', {rel: 'canonical', href: canonical}],
+            ['meta', {property: 'og:url', content: canonical}],
+            ['meta', {property: 'og:locale', content: chinese ? 'zh_CN' : 'en_US'}],
+            ['script', {type: 'application/ld+json'}, JSON.stringify({
+                '@context': 'https://schema.org',
+                '@type': 'TechArticle',
+                headline: pageData.title,
+                description: pageData.description,
+                url: canonical,
+                inLanguage: chinese ? 'zh-CN' : 'en-US',
+                publisher: {'@type': 'Organization', name: 'Next Terminal', url: 'https://next-terminal.typesafe.cn/'}
+            })]
+        ]
+        if (alternate) {
+            const englishRoute = chinese ? alternate : route
+            const chineseRoute = chinese ? route : alternate
+            result.push(
+                ['link', {rel: 'alternate', hreflang: 'en', href: `${docsOrigin}${englishRoute}`}],
+                ['link', {rel: 'alternate', hreflang: 'zh-CN', href: `${docsOrigin}${chineseRoute}`}],
+                ['link', {rel: 'alternate', hreflang: 'x-default', href: `${docsOrigin}${englishRoute}`}]
+            )
+        }
+        return result
     },
     themeConfig: {
         search: {
@@ -307,7 +358,7 @@ export default defineConfig({
             label: 'English',
             lang: 'en-US',
             title: 'Next Terminal',
-            description: 'Open-source platform for secure remote access and operations audit.',
+            description: 'Official documentation for Next Terminal secure remote access, asset management, and operations audit.',
             themeConfig: {
                 lastUpdated: {
                     text: 'Last Updated'
