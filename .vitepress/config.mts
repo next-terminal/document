@@ -6,8 +6,7 @@ const docsOrigin = 'https://docs.next-terminal.typesafe.cn'
 
 function routeFromRelativePath(relativePath: string) {
     const path = relativePath.replace(/(^|\/)index\.md$/, '$1').replace(/\.md$/, '')
-    if (!path) return '/'
-    return path.endsWith('/') ? `/${path}` : `/${path}.html`
+    return path ? `/${path}` : '/'
 }
 
 function alternatePath(relativePath: string) {
