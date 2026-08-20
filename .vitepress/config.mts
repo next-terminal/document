@@ -90,6 +90,7 @@ const enUsageSidebar: DefaultTheme.SidebarItem[] = [
                 text: 'Access Gateways',
                 items: [
                     {text: 'Security Gateway', link: '/usage/agent-gateway'},
+                    {text: 'Security Gateway Configuration', link: '/usage/agent-gateway-config'},
                     {text: 'SSH Gateway', link: '/usage/ssh-gateway'}
                 ]
             },
@@ -195,6 +196,7 @@ const zhUsageSidebar: DefaultTheme.SidebarItem[] = [
                 text: '接入网关',
                 items: [
                     {text: '安全网关', link: '/zh/usage/agent-gateway'},
+                    {text: '安全网关配置文件', link: '/zh/usage/agent-gateway-config'},
                     {text: 'SSH网关', link: '/zh/usage/ssh-gateway'}
                 ]
             },

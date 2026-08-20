@@ -65,6 +65,8 @@ When adding assets (SSH/RDP/VNC etc.):
 
 After asset creation, user connections are forwarded via the selected gateway automatically.
 
+To customize the server address, proxy, headers, collection scope, or automatic updates, see [Security Gateway Configuration File](./agent-gateway-config).
+
 **Example**
 
 Suppose you have an internal server `192.168.1.100`:

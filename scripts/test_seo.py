@@ -9,6 +9,8 @@ for marker in ("hostname: 'https://docs.next-terminal.typesafe.cn'","transformHe
 for rel,markers in {
  'index.md':('# Next Terminal Documentation','## Install and operate','/install/container-install'),
  'zh/index.md':('# Next Terminal 官方文档','## 安装与运维','/zh/install/container-install'),
+ 'usage/agent-gateway-config.md':('# Security Gateway Configuration File','~/.nt/agent.yaml','network_include','insecure_skip_verify','socks5://'),
+ 'zh/usage/agent-gateway-config.md':('# 安全网关配置文件','~/.nt/agent.yaml','network_include','insecure_skip_verify','socks5://'),
 }.items():
  body=(ROOT/rel).read_text(encoding='utf-8')
  for m in markers:
@@ -24,7 +26,7 @@ try:
  sitemap=ET.parse(out/'sitemap.xml');ns={'s':'http://www.sitemaps.org/schemas/sitemap/0.9'}
  urls=[n.text or '' for n in sitemap.getroot().findall('s:url/s:loc',ns)]
  if not urls or any(not u.startswith('https://docs.next-terminal.typesafe.cn/') for u in urls): errors.append('built sitemap host wrong')
- for rel in ('index.html','zh/index.html','install/container-install.html','zh/install/container-install.html'):
+ for rel in ('index.html','zh/index.html','install/container-install.html','zh/install/container-install.html','usage/agent-gateway-config.html','zh/usage/agent-gateway-config.html'):
   body=(out/rel).read_text(encoding='utf-8')
   if 'rel="canonical"' not in body: errors.append(f'{rel} canonical missing')
   if 'application/ld+json' not in body: errors.append(f'{rel} JSON-LD missing')
