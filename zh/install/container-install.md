@@ -2,7 +2,7 @@
 
 <a href="https://www.lcayun.com/actcloud.html?from=next-terminal" target="_blank" rel="sponsored noopener">![img.png](images/lcayun.png)</a>
 
-- [雨云服务器（推广链接）](https://www.rainyun.com/MTE3MDI2Mw==_)
+雨云，湖北 8272CL 100G+高防，8核16G 200兆，仅需178元/月，[点击这里购买](https://www.rainyun.com/MTE3MDI2Mw==_)
 
 > 以上为推广链接。通过推广链接注册或购买可能为 Next Terminal 项目带来推广收益，不影响你的购买价格和本文的安装步骤。
 
