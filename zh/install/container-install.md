@@ -1,6 +1,10 @@
 **推广**
 
-<a href="https://www.lcayun.com/actcloud.html?from=next-terminal" target="_blank">![img.png](images/lcayun.png)</a>
+<a href="https://www.lcayun.com/actcloud.html?from=next-terminal" target="_blank" rel="sponsored noopener">![img.png](images/lcayun.png)</a>
+
+- [雨云服务器（推广链接）](https://www.rainyun.com/MTE3MDI2Mw==_)
+
+> 以上为推广链接。通过推广链接注册或购买可能为 Next Terminal 项目带来推广收益，不影响你的购买价格和本文的安装步骤。
 
 ----
 

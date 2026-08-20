@@ -11,6 +11,7 @@ for rel,markers in {
  'zh/index.md':('# Next Terminal 官方文档','## 安装与运维','/zh/install/container-install'),
  'usage/agent-gateway-config.md':('# Security Gateway Configuration File','~/.nt/agent.yaml','network_include','insecure_skip_verify','socks5://'),
  'zh/usage/agent-gateway-config.md':('# 安全网关配置文件','~/.nt/agent.yaml','network_include','insecure_skip_verify','socks5://'),
+ 'zh/install/container-install.md':('https://www.rainyun.com/MTE3MDI2Mw==_','雨云服务器（推广链接）','推广收益'),
 }.items():
  body=(ROOT/rel).read_text(encoding='utf-8')
  for m in markers:
