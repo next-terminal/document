@@ -2,7 +2,7 @@ import {existsSync} from 'node:fs'
 import {resolve} from 'node:path'
 import {defineConfig, type DefaultTheme} from 'vitepress'
 
-const docsOrigin = 'https://docs.next-terminal.typesafe.cn'
+const docsOrigin = 'https://docs.next-terminal.com'
 
 function routeFromRelativePath(relativePath: string) {
     const path = relativePath.replace(/(^|\/)index\.md$/, '$1').replace(/\.md$/, '')
@@ -31,7 +31,7 @@ const head: DefaultTheme.Config['head'] = [
         'script',
         {
             async: '',
-            src: 'https://umami.typesafe.cn/script.js',
+            src: 'https://umami.next-terminal.com/script.js',
             'data-website-id': '4693b455-683d-4012-a715-cb5fd297ccdc'
         }
     ]
@@ -43,7 +43,7 @@ const enNav: DefaultTheme.NavItem[] = [
     {text: 'FAQ', link: '/faq/readme', activeMatch: '^/faq/'},
     {text: 'Blog', link: '/blog/secure-access', activeMatch: '^/blog/'},
     {text: 'API Docs', link: '/api/certificate', activeMatch: '^/api/'},
-    {text: 'Official Website', link: 'https://next-terminal.typesafe.cn/'}
+    {text: 'Official Website', link: 'https://www.next-terminal.com/'}
 ]
 
 const zhNav: DefaultTheme.NavItem[] = [
@@ -52,7 +52,7 @@ const zhNav: DefaultTheme.NavItem[] = [
     {text: '常见问题', link: '/zh/faq/readme', activeMatch: '^/zh/faq/'},
     {text: '博客文章', link: '/zh/blog/secure-access', activeMatch: '^/zh/blog/'},
     {text: 'API 文档', link: '/zh/api/certificate', activeMatch: '^/zh/api/'},
-    {text: '官网地址', link: 'https://next-terminal.typesafe.cn/'}
+    {text: '官网地址', link: 'https://www.next-terminal.com/'}
 ]
 
 const enInstallSidebar: DefaultTheme.SidebarItem[] = [
@@ -283,7 +283,7 @@ export default defineConfig({
     description: 'Official documentation for Next Terminal secure remote access, asset management, and operations audit.',
     head,
     sitemap: {
-        hostname: 'https://docs.next-terminal.typesafe.cn'
+        hostname: 'https://docs.next-terminal.com'
     },
     transformPageData(pageData) {
         if (!pageData.description) {
@@ -309,7 +309,7 @@ export default defineConfig({
                 description: pageData.description,
                 url: canonical,
                 inLanguage: chinese ? 'zh-CN' : 'en-US',
-                publisher: {'@type': 'Organization', name: 'Next Terminal', url: 'https://next-terminal.typesafe.cn/'}
+                publisher: {'@type': 'Organization', name: 'Next Terminal', url: 'https://www.next-terminal.com/'}
             })]
         ]
         if (alternate) {

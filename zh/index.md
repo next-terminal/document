@@ -38,4 +38,4 @@ head:
 - 检查[配置文件说明](/zh/install/config-desc)和[系统配置表](/zh/faq/property)。
 - 升级前先备份；只有决定迁移数据库大版本时，才执行 [PostgreSQL 16 迁移到 18](/zh/faq/postgresql-16-to-18) 指南。
 
-产品定位和能力概览请访问 [Next Terminal 官网](https://next-terminal.typesafe.cn/)。具体功能与操作方式以你当前运行版本对应的文档为准。
+产品定位和能力概览请访问 [Next Terminal 官网](https://www.next-terminal.com/)。具体功能与操作方式以你当前运行版本对应的文档为准。

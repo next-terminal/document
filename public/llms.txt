@@ -3,16 +3,16 @@
 Official documentation for the self-hosted Next Terminal bastion host and secure remote access platform.
 
 ## Entry points
-- Documentation home: https://docs.next-terminal.typesafe.cn/
-- Chinese documentation: https://docs.next-terminal.typesafe.cn/zh/
-- System requirements: https://docs.next-terminal.typesafe.cn/install/system-requirements
-- Container installation: https://docs.next-terminal.typesafe.cn/install/container-install
-- Quick start: https://docs.next-terminal.typesafe.cn/usage/readme
-- Chinese container installation: https://docs.next-terminal.typesafe.cn/zh/install/container-install
-- Chinese quick start: https://docs.next-terminal.typesafe.cn/zh/usage/readme
-- Troubleshooting: https://docs.next-terminal.typesafe.cn/faq/readme
+- Documentation home: https://docs.next-terminal.com/
+- Chinese documentation: https://docs.next-terminal.com/zh/
+- System requirements: https://docs.next-terminal.com/install/system-requirements
+- Container installation: https://docs.next-terminal.com/install/container-install
+- Quick start: https://docs.next-terminal.com/usage/readme
+- Chinese container installation: https://docs.next-terminal.com/zh/install/container-install
+- Chinese quick start: https://docs.next-terminal.com/zh/usage/readme
+- Troubleshooting: https://docs.next-terminal.com/faq/readme
 
 Documentation covers installation, configuration, reverse proxy, high availability, assets, credentials, SSH/RDP access, Web assets, gateways, Passkey, TOTP, OIDC, mTLS, database audit, upgrades, backup, and troubleshooting.
 
-Product website: https://next-terminal.typesafe.cn/
+Product website: https://www.next-terminal.com/
 Source repository: https://github.com/dushixiang/next-terminal

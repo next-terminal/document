@@ -38,4 +38,4 @@ Use this documentation to deploy Next Terminal, connect your first asset, config
 - Review [configuration options](/install/config-desc) and [system properties](/faq/property).
 - Back up before upgrades and follow the dedicated [PostgreSQL 16 to 18 migration guide](/faq/postgresql-16-to-18) only if you choose to migrate database major versions.
 
-For product positioning and capabilities, visit the [Next Terminal official website](https://next-terminal.typesafe.cn/). Version-specific behavior should always be checked against the documentation for the version you run.
+For product positioning and capabilities, visit the [Next Terminal official website](https://www.next-terminal.com/). Version-specific behavior should always be checked against the documentation for the version you run.
