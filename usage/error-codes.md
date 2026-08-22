@@ -1,3 +1,19 @@
+---
+layout: doc
+title: "RDP/VNC Error Codes — Next Terminal"
+description: "RDP and VNC error code reference for Next Terminal bastion host — troubleshooting remote desktop and virtual network computing errors."
+head:
+  - - meta
+    - name: keywords
+      content: RDP error, VNC error, troubleshooting, bastion host, Next Terminal
+  - - meta
+    - property: og:title
+      content: "RDP/VNC Error Codes — Next Terminal"
+  - - meta
+    - property: og:description
+      content: "RDP and VNC error code reference for Next Terminal bastion host — troubleshooting remote desktop and virtual network computing errors."
+---
+
 # RDP/VNC Error Codes
 
 When connecting to remote desktops using RDP or VNC, you may encounter errors. This document lists common status codes and meanings for faster troubleshooting.

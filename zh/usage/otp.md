@@ -1,3 +1,19 @@
+---
+layout: doc
+title: "OTP 一次性密码 — Next Terminal"
+description: "Next Terminal 堡垒机的 OTP 二次认证 — TOTP 配置与敏感操作的二次校验。"
+head:
+  - - meta
+    - name: keywords
+      content: OTP, TOTP, 二次认证, 堡垒机, Next Terminal
+  - - meta
+    - property: og:title
+      content: "OTP 一次性密码 — Next Terminal"
+  - - meta
+    - property: og:description
+      content: "Next Terminal 堡垒机的 OTP 二次认证 — TOTP 配置与敏感操作的二次校验。"
+---
+
 # OTP 一次性密码
 
 > OTP（One-Time Password）是一种基于时间的动态密码认证方式，每30秒自动生成一个新的6位数字密码，为您的账户提供额外的安全保障。

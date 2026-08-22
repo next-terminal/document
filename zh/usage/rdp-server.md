@@ -1,3 +1,19 @@
+---
+layout: doc
+title: "RDP 代理服务器 — Next Terminal"
+description: "Next Terminal 的 RDP 代理服务器 — 用本地远程桌面客户端访问 RDP 资产，保留统一权限、审计与录像的轻量堡垒机。"
+head:
+  - - meta
+    - name: keywords
+      content: RDP代理, 远程桌面, 堡垒机, 会话审计, Next Terminal, 开源堡垒机
+  - - meta
+    - property: og:title
+      content: "RDP 代理服务器 — Next Terminal"
+  - - meta
+    - property: og:description
+      content: "Next Terminal 的 RDP 代理服务器 — 用本地远程桌面客户端访问 RDP 资产，保留统一权限、审计与录像的轻量堡垒机。"
+---
+
 # RDP 代理服务器
 
 RDP 代理服务器是 Next Terminal 提供的原生 RDP 入口。开启后，用户可以在 Web 端为已授权的 RDP 资产下载 `.rdp` 文件，并使用 Windows 远程桌面、Microsoft Remote Desktop 等标准 RDP 客户端连接到 Next Terminal，再由 Next Terminal 代理访问真实的 Windows 远程桌面资产。

@@ -1,3 +1,19 @@
+---
+layout: doc
+title: "资产访问 — Next Terminal"
+description: "通过 Next Terminal 开源堡垒机访问已授权资产 — Web 终端、SSH 代理与 RDP 代理，统一审计与录像。"
+head:
+  - - meta
+    - name: keywords
+      content: 资产访问, 堡垒机, SSH代理, RDP代理, Next Terminal, 会话审计
+  - - meta
+    - property: og:title
+      content: "资产访问 — Next Terminal"
+  - - meta
+    - property: og:description
+      content: "通过 Next Terminal 开源堡垒机访问已授权资产 — Web 终端、SSH 代理与 RDP 代理，统一审计与录像。"
+---
+
 
 在一切准备就绪后，您可以访问资产了。
 

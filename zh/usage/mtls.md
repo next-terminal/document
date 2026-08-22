@@ -1,3 +1,19 @@
+---
+layout: doc
+title: "mTLS 双向认证 — Next Terminal"
+description: "Next Terminal 开源堡垒机的 mTLS 双向认证 — 为用户签发客户端证书，支持 strict/ca_only 校验，保护反向代理后的 Web 资产。"
+head:
+  - - meta
+    - name: keywords
+      content: mTLS, 双向认证, 客户端证书, 堡垒机, Next Terminal
+  - - meta
+    - property: og:title
+      content: "mTLS 双向认证 — Next Terminal"
+  - - meta
+    - property: og:description
+      content: "Next Terminal 开源堡垒机的 mTLS 双向认证 — 为用户签发客户端证书，支持 strict/ca_only 校验，保护反向代理后的 Web 资产。"
+---
+
 # mTLS 双向认证
 
 ## 什么是 mTLS

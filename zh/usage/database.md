@@ -1,3 +1,19 @@
+---
+layout: doc
+title: "数据库审计 — Next Terminal"
+description: "Next Terminal 开源堡垒机的数据库代理与审计 — MySQL 协议级拦截、SQL 工单与操作审计。"
+head:
+  - - meta
+    - name: keywords
+      content: 数据库审计, MySQL代理, SQL审计, 堡垒机, Next Terminal
+  - - meta
+    - property: og:title
+      content: "数据库审计 — Next Terminal"
+  - - meta
+    - property: og:description
+      content: "Next Terminal 开源堡垒机的数据库代理与审计 — MySQL 协议级拦截、SQL 工单与操作审计。"
+---
+
 # 数据库审计
 
 ## 功能概述

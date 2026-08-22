@@ -1,3 +1,19 @@
+---
+layout: doc
+title: "mTLS Mutual TLS — Next Terminal"
+description: "mTLS mutual TLS in Next Terminal open source bastion host — per-user client certificates, strict/ca_only verification for Web assets behind reverse proxy."
+head:
+  - - meta
+    - name: keywords
+      content: mTLS, mutual TLS, client certificate, bastion host, Next Terminal
+  - - meta
+    - property: og:title
+      content: "mTLS Mutual TLS — Next Terminal"
+  - - meta
+    - property: og:description
+      content: "mTLS mutual TLS in Next Terminal open source bastion host — per-user client certificates, strict/ca_only verification for Web assets behind reverse proxy."
+---
+
 # mTLS (Mutual TLS)
 
 ## What is mTLS?

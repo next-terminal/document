@@ -1,3 +1,19 @@
+---
+layout: doc
+title: "资产管理 — Next Terminal"
+description: "Next Terminal 开源堡垒机的资产管理 — SSH/RDP/VNC/Telnet 资产、分组、凭证与授权，统一访问与运维审计。"
+head:
+  - - meta
+    - name: keywords
+      content: 资产管理, 堡垒机, SSH资产, RDP资产, Next Terminal, 开源堡垒机
+  - - meta
+    - property: og:title
+      content: "资产管理 — Next Terminal"
+  - - meta
+    - property: og:description
+      content: "Next Terminal 开源堡垒机的资产管理 — SSH/RDP/VNC/Telnet 资产、分组、凭证与授权，统一访问与运维审计。"
+---
+
 # 资产管理
 
 ### 支持协议

@@ -1,3 +1,19 @@
+---
+layout: doc
+title: "Asset Access — Next Terminal"
+description: "Access authorized assets via Next Terminal open source bastion host — Web terminal, SSH proxy and RDP proxy with unified audit and recording."
+head:
+  - - meta
+    - name: keywords
+      content: asset access, bastion host, SSH proxy, RDP proxy, Next Terminal, session audit
+  - - meta
+    - property: og:title
+      content: "Asset Access — Next Terminal"
+  - - meta
+    - property: og:description
+      content: "Access authorized assets via Next Terminal open source bastion host — Web terminal, SSH proxy and RDP proxy with unified audit and recording."
+---
+
 Once everything is ready, you can start accessing assets.
 
 Note: file management is only supported for `SSH` and `RDP` protocols.

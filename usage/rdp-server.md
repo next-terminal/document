@@ -1,3 +1,19 @@
+---
+layout: doc
+title: "RDP Proxy Server — Next Terminal"
+description: "RDP proxy server in Next Terminal — access Windows RDP assets via native client with unified permissions, audit and recording. Lightweight bastion host."
+head:
+  - - meta
+    - name: keywords
+      content: RDP proxy, remote desktop, bastion host, session audit, Next Terminal, open source bastion
+  - - meta
+    - property: og:title
+      content: "RDP Proxy Server — Next Terminal"
+  - - meta
+    - property: og:description
+      content: "RDP proxy server in Next Terminal — access Windows RDP assets via native client with unified permissions, audit and recording. Lightweight bastion host."
+---
+
 # RDP Proxy Server
 
 RDP Proxy Server is a native RDP entry point provided by Next Terminal. After it is enabled, users can download `.rdp` files for authorized RDP assets from the web UI, then connect to Next Terminal with standard RDP clients such as Windows Remote Desktop or Microsoft Remote Desktop. Next Terminal then proxies the connection to the real Windows remote desktop asset.

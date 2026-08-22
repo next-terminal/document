@@ -1,3 +1,19 @@
+---
+layout: doc
+title: "Termark Client — Next Terminal"
+description: "Use Termark native SSH client to access Next Terminal authorized assets — unified inventory, local terminal with bastion audit."
+head:
+  - - meta
+    - name: keywords
+      content: Termark, SSH client, bastion host, Next Terminal, native SSH
+  - - meta
+    - property: og:title
+      content: "Termark Client — Next Terminal"
+  - - meta
+    - property: og:description
+      content: "Use Termark native SSH client to access Next Terminal authorized assets — unified inventory, local terminal with bastion audit."
+---
+
 # Use Termark to Access Next Terminal Assets
 
 **Termark** is a local access client for Next Terminal. It can sync SSH and RDP assets authorized to your Next Terminal account and let you open bastion-hosted assets from your desktop, similar to tools such as XShell, MobaXterm, or Remote Desktop Connection.

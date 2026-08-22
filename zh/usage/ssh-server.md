@@ -1,3 +1,19 @@
+---
+layout: doc
+title: "SSH 代理服务器 — Next Terminal"
+description: "Next Terminal 开源堡垒机的 SSH 代理服务器 — 集中式 SSH 接入、命令拦截、会话录像与运维审计。"
+head:
+  - - meta
+    - name: keywords
+      content: SSH代理, 堡垒机, SSH堡垒机, 会话审计, Next Terminal, 开源堡垒机
+  - - meta
+    - property: og:title
+      content: "SSH 代理服务器 — Next Terminal"
+  - - meta
+    - property: og:description
+      content: "Next Terminal 开源堡垒机的 SSH 代理服务器 — 集中式 SSH 接入、命令拦截、会话录像与运维审计。"
+---
+
 # SSH 代理服务器
 
 SSH 代理服务器是 Next Terminal 提供的一个便捷功能,允许用户通过标准的 SSH 客户端连接到 Next Terminal,进而访问管理的各类资产。无需安装专用客户端,即可使用熟悉的 SSH 工具完成远程运维工作。

@@ -1,3 +1,19 @@
+---
+layout: doc
+title: "安全网关配置文件 — Next Terminal"
+description: "Next Terminal 堡垒机安全网关配置文件说明 — Agent 参数、隧道与转发选项。"
+head:
+  - - meta
+    - name: keywords
+      content: 安全网关配置, Agent网关, 堡垒机, Next Terminal
+  - - meta
+    - property: og:title
+      content: "安全网关配置文件 — Next Terminal"
+  - - meta
+    - property: og:description
+      content: "Next Terminal 堡垒机安全网关配置文件说明 — Agent 参数、隧道与转发选项。"
+---
+
 # 安全网关配置文件
 
 安全网关（`nt-tunnel`）默认从以下位置读取 YAML 配置文件：

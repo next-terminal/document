@@ -1,3 +1,19 @@
+---
+layout: doc
+title: "Web Assets — Next Terminal"
+description: "Web assets and secure publishing in Next Terminal open source bastion host — zero-trust gateway as VPN/frp alternative with identity-first access."
+head:
+  - - meta
+    - name: keywords
+      content: web asset, zero trust, VPN alternative, bastion host, Next Terminal, open source bastion
+  - - meta
+    - property: og:title
+      content: "Web Assets — Next Terminal"
+  - - meta
+    - property: og:description
+      content: "Web assets and secure publishing in Next Terminal open source bastion host — zero-trust gateway as VPN/frp alternative with identity-first access."
+---
+
 # Web Assets
 
 A Web Asset attaches an internal or restricted website to NextTerminal. Instead of hitting the target website directly, users go to NextTerminal's reverse proxy entry point. NextTerminal performs login and authorization checks, then forwards the request to the real site.

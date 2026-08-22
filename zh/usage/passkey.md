@@ -1,3 +1,19 @@
+---
+layout: doc
+title: "通行密钥 — Next Terminal"
+description: "Next Terminal 开源堡垒机的通行密钥 Passkey — 基于 WebAuthn 的无密码认证，堡垒机访问更安全。"
+head:
+  - - meta
+    - name: keywords
+      content: Passkey, 通行密钥, WebAuthn, 无密码, 堡垒机, Next Terminal
+  - - meta
+    - property: og:title
+      content: "通行密钥 — Next Terminal"
+  - - meta
+    - property: og:description
+      content: "Next Terminal 开源堡垒机的通行密钥 Passkey — 基于 WebAuthn 的无密码认证，堡垒机访问更安全。"
+---
+
 # 通行密钥
 
 > Passkey 通过公私钥加密提供了比传统密码更安全、更便捷的身份认证方式，有效防止密码泄露、钓鱼和中间人攻击，同时提升用户体验，是未来身份认证的发展趋势。

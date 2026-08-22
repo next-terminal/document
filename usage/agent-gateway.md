@@ -1,3 +1,19 @@
+---
+layout: doc
+title: "Security Gateway — Next Terminal"
+description: "Security Gateway (Agent) for Next Terminal open source bastion host — reverse tunnel for multi-site and VPC assets without public ports."
+head:
+  - - meta
+    - name: keywords
+      content: security gateway, agent gateway, bastion host, reverse tunnel, Next Terminal, open source bastion
+  - - meta
+    - property: og:title
+      content: "Security Gateway — Next Terminal"
+  - - meta
+    - property: og:description
+      content: "Security Gateway (Agent) for Next Terminal open source bastion host — reverse tunnel for multi-site and VPC assets without public ports."
+---
+
 # Security Gateway
 
 ## Overview

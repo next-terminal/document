@@ -1,3 +1,19 @@
+---
+layout: doc
+title: "系统资源配置指南 — Next Terminal 开源堡垒机"
+description: "Next Terminal 开源堡垒机的系统资源配置与部署要求 — CPU/内存/磁盘与 PostgreSQL 选型，适合中小团队私有化堡垒机部署。"
+head:
+  - - meta
+    - name: keywords
+      content: 堡垒机部署, 系统资源, 配置要求, 开源堡垒机, Next Terminal, 跳板机
+  - - meta
+    - property: og:title
+      content: "系统资源配置指南 — Next Terminal 开源堡垒机"
+  - - meta
+    - property: og:description
+      content: "Next Terminal 开源堡垒机的系统资源配置与部署要求 — CPU/内存/磁盘与 PostgreSQL 选型，适合中小团队私有化堡垒机部署。"
+---
+
 # 系统资源配置指南
 
 ## 性能配置参考

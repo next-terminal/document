@@ -1,3 +1,19 @@
+---
+layout: doc
+title: "Security Gateway Config — Next Terminal"
+description: "Security Gateway configuration file reference for Next Terminal bastion host — agent settings, tunnel and forwarding options."
+head:
+  - - meta
+    - name: keywords
+      content: security gateway config, agent gateway, bastion host, Next Terminal
+  - - meta
+    - property: og:title
+      content: "Security Gateway Config — Next Terminal"
+  - - meta
+    - property: og:description
+      content: "Security Gateway configuration file reference for Next Terminal bastion host — agent settings, tunnel and forwarding options."
+---
+
 # Security Gateway Configuration File
 
 Security Gateway (`nt-tunnel`) reads its YAML configuration from this default path:

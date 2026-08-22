@@ -1,3 +1,19 @@
+---
+layout: doc
+title: "System Requirements — Resource Sizing for Next Terminal"
+description: "Resource sizing and system requirements for Next Terminal open source bastion host deployment — CPU, memory, disk and PostgreSQL planning for self-hosted jump server."
+head:
+  - - meta
+    - name: keywords
+      content: bastion host deployment, system requirements, resource sizing, open source bastion, Next Terminal, jump server
+  - - meta
+    - property: og:title
+      content: "System Requirements — Resource Sizing for Next Terminal"
+  - - meta
+    - property: og:description
+      content: "Resource sizing and system requirements for Next Terminal open source bastion host deployment — CPU, memory, disk and PostgreSQL planning for self-hosted jump server."
+---
+
 # System Resource Sizing Guide
 
 ## Performance Reference

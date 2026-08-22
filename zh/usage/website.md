@@ -1,3 +1,19 @@
+---
+layout: doc
+title: "Web 资产 — Next Terminal"
+description: "Next Terminal 开源堡垒机的 Web 资产与安全发布 — 以零信任网关替代 VPN/frp，浏览器即用、身份先行、统一审计。"
+head:
+  - - meta
+    - name: keywords
+      content: Web资产, 零信任, VPN替代, 堡垒机, Next Terminal, 开源堡垒机
+  - - meta
+    - property: og:title
+      content: "Web 资产 — Next Terminal"
+  - - meta
+    - property: og:description
+      content: "Next Terminal 开源堡垒机的 Web 资产与安全发布 — 以零信任网关替代 VPN/frp，浏览器即用、身份先行、统一审计。"
+---
+
 # Web 资产
 
 Web 资产用于把内部网站或受限网站接入 NextTerminal。用户不再直接访问目标网站，而是访问 NextTerminal 的反向代理入口，由 NextTerminal 完成登录校验、权限校验，再把请求转发到真正的网站。

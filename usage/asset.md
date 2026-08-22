@@ -1,3 +1,19 @@
+---
+layout: doc
+title: "Asset Management — Next Terminal"
+description: "Asset management in Next Terminal open source bastion host — SSH/RDP/VNC/Telnet assets, groups, credentials and authorization for unified access."
+head:
+  - - meta
+    - name: keywords
+      content: asset management, bastion host, SSH asset, RDP asset, Next Terminal, open source bastion
+  - - meta
+    - property: og:title
+      content: "Asset Management — Next Terminal"
+  - - meta
+    - property: og:description
+      content: "Asset management in Next Terminal open source bastion host — SSH/RDP/VNC/Telnet assets, groups, credentials and authorization for unified access."
+---
+
 # Asset Management
 
 ### Supported Protocols

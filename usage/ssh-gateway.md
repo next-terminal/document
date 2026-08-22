@@ -1,3 +1,19 @@
+---
+layout: doc
+title: "SSH Gateway — Next Terminal"
+description: "SSH gateway for Next Terminal open source bastion host — direct ssh user@host access with bastion authentication and audit."
+head:
+  - - meta
+    - name: keywords
+      content: SSH gateway, bastion host, jump server, Next Terminal, SSH proxy
+  - - meta
+    - property: og:title
+      content: "SSH Gateway — Next Terminal"
+  - - meta
+    - property: og:description
+      content: "SSH gateway for Next Terminal open source bastion host — direct ssh user@host access with bastion authentication and audit."
+---
+
 # SSH Gateway
 
 ## Overview

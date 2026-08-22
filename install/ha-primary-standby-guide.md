@@ -1,3 +1,19 @@
+---
+layout: doc
+title: "Primary/Standby HA Deployment — Next Terminal"
+description: "Primary/standby high-availability deployment guide for Next Terminal open source bastion host — PostgreSQL replication, failover and real-ip handling."
+head:
+  - - meta
+    - name: keywords
+      content: bastion host HA, high availability, primary standby, Next Terminal HA, open source bastion
+  - - meta
+    - property: og:title
+      content: "Primary/Standby HA Deployment — Next Terminal"
+  - - meta
+    - property: og:description
+      content: "Primary/standby high-availability deployment guide for Next Terminal open source bastion host — PostgreSQL replication, failover and real-ip handling."
+---
+
 # Next Terminal Primary/Standby Deployment Guide
 
 ## 1. Architecture

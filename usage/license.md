@@ -1,3 +1,19 @@
+---
+layout: doc
+title: "License Binding — Next Terminal"
+description: "License binding for Next Terminal commercial edition — activation, edition limits and offline licensing for self-hosted bastion host."
+head:
+  - - meta
+    - name: keywords
+      content: license, bastion host, Next Terminal license, activation
+  - - meta
+    - property: og:title
+      content: "License Binding — Next Terminal"
+  - - meta
+    - property: og:description
+      content: "License binding for Next Terminal commercial edition — activation, edition limits and offline licensing for self-hosted bastion host."
+---
+
 # License Binding
 
 1. Open **System Settings -> License**, copy the machine code.

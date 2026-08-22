@@ -1,3 +1,19 @@
+---
+layout: doc
+title: "Get Real Client IP — Next Terminal"
+description: "How Next Terminal open source bastion host retrieves the real client IP behind reverse proxy and Docker — X-Forwarded-For, real-ip and audit accuracy."
+head:
+  - - meta
+    - name: keywords
+      content: real client IP, reverse proxy, X-Forwarded-For, bastion host audit, Next Terminal
+  - - meta
+    - property: og:title
+      content: "Get Real Client IP — Next Terminal"
+  - - meta
+    - property: og:description
+      content: "How Next Terminal open source bastion host retrieves the real client IP behind reverse proxy and Docker — X-Forwarded-For, real-ip and audit accuracy."
+---
+
 # Get the Real Client IP
 
 When NextTerminal sits behind Nginx, a CDN, a WAF, or a load balancer, the IP NextTerminal sees on the network connection is the **previous proxy hop**, not the real user. This page explains where and how to configure NextTerminal so that the real client IP is identified correctly.

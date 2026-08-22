@@ -1,3 +1,19 @@
+---
+layout: doc
+title: "安全网关 — Next Terminal"
+description: "Next Terminal 开源堡垒机的安全网关 Agent — 反向隧道接入多机房与 VPC 资产，无需开放公网端口。"
+head:
+  - - meta
+    - name: keywords
+      content: 安全网关, Agent网关, 堡垒机, 反向隧道, Next Terminal, 开源堡垒机
+  - - meta
+    - property: og:title
+      content: "安全网关 — Next Terminal"
+  - - meta
+    - property: og:description
+      content: "Next Terminal 开源堡垒机的安全网关 Agent — 反向隧道接入多机房与 VPC 资产，无需开放公网端口。"
+---
+
 # 安全网关
 
 ## 概述

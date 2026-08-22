@@ -1,3 +1,19 @@
+---
+layout: doc
+title: "获取真实客户端 IP — Next Terminal"
+description: "Next Terminal 开源堡垒机在反向代理与 Docker 环境下获取真实客户端 IP — X-Forwarded-For 与审计准确性。"
+head:
+  - - meta
+    - name: keywords
+      content: 真实IP, 反向代理, X-Forwarded-For, 堡垒机审计, Next Terminal
+  - - meta
+    - property: og:title
+      content: "获取真实客户端 IP — Next Terminal"
+  - - meta
+    - property: og:description
+      content: "Next Terminal 开源堡垒机在反向代理与 Docker 环境下获取真实客户端 IP — X-Forwarded-For 与审计准确性。"
+---
+
 # 获取真实客户端 IP
 
 当 NextTerminal 前面有 Nginx、CDN、WAF、负载均衡等代理时，NextTerminal 直接看到的是"上一跳代理"的 IP，不是真实用户 IP。本文说明应该在哪里、怎么配置才能正确识别真实客户端 IP。

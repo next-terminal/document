@@ -1,3 +1,19 @@
+---
+layout: doc
+title: "SSH Proxy Server — Next Terminal"
+description: "SSH proxy server in Next Terminal open source bastion host — centralized SSH access, command interception, session recording and audit."
+head:
+  - - meta
+    - name: keywords
+      content: SSH proxy, bastion host, SSH bastion, session audit, Next Terminal, open source bastion
+  - - meta
+    - property: og:title
+      content: "SSH Proxy Server — Next Terminal"
+  - - meta
+    - property: og:description
+      content: "SSH proxy server in Next Terminal open source bastion host — centralized SSH access, command interception, session recording and audit."
+---
+
 # SSH Proxy Server
 
 SSH Proxy Server is a convenient feature in Next Terminal. It allows users to connect to Next Terminal with standard SSH clients and then access managed assets. No dedicated client is required.

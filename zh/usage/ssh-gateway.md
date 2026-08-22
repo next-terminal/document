@@ -1,3 +1,19 @@
+---
+layout: doc
+title: "SSH 网关 — Next Terminal"
+description: "Next Terminal 开源堡垒机的 SSH 网关 — 支持 ssh user@host 直连，经堡垒机鉴权与审计。"
+head:
+  - - meta
+    - name: keywords
+      content: SSH网关, 堡垒机, 跳板机, Next Terminal, SSH代理
+  - - meta
+    - property: og:title
+      content: "SSH 网关 — Next Terminal"
+  - - meta
+    - property: og:description
+      content: "Next Terminal 开源堡垒机的 SSH 网关 — 支持 ssh user@host 直连，经堡垒机鉴权与审计。"
+---
+
 # SSH 网关
 
 ## 概述

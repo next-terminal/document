@@ -1,3 +1,19 @@
+---
+layout: doc
+title: "快速开始 — Next Terminal 开源堡垒机"
+description: "Next Terminal 开源堡垒机快速开始 — 部署、添加资产、授权与会话审计，JumpServer/Teleport 轻量替代的私有化堡垒机入门。"
+head:
+  - - meta
+    - name: keywords
+      content: 快速开始, 堡垒机, 开源堡垒机, Next Terminal, 跳板机, JumpServer替代
+  - - meta
+    - property: og:title
+      content: "快速开始 — Next Terminal 开源堡垒机"
+  - - meta
+    - property: og:description
+      content: "Next Terminal 开源堡垒机快速开始 — 部署、添加资产、授权与会话审计，JumpServer/Teleport 轻量替代的私有化堡垒机入门。"
+---
+
 # 快速开始
 
 ### 初始化用户

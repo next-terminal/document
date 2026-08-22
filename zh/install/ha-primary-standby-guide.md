@@ -1,3 +1,19 @@
+---
+layout: doc
+title: "主备高可用部署 — Next Terminal"
+description: "Next Terminal 开源堡垒机主备高可用部署指南 — PostgreSQL 主从、故障切换与 real-ip 处理，保障堡垒机高可用。"
+head:
+  - - meta
+    - name: keywords
+      content: 堡垒机高可用, 主备部署, 高可用, Next Terminal 高可用, 开源堡垒机
+  - - meta
+    - property: og:title
+      content: "主备高可用部署 — Next Terminal"
+  - - meta
+    - property: og:description
+      content: "Next Terminal 开源堡垒机主备高可用部署指南 — PostgreSQL 主从、故障切换与 real-ip 处理，保障堡垒机高可用。"
+---
+
 # Next Terminal 主备部署操作文档
 
 ## 1. 架构

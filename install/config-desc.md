@@ -1,3 +1,19 @@
+---
+layout: doc
+title: "config.yaml Reference — Next Terminal"
+description: "Complete config.yaml reference for Next Terminal open source bastion host — server, reverse proxy, database, gateway and security settings for self-hosted deployment."
+head:
+  - - meta
+    - name: keywords
+      content: config.yaml, bastion host config, Next Terminal config, reverse proxy, open source bastion
+  - - meta
+    - property: og:title
+      content: "config.yaml Reference — Next Terminal"
+  - - meta
+    - property: og:description
+      content: "Complete config.yaml reference for Next Terminal open source bastion host — server, reverse proxy, database, gateway and security settings for self-hosted deployment."
+---
+
 # `config.yaml` Reference
 
 This document explains each configuration item in Next Terminal's `config.yaml` so you can customize deployment behavior safely.

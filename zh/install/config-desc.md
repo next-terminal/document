@@ -1,3 +1,19 @@
+---
+layout: doc
+title: "配置文件详解 config.yaml — Next Terminal"
+description: "Next Terminal 开源堡垒机 config.yaml 完整参数说明 — 服务、反向代理、数据库、网关与安全配置，支撑私有化堡垒机部署。"
+head:
+  - - meta
+    - name: keywords
+      content: config.yaml, 堡垒机配置, Next Terminal 配置, 反向代理, 开源堡垒机
+  - - meta
+    - property: og:title
+      content: "配置文件详解 config.yaml — Next Terminal"
+  - - meta
+    - property: og:description
+      content: "Next Terminal 开源堡垒机 config.yaml 完整参数说明 — 服务、反向代理、数据库、网关与安全配置，支撑私有化堡垒机部署。"
+---
+
 # 配置文件详解 (`config.yaml`)
 
 本文档详细说明了 Next Terminal 的 `config.yaml` 配置文件中的各项参数，以帮助您更好地完成自定义配置。

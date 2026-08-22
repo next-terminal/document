@@ -1,3 +1,19 @@
+---
+layout: doc
+title: "OIDC 身份服务器 — Next Terminal"
+description: "Next Terminal 的 OIDC 身份服务器 — 为 Proxmox VE 等外部应用提供单点登录，以 Next Terminal 为 IdP。"
+head:
+  - - meta
+    - name: keywords
+      content: OIDC, 单点登录, 身份提供方, Proxmox VE, Next Terminal, 堡垒机
+  - - meta
+    - property: og:title
+      content: "OIDC 身份服务器 — Next Terminal"
+  - - meta
+    - property: og:description
+      content: "Next Terminal 的 OIDC 身份服务器 — 为 Proxmox VE 等外部应用提供单点登录，以 Next Terminal 为 IdP。"
+---
+
 # OIDC 身份服务器
 
 ## 什么是 OIDC

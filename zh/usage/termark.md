@@ -1,3 +1,19 @@
+---
+layout: doc
+title: "使用 Termark 接入 NextTerminal 资产 — Next Terminal"
+description: "使用 Termark 本地 SSH 客户端直连 Next Terminal 已授权资产 — 统一资产清单、本地终端体验与堡垒机审计。"
+head:
+  - - meta
+    - name: keywords
+      content: Termark, SSH客户端, 堡垒机, Next Terminal, 本地SSH
+  - - meta
+    - property: og:title
+      content: "使用 Termark 接入 NextTerminal 资产 — Next Terminal"
+  - - meta
+    - property: og:description
+      content: "使用 Termark 本地 SSH 客户端直连 Next Terminal 已授权资产 — 统一资产清单、本地终端体验与堡垒机审计。"
+---
+
 # 使用 Termark 接入 NextTerminal 资产
 
 **Termark** 是 NextTerminal 配套的本地访问客户端，可以把 NextTerminal 中已授权的 SSH、RDP 资产同步到本地使用。配置完成后，可以像使用 XShell、MobaXterm、远程桌面连接等本地客户端一样，从本地直接打开堡垒机资产。

@@ -1,3 +1,19 @@
+---
+layout: doc
+title: "Database Audit — Next Terminal"
+description: "Database proxy and audit in Next Terminal open source bastion host — MySQL protocol interception, SQL work orders and operation audit."
+head:
+  - - meta
+    - name: keywords
+      content: database audit, MySQL proxy, SQL audit, bastion host, Next Terminal
+  - - meta
+    - property: og:title
+      content: "Database Audit — Next Terminal"
+  - - meta
+    - property: og:description
+      content: "Database proxy and audit in Next Terminal open source bastion host — MySQL protocol interception, SQL work orders and operation audit."
+---
+
 # Database Audit
 
 ## Overview

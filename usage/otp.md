@@ -1,3 +1,19 @@
+---
+layout: doc
+title: "OTP One-Time Password — Next Terminal"
+description: "OTP two-factor authentication in Next Terminal bastion host — TOTP setup and second-factor for sensitive operations."
+head:
+  - - meta
+    - name: keywords
+      content: OTP, TOTP, 2FA, bastion host, Next Terminal
+  - - meta
+    - property: og:title
+      content: "OTP One-Time Password — Next Terminal"
+  - - meta
+    - property: og:description
+      content: "OTP two-factor authentication in Next Terminal bastion host — TOTP setup and second-factor for sensitive operations."
+---
+
 # OTP (One-Time Password)
 
 > OTP (One-Time Password) is a time-based dynamic verification method. A new 6-digit code is generated every 30 seconds to add extra security to your account.

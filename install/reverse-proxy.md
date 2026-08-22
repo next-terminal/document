@@ -1,3 +1,19 @@
+---
+layout: doc
+title: "Reverse Proxy — Next Terminal"
+description: "Reverse proxy setup for Next Terminal open source bastion host — Nginx/Caddy, HTTPS, WebSocket and Security Gateway forwarding for unified access."
+head:
+  - - meta
+    - name: keywords
+      content: reverse proxy, bastion host, WebSocket, Next Terminal, open source bastion, security gateway
+  - - meta
+    - property: og:title
+      content: "Reverse Proxy — Next Terminal"
+  - - meta
+    - property: og:description
+      content: "Reverse proxy setup for Next Terminal open source bastion host — Nginx/Caddy, HTTPS, WebSocket and Security Gateway forwarding for unified access."
+---
+
 # Reverse Proxy
 
 ## Nginx Example

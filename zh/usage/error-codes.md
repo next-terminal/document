@@ -1,3 +1,19 @@
+---
+layout: doc
+title: "RDP/VNC 错误码说明 — Next Terminal"
+description: "Next Terminal 堡垒机的 RDP/VNC 错误码对照 — 远程桌面与虚拟网络计算排障参考。"
+head:
+  - - meta
+    - name: keywords
+      content: RDP错误, VNC错误, 排障, 堡垒机, Next Terminal
+  - - meta
+    - property: og:title
+      content: "RDP/VNC 错误码说明 — Next Terminal"
+  - - meta
+    - property: og:description
+      content: "Next Terminal 堡垒机的 RDP/VNC 错误码对照 — 远程桌面与虚拟网络计算排障参考。"
+---
+
 # RDP/VNC 错误码说明
 
 在使用 RDP 和 VNC 协议连接远程桌面时，可能会遇到各种错误。本文档列出了常见的错误状态码及其含义，帮助您快速诊断和解决连接问题。

@@ -1,3 +1,19 @@
+---
+layout: doc
+title: "容器安装 — Next Terminal 开源堡垒机"
+description: "用 Docker Compose 一键部署 Next Terminal 开源堡垒机 — 5分钟完成堡垒机部署，JumpServer/Teleport 轻量替代，适合中小团队。"
+head:
+  - - meta
+    - name: keywords
+      content: 堡垒机部署, docker 堡垒机, 开源堡垒机部署, 跳板机部署, Next Terminal, JumpServer替代
+  - - meta
+    - property: og:title
+      content: "容器安装 — Next Terminal 开源堡垒机"
+  - - meta
+    - property: og:description
+      content: "用 Docker Compose 一键部署 Next Terminal 开源堡垒机 — 5分钟完成堡垒机部署，JumpServer/Teleport 轻量替代，适合中小团队。"
+---
+
 **推广**
 
 <a href="https://www.lcayun.com/actcloud.html?from=next-terminal" target="_blank" rel="sponsored noopener">![img.png](images/lcayun.png)</a>
