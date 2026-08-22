@@ -15,4 +15,4 @@ Official documentation for the self-hosted Next Terminal bastion host and secure
 Documentation covers installation, configuration, reverse proxy, high availability, assets, credentials, SSH/RDP access, Web assets, gateways, Passkey, TOTP, OIDC, mTLS, database audit, upgrades, backup, and troubleshooting.
 
 Product website: https://www.next-terminal.com/
-Source repository: https://github.com/dushixiang/next-terminal
+Source repository: https://github.com/next-terminal/next-terminal

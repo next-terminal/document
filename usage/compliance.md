@@ -68,4 +68,4 @@ Next Terminal is a self-hosted bastion host. For teams that face internal audit 
 - mTLS/IdP configuration and sign-in policy
 - Backup/restore drill record and HA checklist sign-off
 
-> Questions about a specific framework? Open an issue with your control list at [GitHub](https://github.com/dushixiang/next-terminal) or contact via [License Portal](https://license.next-terminal.com).
+> Questions about a specific framework? Open an issue with your control list at [GitHub](https://github.com/next-terminal/next-terminal) or contact via [License Portal](https://license.next-terminal.com).

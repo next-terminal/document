@@ -68,4 +68,4 @@ Next Terminal 是私有化部署的堡垒机。本页将产品能力映射到常
 - mTLS/IdP 配置与登录策略
 - 备份/恢复演练记录与 HA Checklist 签字
 
-> 需对照具体框架？带控制项清单在 [GitHub](https://github.com/dushixiang/next-terminal) 提 issue 或通过 [授权系统](https://license.next-terminal.com) 联系。
+> 需对照具体框架？带控制项清单在 [GitHub](https://github.com/next-terminal/next-terminal) 提 issue 或通过 [授权系统](https://license.next-terminal.com) 联系。
