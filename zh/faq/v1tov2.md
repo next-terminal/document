@@ -1,3 +1,19 @@
+---
+layout: doc
+title: "从 1.x 升级到 2.x — Next Terminal FAQ"
+description: "Next Terminal 开源堡垒机从 1.x 升级到 2.x 的指南 — 变更与迁移步骤。"
+head:
+  - - meta
+    - name: keywords
+      content: 升级, 迁移, 堡垒机升级, Next Terminal v2, 开源堡垒机
+  - - meta
+    - property: og:title
+      content: "从 1.x 升级到 2.x — Next Terminal FAQ"
+  - - meta
+    - property: og:description
+      content: "Next Terminal 开源堡垒机从 1.x 升级到 2.x 的指南 — 变更与迁移步骤。"
+---
+
 # 从 1.x 升级到 2.x 版本指南
 
 ## ⚠️ 重要提示

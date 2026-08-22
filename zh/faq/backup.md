@@ -1,3 +1,19 @@
+---
+layout: doc
+title: "系统备份与恢复 — Next Terminal FAQ"
+description: "Next Terminal 开源堡垒机的备份与恢复指南 — 数据卷、PostgreSQL 与配置文件备份，保障私有化堡垒机可恢复性。"
+head:
+  - - meta
+    - name: keywords
+      content: 备份, 恢复, 堡垒机备份, Next Terminal, 开源堡垒机, PostgreSQL
+  - - meta
+    - property: og:title
+      content: "系统备份与恢复 — Next Terminal FAQ"
+  - - meta
+    - property: og:description
+      content: "Next Terminal 开源堡垒机的备份与恢复指南 — 数据卷、PostgreSQL 与配置文件备份，保障私有化堡垒机可恢复性。"
+---
+
 # 系统备份与恢复
 
 Next Terminal 已内置备份与恢复功能。管理员登录后，进入“系统设置 → 系统维护 → 备份与恢复”即可操作，无需下载或运行额外的备份脚本。

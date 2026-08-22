@@ -1,3 +1,19 @@
+---
+layout: doc
+title: "常见问题 — Next Terminal"
+description: "Next Terminal 开源堡垒机的常见问题 — 部署、资产访问、审计与排障，私有化堡垒机 FAQ。"
+head:
+  - - meta
+    - name: keywords
+      content: 常见问题, 堡垒机FAQ, Next Terminal, 开源堡垒机, 跳板机
+  - - meta
+    - property: og:title
+      content: "常见问题 — Next Terminal"
+  - - meta
+    - property: og:description
+      content: "Next Terminal 开源堡垒机的常见问题 — 部署、资产访问、审计与排障，私有化堡垒机 FAQ。"
+---
+
 # 常见问题
 
 ## 查看密码/密钥需要进行二次认证？

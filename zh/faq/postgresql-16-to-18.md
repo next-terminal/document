@@ -1,3 +1,19 @@
+---
+layout: doc
+title: "从 PostgreSQL 16 迁移到 PostgreSQL 18 — Next Terminal FAQ"
+description: "Next Terminal 开源堡垒机从 PostgreSQL 16 迁移到 18 的步骤 — 升级、dump/restore 与容器卷处理。"
+head:
+  - - meta
+    - name: keywords
+      content: PostgreSQL迁移, PostgreSQL 18, 堡垒机升级, Next Terminal, 数据库迁移
+  - - meta
+    - property: og:title
+      content: "从 PostgreSQL 16 迁移到 PostgreSQL 18 — Next Terminal FAQ"
+  - - meta
+    - property: og:description
+      content: "Next Terminal 开源堡垒机从 PostgreSQL 16 迁移到 18 的步骤 — 升级、dump/restore 与容器卷处理。"
+---
+
 # 从 PostgreSQL 16 迁移到 PostgreSQL 18
 
 当前的 Next Terminal 容器安装配置默认使用 PostgreSQL 18。如果现有部署仍在使用 PostgreSQL 16，需要先通过系统备份功能导出数据，再创建 PostgreSQL 18 数据库并恢复备份。

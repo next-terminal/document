@@ -1,3 +1,19 @@
+---
+layout: doc
+title: "系统属性配置表 — Next Terminal FAQ"
+description: "Next Terminal 开源堡垒机的系统属性配置表 — 自托管部署的配置键与说明。"
+head:
+  - - meta
+    - name: keywords
+      content: 系统属性, 堡垒机配置, Next Terminal, 开源堡垒机
+  - - meta
+    - property: og:title
+      content: "系统属性配置表 — Next Terminal FAQ"
+  - - meta
+    - property: og:description
+      content: "Next Terminal 开源堡垒机的系统属性配置表 — 自托管部署的配置键与说明。"
+---
+
 # 系统属性配置表
 
 本文档列出了 Next Terminal 系统中所有可通过命令行工具管理的配置项，表名称为 `property` 。

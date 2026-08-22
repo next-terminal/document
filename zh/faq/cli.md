@@ -1,3 +1,19 @@
+---
+layout: doc
+title: "命令行工具 — Next Terminal FAQ"
+description: "Next Terminal 开源堡垒机的命令行工具 — 通过 CLI 管理资产、用户与堡垒机运维。"
+head:
+  - - meta
+    - name: keywords
+      content: 命令行, CLI, 堡垒机CLI, Next Terminal, 开源堡垒机
+  - - meta
+    - property: og:title
+      content: "命令行工具 — Next Terminal FAQ"
+  - - meta
+    - property: og:description
+      content: "Next Terminal 开源堡垒机的命令行工具 — 通过 CLI 管理资产、用户与堡垒机运维。"
+---
+
 # 命令行工具
 
 ### 查看帮助
