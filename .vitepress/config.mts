@@ -18,7 +18,7 @@ const head: DefaultTheme.Config['head'] = [
     ['link', {rel: 'icon', href: '/logo.svg'}],
     ['meta', {
         name: 'keywords',
-        content: 'Next Terminal, remote access, bastion host, operations audit, SSH, RDP, VNC, Telnet, open source'
+        content: 'Next Terminal, bastion host, 堡垒机, 开源堡垒机, open source bastion, jump server, 跳板机, PAM, privileged access management, 运维审计, operations audit, SSH, RDP, VNC, Telnet, Web SSH, session audit, JumpServer alternative, Teleport alternative'
     }],
     ['meta', {property: 'og:title', content: 'Next Terminal Documentation - Secure Remote Access and Operations Audit'}],
     ['meta', {
@@ -280,7 +280,7 @@ const zhSidebar: DefaultTheme.Sidebar = {
 
 export default defineConfig({
     title: 'Next Terminal',
-    description: 'Official documentation for Next Terminal secure remote access, asset management, and operations audit.',
+    description: 'Next Terminal open source bastion host and PAM — unified SSH/RDP/VNC/Telnet access, asset authorization, session audit and recording. A JumpServer/Teleport alternative for teams.',
     head,
     sitemap: {
         hostname: 'https://docs.next-terminal.com'
@@ -360,7 +360,7 @@ export default defineConfig({
             label: 'English',
             lang: 'en-US',
             title: 'Next Terminal',
-            description: 'Official documentation for Next Terminal secure remote access, asset management, and operations audit.',
+            description: 'Next Terminal open source bastion host and PAM — unified SSH/RDP/VNC/Telnet access, session audit and operations audit. A JumpServer and Teleport alternative.',
             themeConfig: {
                 lastUpdated: {
                     text: 'Last Updated'
@@ -383,14 +383,14 @@ export default defineConfig({
             lang: 'zh-CN',
             link: '/zh/',
             title: 'Next Terminal',
-            description: 'Next Terminal 官方文档 - 一个简单、好用、安全的开源运维审计系统',
+            description: 'Next Terminal 开源堡垒机与运维审计系统 — 支持 SSH/RDP/VNC/Telnet 统一接入、资产授权、会话审计与录像，JumpServer/Teleport 的轻量替代。',
             head: [
-                ['meta', {property: 'og:title', content: 'Next Terminal - 开源运维审计系统'}],
+                ['meta', {property: 'og:title', content: 'Next Terminal 开源堡垒机 — 统一接入与运维审计 | JumpServer替代'}],
                 [
                     'meta',
                     {
                         property: 'og:description',
-                        content: 'Next Terminal 是一个简单、好用、安全的开源运维审计系统，支持 SSH、RDP、VNC、Telnet 等多种协议'
+                        content: 'Next Terminal 是一款轻量开源堡垒机与运维审计系统，支持 SSH/RDP/VNC/Telnet/Web 统一接入、会话录像与审计，适合中小团队私有化部署。'
                     }
                 ]
             ],

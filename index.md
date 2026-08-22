@@ -1,11 +1,11 @@
 ---
 layout: doc
 title: Next Terminal Documentation
-description: Official Next Terminal documentation for installation, secure remote access, asset management, gateways, authentication, operations audit, upgrades, and troubleshooting.
+description: Next Terminal open source bastion host and PAM documentation — install, SSH/RDP/VNC/Telnet access, asset management, session audit and recording. A JumpServer/Teleport alternative.
 head:
   - - meta
     - name: keywords
-      content: Next Terminal documentation, bastion host installation, Web SSH, remote access, operations audit
+      content: Next Terminal, bastion host, open source bastion host, JumpServer alternative, Teleport alternative, PAM, jump server, SSH bastion, RDP audit, operations audit, session recording
 ---
 
 # Next Terminal Documentation

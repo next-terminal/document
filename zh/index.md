@@ -1,11 +1,11 @@
 ---
 layout: doc
 title: Next Terminal 官方文档
-description: Next Terminal 官方文档，涵盖堡垒机部署、资产管理、Web SSH、远程访问、网关、身份认证、运维审计、升级和故障排查。
+description: Next Terminal 开源堡垒机与运维审计文档 — 支持 SSH/RDP/VNC/Telnet 统一接入、资产授权、会话审计与录像，JumpServer/Teleport 的轻量替代，适合中小团队私有化部署。
 head:
   - - meta
     - name: keywords
-      content: Next Terminal 文档, 堡垒机部署, Web SSH, 运维审计, 远程访问
+      content: 开源堡垒机, 堡垒机, 跳板机, JumpServer替代, Teleport替代, 堡垒机部署, 运维审计, 会话审计, PAM, Next Terminal, SSH堡垒机, RDP审计
 ---
 
 # Next Terminal 官方文档
