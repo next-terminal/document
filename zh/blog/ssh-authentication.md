@@ -1,3 +1,19 @@
+---
+layout: doc
+title: "SSH 里的“认证私钥”到底是什么，它认证的是谁？ — 堡垒机 SSH 认证原理解析"
+description: "解析 SSH 认证私钥与用户私钥的区别：服务器身份私钥认证的是服务器，账号密码/用户私钥认证的是用户。结合 Next Terminal 开源堡垒机的 SSH 接入与主机指纹校验，厘清堡垒机 SSH 认证常见误区。"
+head:
+  - - meta
+    - name: keywords
+      content: SSH认证, SSH私钥, 堡垒机, SSH堡垒机, 主机指纹, 服务器身份认证, Next Terminal, 跳板机
+  - - meta
+    - property: og:title
+      content: SSH 里的“认证私钥”到底是什么，它认证的是谁？
+  - - meta
+    - property: og:description
+      content: 厘清 SSH 服务器身份私钥与用户认证私钥的职责，结合堡垒机场景解释主机指纹与中间人风险。
+---
+
 # SSH 里的“认证私钥”到底是什么，它认证的是谁？
 
 很多人在看到 SSH 配置中的“认证私钥”时，都会自然地理解成“用户登录时使用的私钥”。但这个理解通常是不对的。
@@ -79,3 +95,5 @@ SSH 建立连接时，并不是一上来就先验证用户密码。更常见的�
 
 用户是谁，由账号密码或用户自己的 SSH 私钥来证明。
 服务器是谁，则由服务器自己的身份私钥来证明。
+
+> 在 Next Terminal 这类**开源堡垒机**中，SSH 资产的凭证管理与主机指纹校验正是为了解决这两类认证的分离问题，详见 [资产管理](/zh/usage/asset) 与 [资产访问](/zh/usage/access)，亦可用 [Termark 本地客户端](/zh/usage/termark) 直连已授权的 SSH 资产。

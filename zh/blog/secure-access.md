@@ -1,3 +1,19 @@
+---
+layout: doc
+title: "别再裸奔了：如何优雅且安全地暴露内网服务？ — Next Terminal 零信任 Web 资产发布"
+description: "别再让内网服务裸奔。用 Next Terminal 开源堡垒机的 Web 资产与安全网关，以零信任思路替代 frp 与 VPN，浏览器即可安全发布内网服务，支持身份认证与审计。"
+head:
+  - - meta
+    - name: keywords
+      content: 堡垒机, Web资产, 安全网关, 零信任, VPN替代, 内网穿透, 开源堡垒机, Next Terminal, frp替代
+  - - meta
+    - property: og:title
+      content: 别再裸奔了：如何优雅且安全地暴露内网服务？ — Next Terminal 零信任实践
+  - - meta
+    - property: og:description
+      content: 对比 frp/VPN 与 Next Terminal 零信任网关，3分钟安全发布内网 GitLab，多机房统一入口，无需端口映射。
+---
+
 # 别再裸奔了：如何优雅且安全地暴露内网服务？
 
 ## 1. 现状：你的内网服务在公网“裸奔”吗？
@@ -57,12 +73,13 @@ App:
     Enabled: true
     HttpsEnabled: true
     SelfDomain: "nt.yourdomain.com"
-
 ```
 
 ### 第二步：添加 Web 资产
 
 在 Web 界面点击“添加资产”，填写内部 IP 和你想要的域名（如 `gitlab.yourdomain.com`）。
+
+> 详细步骤见 [Web 资产](/zh/usage/website) 与 [反向代理](/zh/install/reverse-proxy)。
 
 ### 第三步：授权与访问
 
@@ -86,6 +103,8 @@ App:
 
 这样，无论服务在哪，你都只需要通过一个入口访问，而且**不需要在路由器上做任何端口映射**。
 
+> 安全网关配置见 [安全网关](/zh/usage/agent-gateway) 与 [安全网关配置文件](/zh/usage/agent-gateway-config)。
+
 ## 总结
 
 | 需求 | frp | VPN | Next Terminal |
@@ -95,4 +114,4 @@ App:
 | **权限控制** | 无 | 粗粒度 (内网全通) | **精细 (按人/按资产授权)** |
 | **管理成本** | 分散 | 复杂 | **统一控制台** |
 
-如果你已经厌倦了每天看 SSH 被爆破的日志，或者不想再为 VPN 掉线发愁，欢迎尝试 **Next Terminal**。
+如果你已经厌倦了每天看 SSH 被爆破的日志，或者不想再为 VPN 掉线发愁，欢迎尝试 **Next Terminal**。快速开始见 [容器安装](/zh/install/container-install)，在线体验见 [https://demo.next-terminal.com](https://demo.next-terminal.com)，定价见 [https://www.next-terminal.com/pricing](https://www.next-terminal.com/pricing)。

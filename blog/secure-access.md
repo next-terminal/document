@@ -1,16 +1,17 @@
 ---
-title: Stop Exposing Internal Services Directly
-description: Compare frp, VPN, and Next Terminal zero-trust access for publishing internal Web services securely.
+layout: doc
+title: "Stop Exposing Internal Services Directly: Zero-Trust Web Assets with Next Terminal"
+description: "Stop exposing internal services with frp or VPN. Use Next Terminal open source bastion host to publish internal Web assets via zero-trust gateway — browser-native, identity-first, audited."
 head:
   - - meta
     - name: keywords
-      content: Next Terminal, zero trust, internal service exposure, frp, VPN, secure web access
+      content: bastion host, open source bastion, zero trust, VPN alternative, internal service, frp alternative, Next Terminal, web asset gateway
   - - meta
     - property: og:title
-      content: Stop Exposing Internal Services Directly
+      content: Stop Exposing Internal Services Directly — Next Terminal Zero-Trust Gateway
   - - meta
     - property: og:description
-      content: A practical guide to publishing internal services safely with identity-first access and centralized auditing.
+      content: "Replace frp/VPN with a bastion host gateway to publish internal GitLab securely in 3 minutes with unified access and audit."
 ---
 
 # Stop Exposing Internal Services Directly: A Safer and Cleaner Approach
