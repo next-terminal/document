@@ -275,3 +275,99 @@ docker compose up -d next-terminal
 docker compose ps
 curl http://<PRIMARY_IP>:8088
 ```
+
+## 14. Automatic Failover with Keepalived + VIP
+
+Manual `docker compose up -d` is for drills. In production put Keepalived in front to avoid Nginx `backup` 30s detection lag.
+
+```bash
+apt install -y keepalived
+```
+
+`keepalived.conf` (`priority 100` primary, `90` standby, same `virtual_router_id`):
+
+```nginx
+vrrp_instance VI_NT {
+    state BACKUP
+    interface eth0
+    virtual_router_id 51
+    priority 100  # standby: 90
+    advert_int 1
+    authentication { auth_type PASS; auth_pass nt-ha-51 }
+    virtual_ipaddress { <VIP>/24 }
+    track_script { chk_nt }
+}
+vrrp_script chk_nt {
+    script "curl -sf http://127.0.0.1:8088/api/health || exit 1"
+    interval 2
+    weight -20
+    fall 2
+    rise 2
+}
+```
+
+```nginx
+upstream next_terminal_backend { server <VIP>:8088; }
+```
+
+> VIP failover <3s; `track_script` ties app health into election, more accurate than TCP alone.
+
+## 15. Health Probes
+
+| Probe | Target | Fail threshold | Action |
+|-------|--------|----------------|--------|
+| `chk_nt` | `next-terminal:8088` | 2 | Keepalived weight drop |
+| `pg_isready` | PostgreSQL | 2 | Alert only (Patroni owns PG) |
+| NFS `stat` | `/opt/next-terminal/data` | 3 | Alert, degrade to S3 read-only |
+| `guacd:4822` | guacd | 2 | Restart guacd container |
+
+## 16. Split-Brain Protection and STONITH
+
+Shared `data` + shared PG risks dual writes.
+
+1. **Only one `next-terminal` at a time**: Keepalived `nopreempt` + `weight -20` ensures promotion only when old primary is gone; on return stop old primary before `up`.
+2. **PostgreSQL**: self-host via Patroni+etcd with pgbouncer VIP; managed RDS relies on cloud failover.
+3. **NFS**: `hard,intr,_netdev` with soft timeout alerts; prefer S3 recordings where possible (next section).
+
+## 17. Recordings and Data Directory: NFS Limits and S3 Alternative
+
+NFS is simple but single-point and lock-prone.
+
+- Switch `App.Recording.Type: s3` and `App.Guacd.Drive` to object storage; keep `data` for `config.yaml` only.
+- Benefits: horizontal scale, no NFS locks, lifecycle/archival; inject `config.yaml` via ConfigMap/Secret.
+
+## 18. PostgreSQL HA Choices
+
+| Option | Fit | Notes |
+|--------|-----|-------|
+| Managed RDS primary/standby | Cloud teams | Easiest, NT points to read-write endpoint |
+| Patroni + etcd | Self-hosted private | Auto election, needs 3 etcd nodes, NT via pgbouncer VIP |
+| Shared PG (this guide) | 2-node demo | Does not survive PG single-point; starter only |
+
+> NT HA != PG HA — design each layer separately. Once `data` and `PG` are HA, NT is stateless and horizontally scalable.
+
+## 19. Drill Playbook (quarterly)
+
+```bash
+# 1. Primary down
+ssh <PRIMARY_IP> "docker compose stop next-terminal"
+curl -i http://<VIP>:8088 --max-time 5  # expect 200 within 3s
+
+# 2. Network partition (unplug standby 30s, check no dual-primary in /var/log/messages)
+
+# 3. PG switchover (Patroni)
+patronictl -c /etc/patroni.yml switchover --master <old> --candidate <new>
+
+# 4. Replay verification
+# Login -> Audit -> replay one RDP/SSH recording
+```
+
+Record RTO/RPO; if RTO >60s tune `advert_int / fall / rise`.
+
+## 20. Monitoring and Alerting
+
+- **Must alert**: VIP move, `next-terminal` health fail, PG replication lag >5s, NFS/S3 unavailable, Keepalived `VRRP FAULT`.
+- **Recommended**: Prometheus `blackbox_exporter` on `https://<DOMAIN>` + `node_exporter` + Loki for `nt.log/access.log`, Grafana dashboard tied to `wednesday` license and session audit.
+
+> Full checklist: [Production HA Checklist](/install/ha-production-checklist).
+

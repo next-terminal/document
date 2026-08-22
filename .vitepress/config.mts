@@ -63,6 +63,7 @@ const enInstallSidebar: DefaultTheme.SidebarItem[] = [
             {text: 'System Requirements', link: '/install/system-requirements'},
             {text: 'Container Installation', link: '/install/container-install'},
             {text: 'Primary/Standby HA Deployment', link: '/install/ha-primary-standby-guide'},
+            {text: 'Production HA Checklist', link: '/install/ha-production-checklist'},
             {text: 'Configuration File', link: '/install/config-desc'},
             {text: 'Reverse Proxy', link: '/install/reverse-proxy'},
             {text: 'Disable Docker userland-proxy', link: '/install/disable-docker-userland-proxy'},
@@ -112,7 +113,8 @@ const enUsageSidebar: DefaultTheme.SidebarItem[] = [
                     {text: 'OIDC Identity Server', link: '/usage/oidc_server'},
                     {text: 'License Binding', link: '/usage/license'}
                 ]
-            }
+            },
+            {text: 'Compliance', link: '/usage/compliance'}
         ]
     }
 ]
@@ -170,6 +172,7 @@ const zhInstallSidebar: DefaultTheme.SidebarItem[] = [
             {text: '系统需求', link: '/zh/install/system-requirements'},
             {text: '容器安装', link: '/zh/install/container-install'},
             {text: '主备高可用部署', link: '/zh/install/ha-primary-standby-guide'},
+            {text: '生产级高可用 Checklist', link: '/zh/install/ha-production-checklist'},
             {text: '配置文件', link: '/zh/install/config-desc'},
             {text: '反向代理', link: '/zh/install/reverse-proxy'},
             {text: '禁用 Docker userland-proxy', link: '/zh/install/disable-docker-userland-proxy'},
@@ -219,7 +222,8 @@ const zhUsageSidebar: DefaultTheme.SidebarItem[] = [
                     {text: 'OIDC 身份服务器', link: '/zh/usage/oidc_server'},
                     {text: '绑定授权', link: '/zh/usage/license'}
                 ]
-            }
+            },
+            {text: '合规与审计', link: '/zh/usage/compliance'}
         ]
     }
 ]

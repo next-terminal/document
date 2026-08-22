@@ -290,3 +290,107 @@ docker compose ps
 2. `config.yaml` 的 `App.Guacd.Hosts` 不能写 `guacd`
 3. A 和 B 的 `./data` 必须是同一个共享目录
 4. B 平时不要启动 `next-terminal`
+
+## 14. 自动故障转移（Keepalived + VIP）
+
+手工 `docker compose up -d` 适合演练，生产建议前置 Keepalived 抢占 VIP，避免 Nginx `backup` 30s 探测延迟。
+
+```bash
+# 主备均安装
+apt install -y keepalived
+```
+
+`keepalived.conf`（主 `priority 100`，备 `priority 90`，`virtual_router_id` 同域唯一）：
+
+```nginx
+vrrp_instance VI_NT {
+    state BACKUP
+    interface eth0
+    virtual_router_id 51
+    priority 100  # 备改 90
+    advert_int 1
+    authentication { auth_type PASS; auth_pass nt-ha-51 }
+    virtual_ipaddress { <VIP>/24 }
+    track_script { chk_nt }
+}
+vrrp_script chk_nt {
+    script "curl -sf http://127.0.0.1:8088/api/health || exit 1"
+    interval 2
+    weight -20
+    fall 2
+    rise 2
+}
+```
+
+```nginx
+# Nginx upstream 改为 VIP 单点
+upstream next_terminal_backend { server <VIP>:8088; }
+```
+
+> VIP 漂移 <3s，配合 `track_script` 将应用健康纳入选举，比纯 TCP 探测更准。
+
+## 15. 健康探针与存活检测
+
+| 探针 | 检测对象 | 失败阈值 | 动作 |
+|------|----------|----------|------|
+| `chk_nt` | `next-terminal:8088` | 2 次 | Keepalived 降权 |
+| `pg_isready` | PostgreSQL | 2 次 | 告警，不自动切（由 Patroni 管 PG） |
+| NFS `stat` | `/opt/next-terminal/data` | 3 次 | 告警，切 S3 只读降级 |
+| `guacd:4822` | guacd | 2 次 | 重启 guacd 容器 |
+
+```bash
+# crontab 每分钟自检（示例）
+* * * * * /usr/local/bin/nt-ha-check.sh || logger "nt ha check failed"
+```
+
+## 16. 脑裂防护与 STONITH
+
+共享 `data` + 共用 PG 时脑裂会导致录像/审计双写。约束：
+
+1. **同刻只跑一个 `next-terminal` 容器**：Keepalived `nopreempt` + `weight -20` 确保旧主失联才让位；回归时手工 `docker compose stop` 旧主再 `up`。
+2. **PG 侧**：若 PG 自建，走 Patroni + etcd 选主，NT 仅连 `pgbouncer -vip`；若托管 RDS，依赖云厂商主备。
+3. **NFS 侧**：启用 `hard,intr,_netdev`，配 `soft` 超时告警；条件允许改 S3 录像（见下）。
+
+## 17. 录像与 data 目录：NFS 的局限与 S3 替代
+
+NFS 共享 `data` 简单但存在单点与锁竞争。规模化建议：
+
+- `App.Recording.Type: s3` + `App.Guacd.Drive` 指向对象存储，`data` 仅留 `config.yaml` 与小文件。
+- 好处：录像可水平扩展、免 NFS 锁、便于生命周期与归档；`config.yaml` 改为 ConfigMap/Secret 注入。
+
+## 18. PostgreSQL 高可用选型
+
+| 方案 | 适用 | 说明 |
+|------|------|------|
+| 云 RDS 主备 | 上云团队 | 最省心，NT 仅改 `Hostname` 为读写端点 |
+| Patroni + etcd | 自建私有化 | 自动选主，需 3 节点 etcd，NT 侧用 pgbouncer VIP |
+| 共享 PG（当前文档） | 2 节点演示 | 不抗 PG 单点，仅作入门 |
+
+> 结论：NT 高可用≠ PG 高可用，需分层设计；`data` 与 `PG` 各自高可用后，NT 无状态可任意横向。
+
+## 19. 演练手册（必做，每季度 1 次）
+
+```bash
+# 1. 主节点宕机
+ssh <PRIMARY_IP> "docker compose stop next-terminal"
+curl -i http://<VIP>:8088 --max-time 5  # 应 200，3s 内恢复
+
+# 2. 网络分区（备侧拔网 30s 再恢复）
+# 观察 Keepalived 日志 /var/log/messages，无双主
+
+# 3. PG 主切（Patroni）
+patronictl -c /etc/patroni.yml switchover --master <old> --candidate <new>
+
+# 4. 录像回放验证
+# 登录 -> 审计 -> 回放 1 条 RDP/SSH 录像
+```
+
+记录 RTO/RPO，未达标（RTO > 60s）则调 `advert_int / fall / rise`。
+
+## 20. 监控告警
+
+- **必告警**：VIP 漂移、`next-terminal` 健康失败、PG 复制延迟 >5s、NFS/S3 不可用、Keepalived `VRRP` 状态变 `FAULT`。
+- **建议**：Prometheus `blackbox_exporter` 探 `https://<DOMAIN>` + `node_exporter` + Loki 收集 `nt.log/access.log`，Grafana 看板关联 `wednesday` 授权与会话审计。
+
+> 完整生产 Checklist 见 [生产级高可用 Checklist](/zh/install/ha-production-checklist)。
+
