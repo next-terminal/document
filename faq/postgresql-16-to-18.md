@@ -1,3 +1,19 @@
+---
+layout: doc
+title: "Migrate PostgreSQL 16 to 18 — Next Terminal FAQ"
+description: "Migrate PostgreSQL from 16 to 18 for Next Terminal open source bastion host — upgrade steps, dump/restore and container volume handling."
+head:
+  - - meta
+    - name: keywords
+      content: PostgreSQL migration, PostgreSQL 18, bastion host upgrade, Next Terminal, database migration
+  - - meta
+    - property: og:title
+      content: "Migrate PostgreSQL 16 to 18 — Next Terminal FAQ"
+  - - meta
+    - property: og:description
+      content: "Migrate PostgreSQL from 16 to 18 for Next Terminal open source bastion host — upgrade steps, dump/restore and container volume handling."
+---
+
 # Migrate from PostgreSQL 16 to PostgreSQL 18
 
 The current Next Terminal container installation uses PostgreSQL 18 by default. If an existing deployment still uses PostgreSQL 16, export the data with the built-in system backup, create a PostgreSQL 18 database, and restore the backup.

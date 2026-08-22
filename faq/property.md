@@ -1,3 +1,19 @@
+---
+layout: doc
+title: "System Property Table — Next Terminal FAQ"
+description: "System property reference for Next Terminal open source bastion host — configuration keys and descriptions for self-hosted deployment."
+head:
+  - - meta
+    - name: keywords
+      content: system property, bastion host config, Next Terminal, open source bastion
+  - - meta
+    - property: og:title
+      content: "System Property Table — Next Terminal FAQ"
+  - - meta
+    - property: og:description
+      content: "System property reference for Next Terminal open source bastion host — configuration keys and descriptions for self-hosted deployment."
+---
+
 # System Property Table
 
 This document lists all configurable properties in Next Terminal that can be managed via CLI (`property` table).

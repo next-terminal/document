@@ -1,3 +1,19 @@
+---
+layout: doc
+title: "Certificate Management API — Next Terminal"
+description: "Certificate Management API for Next Terminal open source bastion host — mTLS and HTTPS certificate lifecycle for Web assets behind reverse proxy."
+head:
+  - - meta
+    - name: keywords
+      content: certificate API, mTLS, bastion host API, Next Terminal, open source bastion
+  - - meta
+    - property: og:title
+      content: "Certificate Management API — Next Terminal"
+  - - meta
+    - property: og:description
+      content: "Certificate Management API for Next Terminal open source bastion host — mTLS and HTTPS certificate lifecycle for Web assets behind reverse proxy."
+---
+
 # Certificate Management API
 
 ## Update Certificate

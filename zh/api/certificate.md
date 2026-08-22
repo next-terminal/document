@@ -1,3 +1,19 @@
+---
+layout: doc
+title: "证书管理 API — Next Terminal"
+description: "Next Terminal 开源堡垒机的证书管理 API — 反向代理后 Web 资产的 mTLS 与 HTTPS 证书生命周期管理。"
+head:
+  - - meta
+    - name: keywords
+      content: 证书管理, mTLS, 堡垒机API, Next Terminal, 开源堡垒机
+  - - meta
+    - property: og:title
+      content: "证书管理 API — Next Terminal"
+  - - meta
+    - property: og:description
+      content: "Next Terminal 开源堡垒机的证书管理 API — 反向代理后 Web 资产的 mTLS 与 HTTPS 证书生命周期管理。"
+---
+
 # 证书管理 API
 
 ## 更新证书

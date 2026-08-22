@@ -1,3 +1,19 @@
+---
+layout: doc
+title: "System Backup and Restore — Next Terminal FAQ"
+description: "Backup and restore guide for Next Terminal open source bastion host — data volumes, PostgreSQL and config backup for self-hosted recovery."
+head:
+  - - meta
+    - name: keywords
+      content: backup, restore, bastion host backup, Next Terminal, open source bastion, PostgreSQL
+  - - meta
+    - property: og:title
+      content: "System Backup and Restore — Next Terminal FAQ"
+  - - meta
+    - property: og:description
+      content: "Backup and restore guide for Next Terminal open source bastion host — data volumes, PostgreSQL and config backup for self-hosted recovery."
+---
+
 # System Backup and Restore
 
 Next Terminal includes built-in backup and restore. After signing in as an administrator, open **System Settings → System Maintenance → Backup & Restore**. No external backup script is required.

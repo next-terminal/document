@@ -1,3 +1,19 @@
+---
+layout: doc
+title: "FAQ — Next Terminal"
+description: "Frequently asked questions for Next Terminal open source bastion host — deployment, asset access, audit and troubleshooting for self-hosted bastion."
+head:
+  - - meta
+    - name: keywords
+      content: FAQ, bastion host FAQ, Next Terminal FAQ, open source bastion, jump server
+  - - meta
+    - property: og:title
+      content: "FAQ — Next Terminal"
+  - - meta
+    - property: og:description
+      content: "Frequently asked questions for Next Terminal open source bastion host — deployment, asset access, audit and troubleshooting for self-hosted bastion."
+---
+
 # FAQ
 
 ## Why is secondary verification required to view passwords/keys?

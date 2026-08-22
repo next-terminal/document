@@ -1,3 +1,19 @@
+---
+layout: doc
+title: "CLI Tool — Next Terminal FAQ"
+description: "CLI tool for Next Terminal open source bastion host — command-line operations for assets, users and bastion administration."
+head:
+  - - meta
+    - name: keywords
+      content: CLI, command line, bastion host CLI, Next Terminal, open source bastion
+  - - meta
+    - property: og:title
+      content: "CLI Tool — Next Terminal FAQ"
+  - - meta
+    - property: og:description
+      content: "CLI tool for Next Terminal open source bastion host — command-line operations for assets, users and bastion administration."
+---
+
 # CLI Tool
 
 ## Show Help

@@ -1,3 +1,19 @@
+---
+layout: doc
+title: "使用 Next Terminal OIDC 登录 Proxmox VE — 开源堡垒机单点登录"
+description: "用 Next Terminal 开源堡垒机的 OIDC 身份服务为 Proxmox VE 提供单点登录 — 以堡垒机为 IdP 的 SSO 实战。"
+head:
+  - - meta
+    - name: keywords
+      content: OIDC, 单点登录, Proxmox VE, 堡垒机, Next Terminal, 开源堡垒机, SSO
+  - - meta
+    - property: og:title
+      content: "使用 Next Terminal OIDC 登录 Proxmox VE — 开源堡垒机单点登录"
+  - - meta
+    - property: og:description
+      content: "用 Next Terminal 开源堡垒机的 OIDC 身份服务为 Proxmox VE 提供单点登录 — 以堡垒机为 IdP 的 SSO 实战。"
+---
+
 # 使用 Next Terminal OIDC 登录 Proxmox VE
 
 本文演示如何配置 Proxmox VE 使用 Next Terminal 的 OIDC 服务进行身份认证。
