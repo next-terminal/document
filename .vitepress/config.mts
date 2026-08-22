@@ -137,6 +137,7 @@ const enBlogSidebar: DefaultTheme.SidebarItem[] = [
         text: 'Blog',
         collapsed: false,
         items: [
+            {text: 'Deploy Next Terminal Bastion Host with Docker: First SSH Asset in 5 Minutes', link: '/blog/docker-deploy'},
             {text: 'What Is the "Authentication Private Key" in SSH, and What Does It Actually Authenticate?', link: '/blog/ssh-authentication'},
             {text: 'How to Securely Expose Internal Services?', link: '/blog/secure-access'},
             {text: 'V3.0.0 Changelog', link: '/blog/v3.0.0'},
@@ -243,6 +244,7 @@ const zhBlogSidebar: DefaultTheme.SidebarItem[] = [
         text: '博客文章',
         collapsed: false,
         items: [
+            {text: 'Docker 一键部署 Next Terminal 开源堡垒机：5分钟接入首个 SSH 资产', link: '/zh/blog/docker-deploy'},
             {text: 'SSH 里的“认证私钥”到底是什么，它认证的是谁？', link: '/zh/blog/ssh-authentication'},
             {text: '如何安全的暴露内网服务？', link: '/zh/blog/secure-access'},
             {text: 'V3.3.6 更新日志', link: '/zh/blog/v3.3.6'},
