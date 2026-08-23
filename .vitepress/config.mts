@@ -143,7 +143,8 @@ const enBlogSidebar: DefaultTheme.SidebarItem[] = [
             {text: 'What Is the "Authentication Private Key" in SSH, and What Does It Actually Authenticate?', link: '/blog/ssh-authentication'},
             {text: 'How to Securely Expose Internal Services?', link: '/blog/secure-access'},
             {text: 'V3.0.0 Changelog', link: '/blog/v3.0.0'},
-            {text: 'Sign in to Proxmox VE with Next Terminal OIDC', link: '/blog/pve-oidc/readme'}
+            {text: 'Sign in to Proxmox VE with Next Terminal OIDC', link: '/blog/pve-oidc/readme'},
+            {text: 'RDP Session Audit and Replay for Compliance', link: '/blog/rdp-audit'}
         ]
     }
 ]
@@ -254,7 +255,8 @@ const zhBlogSidebar: DefaultTheme.SidebarItem[] = [
             {text: 'V3.3.6 更新日志', link: '/zh/blog/v3.3.6'},
             {text: 'V3.2.0 更新日志', link: '/zh/blog/v3.2.0'},
             {text: 'V3.0.0 更新日志', link: '/zh/blog/v3.0.0'},
-            {text: '使用 Next Terminal OIDC 登录 Proxmox VE', link: '/zh/blog/pve-oidc/readme'}
+            {text: '使用 Next Terminal OIDC 登录 Proxmox VE', link: '/zh/blog/pve-oidc/readme'},
+            {text: 'RDP 会话审计与录像回放：中小团队如何满足运维合规', link: '/zh/blog/rdp-audit'}
         ]
     }
 ]
