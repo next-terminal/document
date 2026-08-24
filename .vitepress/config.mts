@@ -144,7 +144,8 @@ const enBlogSidebar: DefaultTheme.SidebarItem[] = [
             {text: 'How to Securely Expose Internal Services?', link: '/blog/secure-access'},
             {text: 'V3.0.0 Changelog', link: '/blog/v3.0.0'},
             {text: 'Sign in to Proxmox VE with Next Terminal OIDC', link: '/blog/pve-oidc/readme'},
-            {text: 'RDP Session Audit and Replay for Compliance', link: '/blog/rdp-audit'}
+            {text: 'RDP Session Audit and Replay for Compliance', link: '/blog/rdp-audit'},
+            {text: '2026 Open Source Bastion Host Selection Guide: JumpServer vs Teleport vs Next Terminal', link: '/blog/selection-guide'}
         ]
     }
 ]
@@ -256,7 +257,8 @@ const zhBlogSidebar: DefaultTheme.SidebarItem[] = [
             {text: 'V3.2.0 更新日志', link: '/zh/blog/v3.2.0'},
             {text: 'V3.0.0 更新日志', link: '/zh/blog/v3.0.0'},
             {text: '使用 Next Terminal OIDC 登录 Proxmox VE', link: '/zh/blog/pve-oidc/readme'},
-            {text: 'RDP 会话审计与录像回放：中小团队如何满足运维合规', link: '/zh/blog/rdp-audit'}
+            {text: 'RDP 会话审计与录像回放：中小团队如何满足运维合规', link: '/zh/blog/rdp-audit'},
+            {text: '2026 开源堡垒机选型指南：如何为中小团队选 JumpServer / Teleport / Next Terminal', link: '/zh/blog/selection-guide'}
         ]
     }
 ]
