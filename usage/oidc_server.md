@@ -1,20 +1,20 @@
 ---
 layout: doc
-title: "OIDC Identity Server — Next Terminal"
-description: "OIDC identity server in Next Terminal — single sign-on for external apps like Proxmox VE with Next Terminal as IdP."
+title: "OIDC SSO Full Setup — Use Next Terminal as IdP for Proxmox VE"
+description: "Set up Next Terminal's OIDC identity server for Proxmox VE SSO: IdP config, client registration, well-known discovery, and common pitfalls."
 head:
   - - meta
     - name: keywords
-      content: OIDC, SSO, identity provider, Proxmox VE, Next Terminal, bastion host
+      content: OIDC SSO, single sign-on, identity provider, Proxmox VE, Next Terminal, bastion host
   - - meta
     - property: og:title
-      content: "OIDC Identity Server — Next Terminal"
+      content: "OIDC SSO Full Setup — Use Next Terminal as IdP for Proxmox VE | Next Terminal"
   - - meta
     - property: og:description
-      content: "OIDC identity server in Next Terminal — single sign-on for external apps like Proxmox VE with Next Terminal as IdP."
+      content: "Set up Next Terminal's OIDC identity server for Proxmox VE SSO: IdP config, client registration, well-known discovery, and common pitfalls."
 ---
 
-# OIDC Identity Server
+# OIDC SSO Full Setup — Use Next Terminal as IdP for Proxmox VE
 
 ## What is OIDC?
 

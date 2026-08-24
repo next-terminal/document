@@ -1,20 +1,20 @@
 ---
 layout: doc
-title: "禁用 Docker userland-proxy — Next Terminal"
-description: "为 Next Terminal 开源堡垒机禁用 Docker userland-proxy — 降低端口转发开销与真实 IP 透传优化。"
+title: "修复 Docker 端口转发冲突——关闭 userland-proxy 拿回真实 IP | Next Terminal"
+description: "Docker 映射端口后拿不到真实 IP（显示 172.17.0.1）？教你关闭 userland-proxy、修复端口冲突，给 Next Terminal 恢复原始 IP，附 Compose 验证。"
 head:
   - - meta
     - name: keywords
-      content: Docker, userland-proxy, 堡垒机部署, Next Terminal, 开源堡垒机
+      content: Docker 关闭 userland proxy, Docker 端口转发冲突, 真实 IP, 172.17.0.1, Next Terminal, 堡垒机
   - - meta
     - property: og:title
-      content: "禁用 Docker userland-proxy — Next Terminal"
+      content: "修复 Docker 端口转发冲突——关闭 userland-proxy 拿回真实 IP | Next Terminal"
   - - meta
     - property: og:description
-      content: "为 Next Terminal 开源堡垒机禁用 Docker userland-proxy — 降低端口转发开销与真实 IP 透传优化。"
+      content: "Docker 映射端口后拿不到真实 IP？教你关闭 userland-proxy、修复端口冲突，给 Next Terminal 恢复原始 IP，附 Compose 验证。"
 ---
 
-# 禁用 Docker userland-proxy
+# 修复 Docker 端口转发冲突——关闭 userland-proxy 拿回真实客户端 IP
 
 当 NextTerminal 通过 Docker 端口映射对外暴露时，Docker 的 `userland-proxy` 可能会导致应用看到的是 Docker 网关或宿主机侧地址，而不是真实访问者 IP，例如 `172.17.0.1`、`172.18.0.1`。
 

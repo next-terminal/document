@@ -1,19 +1,19 @@
 ---
-title: Disable Docker userland-proxy
-description: Disable Docker userland-proxy so containers exposed with published ports can receive the real client IP.
+title: Fix Docker Port Forwarding Conflict — Disable userland-proxy to Get Real Client IP
+description: Docker published ports hide the real client IP (172.17.0.1). Fix the port mapping conflict by disabling Docker userland-proxy, restore the original IP for Next Terminal, and verify with a Compose example.
 head:
   - - meta
     - name: keywords
-      content: Docker, userland-proxy, real client IP, Next Terminal
+      content: Docker disable userland proxy, Docker port forwarding, real client IP, 172.17.0.1, Next Terminal
   - - meta
     - property: og:title
-      content: Disable Docker userland-proxy
+      content: Fix Docker Port Forwarding Conflict — Disable userland-proxy to Get Real Client IP | Next Terminal
   - - meta
     - property: og:description
-      content: Disable Docker userland-proxy to avoid hiding the real client IP for Next Terminal container deployments.
+      content: Docker published ports hide the real client IP. Learn how to disable userland-proxy, fix port conflicts, and restore the original IP for Next Terminal with a Compose example.
 ---
 
-# Disable Docker userland-proxy
+# Fix Docker Port Forwarding Conflict — Disable userland-proxy to Get Real Client IP
 
 When NextTerminal is exposed through Docker published ports, Docker's `userland-proxy` may cause the application to see the Docker gateway or host-side address instead of the real visitor IP, such as `172.17.0.1` or `172.18.0.1`.
 
