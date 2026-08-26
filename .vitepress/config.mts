@@ -146,7 +146,8 @@ const enBlogSidebar: DefaultTheme.SidebarItem[] = [
             {text: 'Sign in to Proxmox VE with Next Terminal OIDC', link: '/blog/pve-oidc/readme'},
             {text: 'RDP Session Audit and Replay for Compliance', link: '/blog/rdp-audit'},
             {text: '2026 Open Source Bastion Host Selection Guide: JumpServer vs Teleport vs Next Terminal', link: '/blog/selection-guide'},
-            {text: 'Secure Web Asset Publishing: Replace VPN with Next Terminal', link: '/blog/web-asset-gateway'}
+            {text: 'Secure Web Asset Publishing: Replace VPN with Next Terminal', link: '/blog/web-asset-gateway'},
+            {text: 'Next Terminal HA Deployment: Primary/Standby Pitfalls', link: '/blog/ha-deploy'}
         ]
     }
 ]
@@ -260,7 +261,8 @@ const zhBlogSidebar: DefaultTheme.SidebarItem[] = [
             {text: '使用 Next Terminal OIDC 登录 Proxmox VE', link: '/zh/blog/pve-oidc/readme'},
             {text: 'RDP 会话审计与录像回放：中小团队如何满足运维合规', link: '/zh/blog/rdp-audit'},
             {text: '2026 开源堡垒机选型指南：如何为中小团队选 JumpServer / Teleport / Next Terminal', link: '/zh/blog/selection-guide'},
-            {text: 'Web 资产安全发布：用 Next Terminal 替代 VPN 暴露内网系统', link: '/zh/blog/web-asset-gateway'}
+            {text: 'Web 资产安全发布：用 Next Terminal 替代 VPN 暴露内网系统', link: '/zh/blog/web-asset-gateway'},
+            {text: 'Next Terminal 主备高可用部署实战：堡垒机上线前的关键避坑', link: '/zh/blog/ha-deploy'}
         ]
     }
 ]
