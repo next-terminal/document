@@ -147,7 +147,8 @@ const enBlogSidebar: DefaultTheme.SidebarItem[] = [
             {text: 'RDP Session Audit and Replay for Compliance', link: '/blog/rdp-audit'},
             {text: '2026 Open Source Bastion Host Selection Guide: JumpServer vs Teleport vs Next Terminal', link: '/blog/selection-guide'},
             {text: 'Secure Web Asset Publishing: Replace VPN with Next Terminal', link: '/blog/web-asset-gateway'},
-            {text: 'Next Terminal v3.7 Highlights: Agent Proxy, RDP Cursor, and MFA', link: '/blog/v37-highlights'}
+            {text: 'Next Terminal v3.7 Highlights: Agent Proxy, RDP Cursor, and MFA', link: '/blog/v37-highlights'},
+            {text: 'From VPN to Zero Trust: A Unified Access Gateway with Next Terminal', link: '/blog/zero-trust'}
         ]
     }
 ]
@@ -262,7 +263,8 @@ const zhBlogSidebar: DefaultTheme.SidebarItem[] = [
             {text: 'RDP 会话审计与录像回放：中小团队如何满足运维合规', link: '/zh/blog/rdp-audit'},
             {text: '2026 开源堡垒机选型指南：如何为中小团队选 JumpServer / Teleport / Next Terminal', link: '/zh/blog/selection-guide'},
             {text: 'Web 资产安全发布：用 Next Terminal 替代 VPN 暴露内网系统', link: '/zh/blog/web-asset-gateway'},
-            {text: 'Next Terminal v3.7 值得升级吗？Agent 代理、RDP 鼠标指针与 MFA 一览', link: '/zh/blog/v37-highlights'}
+            {text: 'Next Terminal v3.7 值得升级吗？Agent 代理、RDP 鼠标指针与 MFA 一览', link: '/zh/blog/v37-highlights'},
+            {text: '从 VPN 到零信任：Next Terminal 的统一访问入口实践', link: '/zh/blog/zero-trust'}
         ]
     }
 ]
