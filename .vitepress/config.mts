@@ -41,7 +41,7 @@ const enNav: DefaultTheme.NavItem[] = [
     {text: 'Installation', link: '/install/system-requirements', activeMatch: '^/install/'},
     {text: 'User Guide', link: '/usage/readme', activeMatch: '^/usage/'},
     {text: 'FAQ', link: '/faq/readme', activeMatch: '^/faq/'},
-    {text: 'Blog', link: '/blog/secure-access', activeMatch: '^/blog/'},
+    {text: 'Blog', link: '/blog/docker-deploy', activeMatch: '^/blog/'},
     {text: 'API Docs', link: '/api/certificate', activeMatch: '^/api/'},
     {text: 'Official Website', link: 'https://www.next-terminal.com/'}
 ]
@@ -50,7 +50,7 @@ const zhNav: DefaultTheme.NavItem[] = [
     {text: '安装文档', link: '/zh/install/system-requirements', activeMatch: '^/zh/install/'},
     {text: '使用文档', link: '/zh/usage/readme', activeMatch: '^/zh/usage/'},
     {text: '常见问题', link: '/zh/faq/readme', activeMatch: '^/zh/faq/'},
-    {text: '博客文章', link: '/zh/blog/secure-access', activeMatch: '^/zh/blog/'},
+    {text: '博客文章', link: '/zh/blog/docker-deploy', activeMatch: '^/zh/blog/'},
     {text: 'API 文档', link: '/zh/api/certificate', activeMatch: '^/zh/api/'},
     {text: '官网地址', link: 'https://www.next-terminal.com/'}
 ]
@@ -141,14 +141,9 @@ const enBlogSidebar: DefaultTheme.SidebarItem[] = [
         items: [
             {text: 'Deploy Next Terminal Bastion Host with Docker: First SSH Asset in 5 Minutes', link: '/blog/docker-deploy'},
             {text: 'What Is the "Authentication Private Key" in SSH, and What Does It Actually Authenticate?', link: '/blog/ssh-authentication'},
-            {text: 'How to Securely Expose Internal Services?', link: '/blog/secure-access'},
-            {text: 'V3.0.0 Changelog', link: '/blog/v3.0.0'},
-            {text: 'Sign in to Proxmox VE with Next Terminal OIDC', link: '/blog/pve-oidc/readme'},
-            {text: 'RDP Session Audit and Replay for Compliance', link: '/blog/rdp-audit'},
             {text: '2026 Open Source Bastion Host Selection Guide: JumpServer vs Teleport vs Next Terminal', link: '/blog/selection-guide'},
             {text: 'Secure Web Asset Publishing: Replace VPN with Next Terminal', link: '/blog/web-asset-gateway'},
-            {text: 'Next Terminal v3.7 Highlights: Agent Proxy, RDP Cursor, and MFA', link: '/blog/v37-highlights'},
-            {text: 'From VPN to Zero Trust: A Unified Access Gateway with Next Terminal', link: '/blog/zero-trust'}
+            {text: 'Sign in to Proxmox VE with Next Terminal OIDC', link: '/blog/pve-oidc/readme'}
         ]
     }
 ]
@@ -255,16 +250,9 @@ const zhBlogSidebar: DefaultTheme.SidebarItem[] = [
         items: [
             {text: 'Docker 一键部署 Next Terminal 开源堡垒机：5分钟接入首个 SSH 资产', link: '/zh/blog/docker-deploy'},
             {text: 'SSH 里的“认证私钥”到底是什么，它认证的是谁？', link: '/zh/blog/ssh-authentication'},
-            {text: '如何安全的暴露内网服务？', link: '/zh/blog/secure-access'},
-            {text: 'V3.3.6 更新日志', link: '/zh/blog/v3.3.6'},
-            {text: 'V3.2.0 更新日志', link: '/zh/blog/v3.2.0'},
-            {text: 'V3.0.0 更新日志', link: '/zh/blog/v3.0.0'},
-            {text: '使用 Next Terminal OIDC 登录 Proxmox VE', link: '/zh/blog/pve-oidc/readme'},
-            {text: 'RDP 会话审计与录像回放：中小团队如何满足运维合规', link: '/zh/blog/rdp-audit'},
             {text: '2026 开源堡垒机选型指南：如何为中小团队选 JumpServer / Teleport / Next Terminal', link: '/zh/blog/selection-guide'},
             {text: 'Web 资产安全发布：用 Next Terminal 替代 VPN 暴露内网系统', link: '/zh/blog/web-asset-gateway'},
-            {text: 'Next Terminal v3.7 值得升级吗？Agent 代理、RDP 鼠标指针与 MFA 一览', link: '/zh/blog/v37-highlights'},
-            {text: '从 VPN 到零信任：Next Terminal 的统一访问入口实践', link: '/zh/blog/zero-trust'}
+            {text: '使用 Next Terminal OIDC 登录 Proxmox VE', link: '/zh/blog/pve-oidc/readme'}
         ]
     }
 ]

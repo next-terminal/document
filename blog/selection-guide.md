@@ -68,7 +68,7 @@ If your assets are Kubernetes and cloud databases first, Teleport's native integ
 Compliance boils down to "who accessed which asset, when, and what did they do — with evidence":
 
 - **Authorization**: All three support user/group to asset/group mapping. Next Terminal keeps it direct — configure in assets and authorization, then rely on [compliance](/usage/compliance) for session recording, command audit, and replay.
-- **Session audit**: Verify three things before you buy — full-protocol recording, search by user/asset/time, and replay to pinpoint risky operations. Next Terminal's approach is covered in [RDP session audit and replay](/blog/rdp-audit).
+- **Session audit**: Verify three things before you buy — full-protocol recording, search by user/asset/time, and replay to pinpoint risky operations. See [compliance](/usage/compliance) and the session management docs.
 - **Identity hardening**: Add [passkey](/usage/passkey) and [2FA (TOTP)](/usage/otp), or federate via the [OIDC identity server](/usage/oidc_server) to your corporate IdP.
 
 JumpServer's audit system is the heaviest and suits strict compliance. Next Terminal optimizes for "auditable and searchable without ceremony" — the SMB requirement that audit must actually get used.
