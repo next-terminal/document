@@ -139,6 +139,7 @@ const enBlogSidebar: DefaultTheme.SidebarItem[] = [
         text: 'Blog',
         collapsed: false,
         items: [
+            {text: 'How ssh -L/-R/-D Punch Through the Firewall: SSH Port Forwarding, Abuse, and Audit', link: '/blog/ssh-port-forwarding'},
             {text: 'What Is the "Authentication Private Key" in SSH, and What Does It Actually Authenticate?', link: '/blog/ssh-authentication'},
             {text: '2026 Open Source Bastion Host Selection Guide: JumpServer vs Teleport vs Next Terminal', link: '/blog/selection-guide'},
             {text: 'Secure Web Asset Publishing: Replace VPN with Next Terminal', link: '/blog/web-asset-gateway'},
@@ -252,6 +253,7 @@ const zhBlogSidebar: DefaultTheme.SidebarItem[] = [
         text: '博客文章',
         collapsed: false,
         items: [
+            {text: 'ssh -L/-R/-D 是怎么打穿防火墙的？SSH 端口转发原理与滥用审计', link: '/zh/blog/ssh-port-forwarding'},
             {text: 'SSH 里的“认证私钥”到底是什么，它认证的是谁？', link: '/zh/blog/ssh-authentication'},
             {text: '2026 开源堡垒机选型指南：如何为中小团队选 JumpServer / Teleport / Next Terminal', link: '/zh/blog/selection-guide'},
             {text: 'Web 资产安全发布：用 Next Terminal 替代 VPN 暴露内网系统', link: '/zh/blog/web-asset-gateway'},
