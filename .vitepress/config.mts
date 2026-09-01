@@ -146,7 +146,8 @@ const enBlogSidebar: DefaultTheme.SidebarItem[] = [
             {text: 'Sign in to Proxmox VE with Next Terminal OIDC', link: '/blog/pve-oidc/readme'},
             {text: 'Database Won\'t Expose to Public? 3 Secure Remote Access Methods', link: '/blog/db-remote-access'},
             {text: 'Still Sharing Root Passwords? Permissions and Auditing for Teams', link: '/blog/share-root-password-risk'},
-            {text: 'Access Intranet Without VPN: 3 Secure Alternatives Compared', link: '/blog/intranet-without-vpn'}
+            {text: 'Access Intranet Without VPN: 3 Secure Alternatives Compared', link: '/blog/intranet-without-vpn'},
+            {text: 'rm -rf / Wasn\'t a Slip: Blocking Dangerous Commands and Auditing Ops', link: '/blog/dangerous-command-block'}
         ]
     }
 ]
@@ -258,7 +259,8 @@ const zhBlogSidebar: DefaultTheme.SidebarItem[] = [
             {text: '使用 Next Terminal OIDC 登录 Proxmox VE', link: '/zh/blog/pve-oidc/readme'},
             {text: '数据库不敢开公网？MySQL/PostgreSQL 安全远程访问 3 种方式', link: '/zh/blog/db-remote-access'},
             {text: '还在共享 root 密码？多人运维的权限与审计怎么做', link: '/zh/blog/share-root-password-risk'},
-            {text: '不开 VPN 怎么安全访问内网系统？3 种方案对比', link: '/zh/blog/intranet-without-vpn'}
+            {text: '不开 VPN 怎么安全访问内网系统？3 种方案对比', link: '/zh/blog/intranet-without-vpn'},
+            {text: 'rm -rf / 是怎么误执行的？高危命令拦截与操作审计怎么做', link: '/zh/blog/dangerous-command-block'}
         ]
     }
 ]
