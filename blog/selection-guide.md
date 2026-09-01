@@ -47,11 +47,11 @@ SMBs typically manage tens to low hundreds of assets, lean on SSH/RDP, need "goo
 
 ### 1. Deployment and Upgrades: Can One Person Maintain It?
 
-- **Next Terminal**: Ships an official `docker-compose.yaml` and `config.yaml`. `docker compose up -d` completes a [container installation](/install/container-install); upgrades are `pull + up -d` with volumes and the config file as the backup boundary. PostgreSQL 16 and 18 are both supported, with the migration path documented in the [primary/standby HA guide](/install/ha-primary-standby-guide) and FAQ.
+- **Next Terminal**: A single image bundles Guacamole. The official `docker-compose.yaml` and `config.yaml` get you up per [container installation](/install/container-install); an upgrade is rebuilding the image, with volumes and the config file as the backup boundary. PostgreSQL 16 and 18 are both supported; the migration path is covered in the [primary/standby HA guide](/install/ha-primary-standby-guide).
 - **JumpServer**: Many components (web, database, Guacamole, storage). First install and upgrades require checklist-driven verification — manageable with a change process, heavy without one.
 - **Teleport**: Deployment itself is not heavy, but realizing its value means configuring CAs, roles, SSO, and Kubernetes integration — higher conceptual cost than a pure bastion host.
 
-The SMB metric that matters is "time from zero to first asset online". With Next Terminal, after following [container installation](/install/container-install), create an SSH asset in [asset management](/usage/asset), authorize it, and verify via [asset access](/usage/access) — the whole loop fits in about 10 minutes.
+The metric that matters is "time from zero to first asset online": after initialization, create an SSH asset in [asset management](/usage/asset), authorize it, and verify via [asset access](/usage/access) — the whole loop runs in about 10 minutes.
 
 ### 2. Protocol and Asset Coverage: Does It Handle Your Assets?
 
@@ -103,9 +103,3 @@ Open source is not zero cost. Evaluate:
 - **Pick Next Terminal** if you are an SMB, solo ops, or agency that wants "deployed today, usable today, maintainable long-term" with unified SSH/RDP/database/web entry and audit.
 
 Still unsure? Run a one-week bake-off: onboard 5-10 SSH/RDP assets on each, exercise authorization, access, recording replay, and gateway traversal, then score on "time to deploy, time to first troubleshooting, and audit search efficiency". That scorecard beats any feature table.
-
-## Conclusion
-
-There is no single best **open source bastion host** — only the best fit for your constraints. As a **JumpServer alternative** and **Teleport alternative** for SMBs, Next Terminal trades maximalism for operational efficiency: fast deployment, low footprint, and day-to-day maintainability, while still covering the SSH/RDP/database/web and audit surface that small teams actually need. Use the five dimensions above as a checklist and let a short real-world pilot make the call.
-
-To evaluate further, see [Next Terminal pricing](https://www.next-terminal.com/pricing) for community vs commercial coverage and try the full asset, authorization, and audit replay flow on the [live demo](https://demo.next-terminal.com).

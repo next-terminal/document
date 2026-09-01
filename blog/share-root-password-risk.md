@@ -131,5 +131,3 @@ The migration doesn't have to be big-bang; start with the most sensitive product
 ## Conclusion
 
 A shared root password is the most expensive form of "convenience" in multi-person operations. Returning accounts to individuals, centralizing credentials, enforcing least privilege, blocking dangerous commands before they run, and auditing every step after — this combination is the core value of an open source bastion host. Next Terminal, as an open source bastion host and an alternative to JumpServer and Teleport, lets you deploy this mechanism privately in your own environment.
-
-If you're ready to put your team's permission and audit practices in order, try the full flow of asset authorization, command filtering, and session auditing in the [online demo](https://demo.next-terminal.com), or check [pricing](https://www.next-terminal.com/pricing) to pick the edition that fits your team.

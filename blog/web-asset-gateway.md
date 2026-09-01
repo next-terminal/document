@@ -61,31 +61,9 @@ Forwarding is handled by Next Terminal's built-in reverse proxy, which is a diff
 
 > For the full asset and authorization model, see [Web Assets](/usage/website) and [Assets](/usage/asset).
 
-## Publish your first Web asset in 5 minutes
+## Key notes on the built-in reverse proxy
 
-The example maps `gitlab.example.com → http://192.168.1.10:80`.
-
-### Prerequisites
-
-- Next Terminal is deployed via [Container Installation](/install/container-install) and the admin UI is reachable.
-- You control DNS for the domain and can create `nt.example.com` (admin) and `gitlab.example.com` (Web asset).
-- The Next Terminal server (or the chosen Security Gateway) can reach `192.168.1.10:80`.
-- Port `80`/`443` on the Next Terminal server is reachable by users.
-
-### 1. Configure DNS
-
-Add two A records to the same public IP (example `1.2.3.4`):
-
-| Host | Type | Value |
-| --- | --- | --- |
-| `nt` | A | `1.2.3.4` |
-| `gitlab` | A | `1.2.3.4` |
-
-For many Web assets, use a wildcard record `*.example.com → 1.2.3.4` so new entries like `wiki.example.com` need no further DNS changes.
-
-### 2. Enable the built-in reverse proxy
-
-Edit `config.yaml` under `App`:
+Web asset publishing is handled by Next Terminal's built-in reverse proxy. The relevant settings live under `App.ReverseProxy` in `config.yaml`:
 
 ```yaml
 App:
@@ -103,60 +81,23 @@ App:
     IpTrustList: []
 ```
 
-Notes: `SelfDomain` is the admin domain; enabling `HttpRedirectToHttps` is recommended. If an external proxy sits in front, do not leave `IpExtractor` as `direct` — adjust it per [Get the Real Client IP](/install/real-ip).
+Worth calling out: `SelfDomain` is the admin domain, so the built-in proxy serves the console and Web assets on the same port pair; turn on `HttpRedirectToHttps` to push HTTP traffic to HTTPS. If an external proxy (Nginx/CDN) sits in front, do not leave `IpExtractor` as `direct` — otherwise audit and rate limiting will record the previous hop's IP. Configure it per [Get the Real Client IP](/install/real-ip).
 
-### 3. Map ports and restart
+**Do not confuse the two addresses.** The Web asset domain (what users type, e.g. `gitlab.example.com`) must resolve to Next Terminal, not to the internal service itself — misconfiguring this is the most common first-time error. The asset address (e.g. `http://192.168.1.10:80`) is the internal location the proxy actually forwards to. Two A records to the same public IP are enough:
 
-For a container deployment, expose the proxy ports:
+| Host | Type | Value |
+| --- | --- | --- |
+| `nt` | A | `1.2.3.4` |
+| `gitlab` | A | `1.2.3.4` |
 
-```yaml
-services:
-  next-terminal:
-    ports:
-      - "8088:8088" # Admin UI
-      - "80:80"     # Web asset HTTP
-      - "443:443"   # Web asset HTTPS
-```
+With many Web assets, use a wildcard `*.example.com → 1.2.3.4` so new entries like `wiki.example.com` need no further DNS changes.
 
-Then:
+Certificates are managed in the admin UI under Certificate Management, with support for self-signed (testing only — the browser will warn), imported PEM, and auto-issued ACME certificates. For production use a valid certificate covering `nt.example.com` and `gitlab.example.com`, or a wildcard `*.example.com`. If you need stronger endpoint identity, layer [HTTPS mTLS](/usage/mtls) on top of Web assets: Web assets decide who may access which system, and mTLS adds client-certificate verification.
 
-```shell
-docker compose down
-docker compose up -d
-```
-
-### 4. Configure certificates
-
-Go to **Certificate Management** in the admin UI. Supported types include self-signed (testing only), imported PEM, and auto-issued ACME certificates. The certificate must cover both `nt.example.com` and `gitlab.example.com`, or use a wildcard `*.example.com`.
-
-### 5. Create and authorize the Web asset
-
-In **Resource Management → Web Assets**, create a new asset with domain `gitlab.example.com` and asset address `http://192.168.1.10:80`, then authorize it to users or groups. See [Web Assets](/usage/website) for field details.
-
-Verification:
-
-- An unauthenticated visit to `https://gitlab.example.com` redirects to the Next Terminal login.
-- An authenticated and authorized user reaches GitLab directly.
-- An unauthorized user is denied, and each attempt is recorded in audit logs.
+The proxy routes each request by domain to the internal service, e.g. `gitlab.example.com → http://192.168.1.10:80`. Every access through this entry lands in the unified audit log — unauthenticated visits redirect to login, authorized users pass straight through, and unauthorized access is denied and recorded.
 
 ## Unified entry for multi-network environments with Security Gateways
 
 When Web services span multiple clouds, sites or isolated networks, you do not need a separate public entry per network. Deploy a lightweight [Security Gateway](/usage/agent-gateway) in each internal network; gateways register back to Next Terminal via reverse tunnels. When creating a Web asset, select the matching gateway — all services become reachable through one entry point.
 
 For gateway configuration and network filtering, see [Security Gateway](/usage/agent-gateway) and [Security Gateway Configuration](/usage/agent-gateway-config), including fields such as `network_include`.
-
-## FAQ
-
-**What should the Web asset domain be?** The domain users open in the browser (e.g. `gitlab.example.com`). It must resolve to Next Terminal, not to the internal service itself — misconfiguring this is the most common first-time error.
-
-**Is 443 required?** HTTPS with a valid certificate is recommended for production. Self-signed certificates work for internal testing but trigger browser warnings.
-
-**What if Nginx or a CDN already sits in front of Next Terminal?** That creates a two-layer structure (external proxy in front, built-in proxy behind). Be sure to forward and parse the real client IP correctly; otherwise audit and rate limiting will record the previous hop's IP.
-
-**Can Web assets be combined with mTLS?** Yes. Web assets control who may access which Web system; [HTTPS mTLS](/usage/mtls) adds client-certificate verification on top, for environments that need stronger endpoint identity.
-
-## Summary
-
-Compared with VPN's broad network access or frp's direct port exposure, Next Terminal Web Assets provide a pragmatic zero-trust path: verify identity and authorization in the browser first, then let the bastion gateway forward to the internal target — easy to use and fully auditable. For small teams looking for a lightweight, self-hosted way to unify SSH and Web access, it is a solid **VPN alternative**.
-
-To try it quickly, bring up the service via [Container Installation](/install/container-install), follow [Web Assets](/usage/website) and [Security Gateway](/usage/agent-gateway) for the first publish, or explore the live demo and pricing at [https://demo.next-terminal.com](https://demo.next-terminal.com) and [https://www.next-terminal.com/pricing](https://www.next-terminal.com/pricing).

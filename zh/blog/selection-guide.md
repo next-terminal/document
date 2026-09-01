@@ -47,11 +47,11 @@ head:
 
 ### 1. 部署与升级：能否 1 人维护
 
-- **Next Terminal**：提供官方 `docker-compose.yaml` 与 `config.yaml`，`docker compose up -d` 即可完成[容器安装](/zh/install/container-install)，升级仅需 `pull + up -d`，数据卷与配置文件即为备份边界。新版本对 PostgreSQL 16/18 双轨支持，迁移路径在[主备高可用部署](/zh/install/ha-primary-standby-guide)与 FAQ 中有明确说明。
+- **Next Terminal**：单镜像集成 Guacamole，官方提供 `docker-compose.yaml` 与 `config.yaml`，按[容器安装](/zh/install/container-install)即可起服，升级就是重建镜像，数据卷与配置文件即备份边界，PostgreSQL 16/18 双轨支持，迁移路径见[主备高可用部署](/zh/install/ha-primary-standby-guide)。
 - **JumpServer**：组件多（Web、数据库、Guacamole、存储等），首次部署与版本升级需按官方清单逐项核对，适合有变更流程的团队。
 - **Teleport**：部署本身不重，但要发挥价值需配套配置 CA、角色、SSO 与 Kubernetes 集成，初期理解成本高于纯堡垒机。
 
-中小团队的关键指标是“从 0 到首个资产可用”的时长。以 Next Terminal 为例，按[容器安装](/zh/install/container-install)完成初始化后，在[资产管理](/zh/usage/asset)中新增 SSH 资产并授权，即可通过[资产访问](/zh/usage/access)验证，整体链路可在 10 分钟内跑通。
+关键指标是“从 0 到首个资产可用”的时长：完成初始化后，在[资产管理](/zh/usage/asset)新增 SSH 资产并授权，即可通过[资产访问](/zh/usage/access)验证，这条链路能在 10 分钟内跑通。
 
 ### 2. 协议与资产接入：是否覆盖你的资产类型
 
@@ -103,9 +103,3 @@ ssh -p 2222 admin@bastion.example.com
 - **选 Next Terminal**：中小团队、个人运维或外包团队，追求“当天部署、当天可用、长期好维护”，并需要覆盖 SSH/RDP/数据库/Web 的统一入口与审计。
 
 若仍不确定，建议用同一批资产做 1 周并行试点：分别接入 5-10 台 SSH/RDP 资产，完成授权、访问、录像回放与网关穿透验证，再以“部署时长、首次排错时长、审计检索效率”三项打分，结论会比功能清单更可信。
-
-## 总结
-
-**开源堡垒机选型**没有唯一最优解，只有最贴合团队现状的解。对中小团队而言，Next Terminal 作为 **JumpServer 替代**与 **Teleport 替代**的轻量选择，在部署效率、资源占用与日常维护上具备明确优势，同时通过安全网关、RDP/SSH 代理、Web 资产发布与会话审计覆盖了中小团队的核心运维与合规需求。若你的团队正处于选型或替换评估期，不妨以本文的五个维度为清单，快速完成一轮实测对比。
-
-想进一步评估，可查看 [Next Terminal 定价](https://www.next-terminal.com/pricing)了解社区版与商业版差异，并在 [在线演示](https://demo.next-terminal.com)中体验资产接入、授权与审计回放的完整流程。

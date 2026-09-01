@@ -61,31 +61,9 @@ head:
 
 > Web 资产、资产管理与授权模型的完整说明见 [Web 资产](/zh/usage/website) 与[资产管理](/zh/usage/asset)。
 
-## 5 分钟发布第一个 Web 资产
+## 内置反向代理的关键配置
 
-以下以 `gitlab.example.com → http://192.168.1.10:80` 为例，演示从配置到授权的最小闭环。
-
-### 前置条件
-
-- Next Terminal 已通过[容器安装](/zh/install/container-install)完成部署且可访问后台。
-- 拥有可修改 DNS 的域名，已准备好 `nt.example.com`（管理后台）与 `gitlab.example.com`（Web 资产）的解析。
-- Next Terminal 服务器（或目标安全网关）可访问 `192.168.1.10:80`。
-- 服务器的 `80`/`443` 端口可被用户访问。
-
-### 1. 配置 DNS
-
-在 DNS 服务商添加两条 A 记录指向同一公网 IP（示例 `1.2.3.4`）：
-
-| 主机记录 | 类型 | 值 |
-| --- | --- | --- |
-| `nt` | A | `1.2.3.4` |
-| `gitlab` | A | `1.2.3.4` |
-
-Web 资产较多时建议配置泛域名 `*.example.com → 1.2.3.4`，后续新增 `wiki.example.com` 等无需再改 DNS。
-
-### 2. 启用内置反向代理
-
-编辑 `config.yaml`，在 `App` 下启用 `ReverseProxy`：
+Web 资产的对外发布由 Next Terminal 内置反向代理承接。配置项集中在 `config.yaml` 的 `App.ReverseProxy` 下：
 
 ```yaml
 App:
@@ -103,60 +81,23 @@ App:
     IpTrustList: []
 ```
 
-字段要点：`SelfDomain` 为管理后台域名；`HttpRedirectToHttps` 建议开启；若前方有外部代理，`IpExtractor` 不应保持 `direct`，需按[获取真实 IP](/zh/install/real-ip)调整。
+几个要留意的点：`SelfDomain` 填管理后台域名，让内置代理把后台与 Web 资产统一挂在同一对端口上；`HttpRedirectToHttps` 建议开着，把 HTTP 流量转到 HTTPS。若前方还有外部代理（Nginx/CDN），`IpExtractor` 不能保持 `direct`，否则审计与限流记录的是上一跳代理的 IP，需按[获取真实 IP](/zh/install/real-ip)配置。
 
-### 3. 映射端口并重启
+**两个地址别搞混：** Web 资产域名（浏览器输入的那个，如 `gitlab.example.com`）必须解析到 Next Terminal，而不是内网服务的真实地址——这是新用户最常见的故障；资产地址（如 `http://192.168.1.10:80`）才是后端真正转发的内部位置。DNS 配两条 A 记录指向同一公网 IP 即可：
 
-容器部署时需放开反向代理端口：
+| 主机记录 | 类型 | 值 |
+| --- | --- | --- |
+| `nt` | A | `1.2.3.4` |
+| `gitlab` | A | `1.2.3.4` |
 
-```yaml
-services:
-  next-terminal:
-    ports:
-      - "8088:8088" # 管理后台
-      - "80:80"     # Web 资产 HTTP
-      - "443:443"   # Web 资产 HTTPS
-```
+Web 资产多时建议用泛域名 `*.example.com → 1.2.3.4`，后续新增 `wiki.example.com` 无需再改 DNS。
 
-执行：
+证书在后台"证书管理"维护，支持自签名（仅测试，浏览器会报不安全）、导入 PEM、以及 ACME 自动申请。生产建议用有效证书覆盖 `nt.example.com` 与 `gitlab.example.com`，或直接配 `*.example.com` 泛域名证书。若对终端身份要求更高，可在 Web 资产之上叠加 [HTTPS 证书双向认证](/zh/usage/mtls)：Web 资产解决"谁能访问哪个系统"，mTLS 再补一层客户端证书校验。
 
-```shell
-docker compose down
-docker compose up -d
-```
-
-### 4. 配置证书
-
-进入后台 **证书管理**新增证书，支持自签名、导入已有 PEM、以及 ACME 自动申请。证书需覆盖 `nt.example.com` 与 `gitlab.example.com`，或直接使用 `*.example.com` 泛域名证书。
-
-### 5. 添加 Web 资产并授权
-
-在后台 **资源管理 → Web 资产**新增资产，填写域名 `gitlab.example.com` 与资产地址 `http://192.168.1.10:80`，保存后按用户或用户组授权。详细字段说明见 [Web 资产](/zh/usage/website)。
-
-验证方式：
-
-- 未登录时访问 `https://gitlab.example.com`，应跳转到 Next Terminal 登录页；
-- 登录且有权限的用户可直接进入 GitLab；
-- 无权限用户应被拒绝，相关访问记录可在审计日志中追溯。
+后端按域名把请求转发到内部服务，例如 `gitlab.example.com → http://192.168.1.10:80`。所有经由该入口的访问都落到统一审计日志：未登录访问跳转登录页，有权限的直接进入，无权限的被拒绝并留痕。
 
 ## 多网络统一入口：叠加安全网关
 
 当 Web 服务分散在多个云、多个机房或隔离网络时，无需为每个网络单独暴露入口。在各内网部署轻量[安全网关](/zh/usage/agent-gateway)，网关以反向隧道方式注册到 Next Terminal；创建 Web 资产时选择对应网关即可通过统一域名入口访问。
 
 网关配置与网络筛选见[安全网关](/zh/usage/agent-gateway)与[安全网关配置文件](/zh/usage/agent-gateway-config)，其中 `network_include` 等字段可控制网关可达的网段。
-
-## 常见问题
-
-**Web 资产域名填什么？** 填用户在浏览器访问的域名（如 `gitlab.example.com`），且该域名必须解析到 Next Terminal，而非内网服务的真实地址。填错是新用户最常见的故障原因。
-
-**必须用 443 吗？** 生产环境建议启用 HTTPS 并配置有效证书；内网测试可用自签名证书，但浏览器会提示不安全。
-
-**已在 Next Terminal 前部署 Nginx/CDN 怎么办？** 属于“外部反向代理在前、内置反向代理在后”的两层结构，需正确透传与解析真实 IP，否则审计与限流会记录为上一跳代理的 IP。
-
-**Web 资产与 mTLS 能否叠加？** 可以。Web 资产解决“谁能访问哪一个 Web 系统”，[HTTPS 证书双向认证](/zh/usage/mtls)在此基础上叠加客户端证书校验，适合对终端身份要求更高的场景。
-
-## 小结
-
-相比“VPN 全网放行”或“frp 直接暴露端口”，Next Terminal 的 Web 资产提供了一条更符合零信任原则的路径：用户在浏览器中先完成身份与授权校验，再由堡垒机网关转发到内网目标，兼顾易用性与可审计性。对于追求轻量、可私有化部署且需覆盖 SSH 与 Web 统一接入的团队，这是一条务实的 **VPN 替代**路径。
-
-想快速验证，可按[容器安装](/zh/install/container-install)拉起服务，参照 [Web 资产](/zh/usage/website)与[安全网关](/zh/usage/agent-gateway)完成首个发布；在线体验与定价见 [https://demo.next-terminal.com](https://demo.next-terminal.com) 与 [https://www.next-terminal.com/pricing](https://www.next-terminal.com/pricing)。

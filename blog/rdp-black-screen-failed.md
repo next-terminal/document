@@ -126,10 +126,3 @@ After these five steps, about 90% of **Windows RDP** failures are closed. Archiv
 ## Consolidating RDP with a bastion host
 
 Opening 3389 host by host and managing passwords and firewall rules per machine does not scale and is hard to audit. Next Terminal v3.8.0 consolidates RDP into two segments — "user → bastion → asset": 3389 is only open inside the private network to the bastion and [Security Gateway](/usage/agent-gateway); the internet only sees the bastion's proxy port. Credentials are vaulted in [Assets](/usage/asset) and every session is recorded through [RDP Proxy Server](/usage/rdp-server) — connectable, manageable and auditable. For deployment see [Container Installation](/install/container-install) and verify the path with [Asset Access](/usage/access) once the five steps above pass.
-
----
-
-**Next steps:**
-
-- To evaluate centralized control and auditing, see [Next Terminal Pricing](https://www.next-terminal.com/pricing) and try a real RDP recording in the [Live Demo](https://demo.next-terminal.com).
-- For error codes not covered here, search [RDP/VNC Error Codes](/usage/error-codes).

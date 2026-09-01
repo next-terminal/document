@@ -57,6 +57,8 @@ When multiple team members need database access, SSH tunnels lack unified manage
 
 The bastion host serves as the single entry point for all database access. Connections are proxied through the bastion, which logs user identity, SQL statements, and execution results for compliance and internal audit requirements.
 
+Bastion setups usually add SQL work-order approval and session recording on top; Next Terminal, for instance, supports PostgreSQL protocol-level audit since v3.8.1, so database operations can be traced back to a specific account and SQL statement.
+
 ### Setup
 
 Using [Next Terminal](https://www.next-terminal.com) as an example, after configuring the database proxy, users connect via the command line:
@@ -162,18 +164,4 @@ mysql -h 100.x.x.x -P 3306 -u dbuser -p
 | Connection latency | Slightly higher | Medium | Lowest |
 | Recommended for | Personal / ad-hoc | Team / production | Dev / test |
 
-## Summary
-
-- **Individual developers**: SSH tunnel is sufficient — zero-cost remote access for ad-hoc needs.
-- **Team production environments**: Bastion host is the only correct answer — audit and compliance are non-negotiable.
-- **Dev/test environments**: WireGuard or Tailscale provide a smooth local-network experience.
-
-The core principle holds regardless of method: **database ports should never be directly exposed to the public internet**. Next Terminal v3.8.1 adds PostgreSQL protocol-level audit support to the bastion host solution, combined with SQL work-order approval and session recording for secure and traceable database remote access.
-
----
-
-**Next steps:**
-
-- Learn about database auditing at [Database Audit](/usage/database).
-- Security gateway setup at [Security Gateway](/usage/agent-gateway).
-- Evaluate Next Terminal pricing at [Next Terminal Pricing](https://www.next-terminal.com/pricing) and try the [online demo](https://demo.next-terminal.com).
+The three methods map to three scenarios: individual developers and ad-hoc debugging are covered by a zero-cost SSH tunnel; team production environments only satisfy audit and compliance on a bastion; dev/test workloads that touch many databases will want a VPN. Whichever you pick, keep database ports off the public internet.

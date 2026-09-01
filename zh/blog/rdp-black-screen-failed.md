@@ -113,10 +113,3 @@ Set-ItemProperty 'HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services
 ## 用堡垒机收敛 RDP 风险
 
 逐台开放 3389 难以审计。Next Terminal v3.8.0 将链路收敛为“用户—堡垒机—资产”：3389 仅对堡垒机与[安全网关](/zh/usage/agent-gateway)开放，外网只暴露代理端口；凭证由[资产管理](/zh/usage/asset)托管，通过 [RDP 代理服务器](/zh/usage/rdp-server)实现可连可审。部署参考[容器安装](/zh/install/container-install)，接入后用[资产访问](/zh/usage/access)验证。
-
----
-
-**下一步：**
-
-- 评估集中管控可查看 [Next Terminal 定价](https://www.next-terminal.com/pricing) 并在 [在线演示](https://demo.next-terminal.com) 体验 RDP 录像。
-- 其他错误码见 [RDP/VNC 错误码](/zh/usage/error-codes)。
