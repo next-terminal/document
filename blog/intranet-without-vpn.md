@@ -77,7 +77,9 @@ If you are evaluating a **JumpServer alternative** or a **Teleport alternative**
 
 Approach 3 replaces "network-layer access" with "identity and authorization first" — the core difference from VPN, and the most concrete form of zero trust in practice.
 
-## Implementing approach 3 with Next Terminal
+## Landing approach 3: reverse tunnel + per-asset authorization
+
+Landing approach 3 needs three pieces: a lightweight gateway that connects out, a bastion host that owns identity and authorization, and a per-asset authorization model. Below we use the open source bastion **Next Terminal** as a concrete example — it packages the gateway, authorization, and session audit out of the box, and the flow is largely similar in other bastions. Once you understand this structure, you can apply it to whichever tool you choose.
 
 The example grants an external user access to a Linux server on the company intranet.
 
@@ -134,4 +136,4 @@ Approach 3 shrinks the attack surface, but the bastion host itself is the single
 
 "Without a VPN" does not mean giving up remote access — it means replacing coarse provisioning with finer authorization and audit. Public port forwarding is cheap but dangerous; a self-hosted VPN encrypts well but blurs the boundary. A **security gateway** reverse tunnel on an **open source bastion host** instead collapses intranet access onto a single manageable, zero-trust path: identity first, per-asset authorization, no public ports, and auditable sessions.
 
-To try it quickly, bring up the service via [Container Installation](/install/container-install) and follow [Security Gateway](/usage/agent-gateway) to connect your first internal asset; explore the live demo and pricing at [https://demo.next-terminal.com](https://demo.next-terminal.com) and [https://www.next-terminal.com/pricing](https://www.next-terminal.com/pricing).
+Each approach has its place: port forwarding for quick temporary debugging, a self-hosted VPN where you need full network-layer interconnectivity, and a bastion host with a security gateway when you deal with external collaborators, multiple networks, or compliance requirements. When choosing, compare on: per-asset fine-grained authorization, complete session audit, and how well the reverse tunnel adapts to multiple networks.
