@@ -81,33 +81,25 @@ Approach 3 replaces "network-layer access" with "identity and authorization firs
 
 Landing approach 3 needs three pieces: a lightweight gateway that connects out, a bastion host that owns identity and authorization, and a per-asset authorization model. Below we use the open source bastion **Next Terminal** as a concrete example — it packages the gateway, authorization, and session audit out of the box, and the flow is largely similar in other bastions. Once you understand this structure, you can apply it to whichever tool you choose.
 
-The example grants an external user access to a Linux server on the company intranet.
+Using "an external user reaches a Linux server on the company intranet" as the example, landing approach 3 is really about a few design decisions rather than which commands to type — once you understand these, the specific tool is just an implementation detail.
 
-### 1. Deploy the bastion host
+### 1. Where the gateway lives, and who is exposed
 
-Deploy Next Terminal via [Container Installation](/install/container-install), make sure the admin UI is reachable, and configure HTTPS correctly — the security gateway's encrypted communication relies on server-side HTTPS.
+Key point: the gateway **dials out**, so no server in its network needs an inbound public port. You only need one machine that can reach the target internal assets to host the gateway; it calls back to the bastion on its own. For multi-site or multi-VPC setups, place one gateway per network and manage them all from a single bastion — no separate public entry per network.
 
-### 2. Deploy a security gateway on the intranet
+### 2. How assets are onboarded, and how fine the authorization granularity is
 
-Install the security gateway on a machine inside the company network and register it to the server. The gateway auto-registers after installation; it only needs to reach the server's Web port:
+Once assets are onboarded, the real question is whether you authorize a whole network segment or a specific asset. Prefer per-asset: expose only the few servers a given user group needs, rather than authorizing an entire VPC at once. That way, even if an account is compromised, lateral movement is contained to the smallest scope.
 
-```shell
-nt-tunnel run --endpoint https://nt.example.com --token TUN_xxxxxxxxxxxxxxxx
-```
+### 3. Audit and recording as a default
 
-After registration, the gateway appears as online on the "Security Gateway" admin page. For full installation and configuration (custom server address, proxy, discovery scope), see [Security Gateway](/usage/agent-gateway) and [Security Gateway Configuration](/usage/agent-gateway-config).
+The main advantage over VPN is traceability. Make session recording and command logging a default-on practice, not an afterthought. Who accessed which server, when, and what they did should be replayable from a single place — this serves both compliance and day-to-day troubleshooting.
 
-### 3. Create the asset and bind the gateway
+### 4. Accommodating native client habits
 
-When creating an asset, set the IP to an internal address reachable from the gateway's network (e.g. `192.168.1.100`), port `22`, and select the gateway in the "Security Gateway" dropdown. See [Assets](/usage/asset) for field details.
+The browser is the default bastion experience, but many ops people prefer local SSH or RDP clients. If that matters for your team, the solution should support both "browser, out of the box" and "native client via proxy" paths, so people keep their workflow while access still routes through the bastion's authorization and audit.
 
-### 4. Authorize and audit
-
-Authorize the asset to users or groups; the external user can then reach the internal server through the bastion. Sessions are recorded and replayable, satisfying [Compliance](/usage/compliance) requirements.
-
-### 5. Use a native client (optional)
-
-If your colleagues prefer local SSH or RDP clients, enable the bastion's SSH proxy server and RDP proxy server: the local client connects to the bastion first, and the bastion forwards through the security gateway to the internal asset. This keeps the familiar tooling while routing access through the bastion's authorization and audit — see [Asset Access](/usage/access) for details.
+> In Next Terminal's case, gateway reverse tunnel + per-asset authorization + session audit are available out of the box and cover all four points above; see [Security Gateway](/usage/agent-gateway), [Assets](/usage/asset) and [Asset Access](/usage/access) for specifics. Other bastions follow the same approach, differing mainly in UI.
 
 ## Security hardening
 
