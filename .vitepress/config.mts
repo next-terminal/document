@@ -41,7 +41,7 @@ const enNav: DefaultTheme.NavItem[] = [
     {text: 'Installation', link: '/install/system-requirements', activeMatch: '^/install/'},
     {text: 'User Guide', link: '/usage/readme', activeMatch: '^/usage/'},
     {text: 'FAQ', link: '/faq/readme', activeMatch: '^/faq/'},
-    {text: 'Blog', link: '/blog/docker-deploy', activeMatch: '^/blog/'},
+    {text: 'Blog', link: '/blog/rdp-black-screen-failed', activeMatch: '^/blog/'},
     {text: 'API Docs', link: '/api/certificate', activeMatch: '^/api/'},
     {text: 'Official Website', link: 'https://www.next-terminal.com/'}
 ]
@@ -50,7 +50,7 @@ const zhNav: DefaultTheme.NavItem[] = [
     {text: '安装文档', link: '/zh/install/system-requirements', activeMatch: '^/zh/install/'},
     {text: '使用文档', link: '/zh/usage/readme', activeMatch: '^/zh/usage/'},
     {text: '常见问题', link: '/zh/faq/readme', activeMatch: '^/zh/faq/'},
-    {text: '博客文章', link: '/zh/blog/docker-deploy', activeMatch: '^/zh/blog/'},
+    {text: '博客文章', link: '/zh/blog/rdp-black-screen-failed', activeMatch: '^/zh/blog/'},
     {text: 'API 文档', link: '/zh/api/certificate', activeMatch: '^/zh/api/'},
     {text: '官网地址', link: 'https://www.next-terminal.com/'}
 ]
@@ -139,7 +139,6 @@ const enBlogSidebar: DefaultTheme.SidebarItem[] = [
         text: 'Blog',
         collapsed: false,
         items: [
-            {text: 'Deploy Next Terminal Bastion Host with Docker: First SSH Asset in 5 Minutes', link: '/blog/docker-deploy'},
             {text: 'What Is the "Authentication Private Key" in SSH, and What Does It Actually Authenticate?', link: '/blog/ssh-authentication'},
             {text: '2026 Open Source Bastion Host Selection Guide: JumpServer vs Teleport vs Next Terminal', link: '/blog/selection-guide'},
             {text: 'Secure Web Asset Publishing: Replace VPN with Next Terminal', link: '/blog/web-asset-gateway'},
@@ -252,7 +251,6 @@ const zhBlogSidebar: DefaultTheme.SidebarItem[] = [
         text: '博客文章',
         collapsed: false,
         items: [
-            {text: 'Docker 一键部署 Next Terminal 开源堡垒机：5分钟接入首个 SSH 资产', link: '/zh/blog/docker-deploy'},
             {text: 'SSH 里的“认证私钥”到底是什么，它认证的是谁？', link: '/zh/blog/ssh-authentication'},
             {text: '2026 开源堡垒机选型指南：如何为中小团队选 JumpServer / Teleport / Next Terminal', link: '/zh/blog/selection-guide'},
             {text: 'Web 资产安全发布：用 Next Terminal 替代 VPN 暴露内网系统', link: '/zh/blog/web-asset-gateway'},
