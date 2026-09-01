@@ -101,31 +101,14 @@ The browser is the default bastion experience, but many ops people prefer local 
 
 > In Next Terminal's case, gateway reverse tunnel + per-asset authorization + session audit are available out of the box and cover all four points above; see [Security Gateway](/usage/agent-gateway), [Assets](/usage/asset) and [Asset Access](/usage/access) for specifics. Other bastions follow the same approach, differing mainly in UI.
 
-## Security hardening
+## Pitfalls to avoid when you roll this out
 
-Approach 3 shrinks the attack surface, but the bastion host itself is the single externally exposed entry and still needs care:
+Approach 3 shrinks the attack surface, but the bastion host becomes the single external entry — a few mistakes are worth getting ahead of.
 
-- **Enforce HTTPS**: the security gateway's encrypted communication relies on server-side HTTPS; a plaintext deployment defeats the purpose, so configure a valid certificate.
-- **Least-privilege authorization**: grant only the assets each person or group needs — avoid authorizing the whole intranet for convenience.
-- **Two-factor auth**: enable 2FA (TOTP) or passkeys for the admin UI facing the internet to reduce account-takeover risk.
-- **Regular review**: check audit logs and session recordings periodically, and make "who accessed what" part of routine inspection.
+**Asking the gateway for an inbound port on the internal server** is the most common misunderstanding. The gateway dials out, so the internal target needs no inbound public port and no public IP; you only need a machine that can reach the target network. For multiple sites or VPCs, drop one gateway per network and select it when creating assets — no separate public entry per network.
 
-## FAQ
+**Authorizing a whole network segment** is the laziest and most dangerous move. Granting an entire VPC at once means a compromised account can move laterally across all of it. Authorize only the few servers a user group needs, and the blast radius stays minimal.
 
-**Does the security gateway need a public IP on the intranet?** No. The gateway dials outward, so internal servers need no inbound port and no public IP.
+**A plaintext bastion deployment** defeats the purpose. The security gateway's encrypted communication relies on server-side HTTPS, so configure a valid certificate; enable 2FA or passkeys for the admin UI facing the internet, and review session recordings so "who accessed what" becomes part of routine inspection.
 
-**What about multiple sites or VPCs?** Deploy one security gateway per network and select the matching gateway when creating assets — no separate public entry per network is needed.
-
-**Can I reach Web systems?** Yes. Web systems are published through [Web Assets](/usage/website): the browser authenticates first, then the bastion forwards to the internal service, sharing the same authorization and audit model as SSH/RDP assets.
-
-**How does the bastion host itself stay secure?** The bastion is the only external entry, so enable HTTPS, enforce access controls (2FA/passkeys) and upgrade promptly; keep every other asset off the public internet.
-
-**Should I keep my VPN?** It depends. A bastion host solves controlled, per-asset access with audit; for the few cases that need full network-layer interconnectivity (e.g. a development environment), a VPN still has value, and the two can coexist.
-
-**How do I migrate from port forwarding?** First close the externally exposed SSH/RDP ports and onboard the assets into the bastion with per-asset authorization; once permissions are verified, remove the public port mappings and the corresponding security-group rules to avoid a blind spot from running old and new paths in parallel.
-
-## Summary
-
-"Without a VPN" does not mean giving up remote access — it means replacing coarse provisioning with finer authorization and audit. Public port forwarding is cheap but dangerous; a self-hosted VPN encrypts well but blurs the boundary. A **security gateway** reverse tunnel on an **open source bastion host** instead collapses intranet access onto a single manageable, zero-trust path: identity first, per-asset authorization, no public ports, and auditable sessions.
-
-Each approach has its place: port forwarding for quick temporary debugging, a self-hosted VPN where you need full network-layer interconnectivity, and a bastion host with a security gateway when you deal with external collaborators, multiple networks, or compliance requirements. When choosing, compare on: per-asset fine-grained authorization, complete session audit, and how well the reverse tunnel adapts to multiple networks.
+If you are migrating from port forwarding, a safer order is: close the externally exposed SSH/RDP ports first, onboard assets into the bastion with per-asset authorization, verify permissions, and only then remove the public port mappings and security-group rules — avoid a blind spot from old and new paths running in parallel. And you need not tear down the VPN right away: the bastion solves controlled, per-asset access with audit, while a VPN still has value in the few cases that need full network-layer interconnectivity (for example, a development environment that spans everything). The two can coexist.
