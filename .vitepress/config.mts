@@ -151,7 +151,8 @@ const enBlogSidebar: DefaultTheme.SidebarItem[] = [
             {text: 'Access Intranet Without VPN: 3 Secure Alternatives Compared', link: '/blog/intranet-without-vpn'},
             {text: 'rm -rf / Wasn\'t a Slip: Blocking Dangerous Commands and Auditing Ops', link: '/blog/dangerous-command-block'},
             {text: 'Is Key-Based SSH Login Enough? What Two-Factor Authentication Actually Adds', link: '/blog/ssh-mfa-two-factor'},
-            {text: 'What Really Happened on That Server? SSH Session Recording and Audit', link: '/blog/ssh-session-recording'}
+            {text: 'What Really Happened on That Server? SSH Session Recording and Audit', link: '/blog/ssh-session-recording'},
+            {text: 'Does ssh -A Hand Your Keys to the Jump Host? SSH Agent Forwarding and Safer Alternatives', link: '/blog/ssh-agent-forwarding'}
         ]
     }
 ]
@@ -268,7 +269,8 @@ const zhBlogSidebar: DefaultTheme.SidebarItem[] = [
             {text: '不开 VPN 怎么安全访问内网系统？3 种方案对比', link: '/zh/blog/intranet-without-vpn'},
             {text: 'rm -rf / 是怎么误执行的？高危命令拦截与操作审计怎么做', link: '/zh/blog/dangerous-command-block'},
             {text: '密钥登录也会被攻破？SSH 双因子认证到底补上了什么', link: '/zh/blog/ssh-mfa-two-factor'},
-            {text: '服务器上到底发生了什么？SSH 会话审计与操作回放怎么做', link: '/zh/blog/ssh-session-recording'}
+            {text: '服务器上到底发生了什么？SSH 会话审计与操作回放怎么做', link: '/zh/blog/ssh-session-recording'},
+            {text: 'ssh -A 是把钥匙交给跳板机吗？SSH Agent 转发原理、滥用与更稳的替代', link: '/zh/blog/ssh-agent-forwarding'}
         ]
     }
 ]
