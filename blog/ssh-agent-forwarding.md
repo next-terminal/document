@@ -56,6 +56,48 @@ Treating agent forwarding as a default is the main source of trouble. In fact, m
 
 The decision reduces to one question: **do you trust root on the jump host?** If yes, `-A` is barely acceptable; if not — and public jump hosts, shared bastions, and contractor-access machines are usually "not" — use an approach that does not move the trust boundary.
 
+## Turn ForwardAgent off by default; allow it per machine
+
+Treating `-A` as a global habit rather than a per-use decision is the main source of trouble. The steadier setup is to write "no forwarding by default" into `~/.ssh/config` first, then open it up for the few machines you actually trust:
+
+```text
+# Default: no host forwards the agent
+Host *
+    ForwardAgent no
+
+# Only this trusted private machine is allowed
+Host trusty.internal
+    ForwardAgent yes
+```
+
+Now even if you slip and type `ssh -A user@somemachine`, the `ForwardAgent no` in the config wins — whether forwarding takes effect is decided by the matched `Host` block. The reverse is the trap: adding `-A` only on the command line while leaving the config untouched means every new machine and every new teammate is a potential leak.
+
+How do you confirm whether a live session has forwarding on? `-A` leaves no obvious marker; the reliable check is the environment variable and the socket, right after you land:
+
+```bash
+echo $SSH_AUTH_SOCK                      # a /tmp/ssh-*/agent.* path means the agent was forwarded
+SSH_AUTH_SOCK=$SSH_AUTH_SOCK ssh-add -L  # list the key fingerprints this session can indirectly use
+```
+
+A path like `/tmp/ssh-.../agent.N` is a near-certain sign that `-A` is active and your keys are on standby for that remote machine. The forwarded socket is bound to that one SSH connection and dies when the session ends — but as long as you stay connected (say, a long-lived session inside tmux), the signing capability stays open to the jump host. Better to fix the rule before the session starts than to clean up after it.
+
+## Why "confirm every signature" no longer works as a backstop
+
+There used to be a compromise: attach key confirmation to `ssh-agent`, so that after `ssh-add -c` every signature asked for an explicit local confirmation, and in theory an attacker on the jump host could not silently borrow your key. That protection was removed after OpenSSH 8.9 — the per-use confirmation was trivially bypassed from the agent side, so it was meaningless. The thing that genuinely fills that gap is a FIDO/U2F hardware key: the private key stays locked in hardware and signing requires physical contact with the device, so root on the jump host can relay the request but can never perform the touch on your behalf.
+
+This points at a more fundamental principle: **anchor trust in "where the key lives and who can touch it," not in "how careful I am this time."** Counting on a confirmation dialog, or on remembering to turn forwarding off, is never as reliable as making the mechanism itself unable to forward.
+
+## The server can also shut it off: AllowAgentForwarding
+
+Beyond the client, the SSH server has its own switch. Setting `AllowAgentForwarding` to `no` in `sshd_config` makes the server refuse to map the agent socket over no matter how the client invokes `-A` — the forward is rejected during the handshake:
+
+```text
+# /etc/ssh/sshd_config
+AllowAgentForwarding no
+```
+
+This matters most on machines where untrusted users can log in, such as a public jump host: the administrator can close agent forwarding entirely and force users onto `ProxyJump` or a centralized entry. It is the same philosophy as `AllowTcpForwarding` for server-side port forwarding (covered in the [SSH Port Forwarding](/blog/ssh-port-forwarding) piece) — turn the dangerous capability off by default on the server rather than counting on every client to behave. The difference is what each one blocks: `AllowAgentForwarding` stops the exposure of signing capability, while `AllowTcpForwarding` stops tunnel construction; a machine that allows proxy hops to support `-J` does not therefore need agent forwarding, and the two should be weighed separately.
+
 ## ProxyJump: borrow the route, not the identity
 
 Most multi-hop logins can be replaced by `ProxyJump`, OpenSSH's recommended default. The syntax is simple:
