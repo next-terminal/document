@@ -152,7 +152,8 @@ const enBlogSidebar: DefaultTheme.SidebarItem[] = [
             {text: 'rm -rf / Wasn\'t a Slip: Blocking Dangerous Commands and Auditing Ops', link: '/blog/dangerous-command-block'},
             {text: 'Is Key-Based SSH Login Enough? What Two-Factor Authentication Actually Adds', link: '/blog/ssh-mfa-two-factor'},
             {text: 'What Really Happened on That Server? SSH Session Recording and Audit', link: '/blog/ssh-session-recording'},
-            {text: 'Does ssh -A Hand Your Keys to the Jump Host? SSH Agent Forwarding and Safer Alternatives', link: '/blog/ssh-agent-forwarding'}
+            {text: 'Does ssh -A Hand Your Keys to the Jump Host? SSH Agent Forwarding and Safer Alternatives', link: '/blog/ssh-agent-forwarding'},
+            {text: 'Employee Left, but Their SSH Key Still Lives on Dozens of Servers: Key Rotation and Access Revocation', link: '/blog/ssh-key-rotation'}
         ]
     }
 ]
@@ -270,7 +271,8 @@ const zhBlogSidebar: DefaultTheme.SidebarItem[] = [
             {text: 'rm -rf / 是怎么误执行的？高危命令拦截与操作审计怎么做', link: '/zh/blog/dangerous-command-block'},
             {text: '密钥登录也会被攻破？SSH 双因子认证到底补上了什么', link: '/zh/blog/ssh-mfa-two-factor'},
             {text: '服务器上到底发生了什么？SSH 会话审计与操作回放怎么做', link: '/zh/blog/ssh-session-recording'},
-            {text: 'ssh -A 是把钥匙交给跳板机吗？SSH Agent 转发原理、滥用与更稳的替代', link: '/zh/blog/ssh-agent-forwarding'}
+            {text: 'ssh -A 是把钥匙交给跳板机吗？SSH Agent 转发原理、滥用与更稳的替代', link: '/zh/blog/ssh-agent-forwarding'},
+            {text: '员工离职后他的 SSH 密钥还散在几十台机器上？密钥轮换与权限回收怎么做', link: '/zh/blog/ssh-key-rotation'}
         ]
     }
 ]
