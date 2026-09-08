@@ -1,6 +1,6 @@
 ---
 layout: doc
-title: "系统属性配置表 — Next Terminal FAQ"
+title: "系统属性配置参考 — Next Terminal"
 description: "Next Terminal 开源堡垒机的系统属性配置表 — 自托管部署的配置键与说明。"
 head:
   - - meta
@@ -8,17 +8,21 @@ head:
       content: 系统属性, 堡垒机配置, Next Terminal, 开源堡垒机
   - - meta
     - property: og:title
-      content: "系统属性配置表 — Next Terminal FAQ"
+      content: "系统属性配置参考 — Next Terminal"
   - - meta
     - property: og:description
       content: "Next Terminal 开源堡垒机的系统属性配置表 — 自托管部署的配置键与说明。"
 ---
 
-# 系统属性配置表
+# 系统属性配置参考
 
-本文档列出了 Next Terminal 系统中所有可通过命令行工具管理的配置项，表名称为 `property` 。
+本文档是 `property` 表中底层配置键的参考，这些配置也可以通过命令行工具读取或修改。如果系统页面已经提供对应表单，应优先通过页面配置；页面能够进行输入校验，也能减少误改其他配置项的风险。
 
-> 小提示：如果你把配置改坏了，又不想手动进数据库更改配置，可以把 property 表整个删除，然后重启系统，会重置为安装时的配置。
+配置键和取值可能随版本变化。用于自动化脚本前，请先在目标版本中通过 `nt config get <key>` 确认该配置项。命令格式参见[命令行工具参考](/zh/usage/cli)。
+
+::: danger 不要删除整个 `property` 表
+删除整张表会同时重置认证、邮件、录像、网关和外部集成等无关配置。应优先使用 `nt config get` 和 `nt config set` 检查或修复单个配置项。修改前先完成[系统备份](/zh/usage/backup)；只有具备经过验证的恢复方案时，才考虑直接修改数据库。
+:::
 
 ## 邮件服务配置
 

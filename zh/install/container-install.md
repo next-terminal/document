@@ -67,7 +67,7 @@ PostgreSQL 16 和 PostgreSQL 18 均受支持。现有 PostgreSQL 16 部署可以
 ::: warning 仅在迁移到 PostgreSQL 18 时需要注意
 如果现有 `docker-compose.yaml` 使用的是 `postgres:16`，请勿直接将其修改为 `postgres:18`。PostgreSQL 的主版本不能通过更换容器镜像直接升级，PostgreSQL 18 也无法直接使用 PostgreSQL 16 的数据目录。
 
-如需迁移到 PostgreSQL 18，请按照[从 PostgreSQL 16 迁移到 PostgreSQL 18](/zh/faq/postgresql-16-to-18)完成数据库迁移；不需要迁移时，请继续保留现有 PostgreSQL 16 配置。
+如需迁移到 PostgreSQL 18，请按照[从 PostgreSQL 16 迁移到 PostgreSQL 18](/zh/install/postgresql-16-to-18)完成数据库迁移；不需要迁移时，请继续保留现有 PostgreSQL 16 配置。
 :::
 
 确认 `docker-compose.yaml` 中的镜像版本组合正确后，无论使用 PostgreSQL 16 还是 PostgreSQL 18，都可以执行以下命令升级 Next Terminal：

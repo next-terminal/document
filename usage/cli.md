@@ -1,20 +1,26 @@
 ---
 layout: doc
-title: "CLI Tool — Next Terminal FAQ"
-description: "CLI tool for Next Terminal open source bastion host — command-line operations for assets, users and bastion administration."
+title: "CLI Reference — Next Terminal"
+description: "Next Terminal CLI reference for status, users, login locks, client certificates, system configuration and geodata management."
 head:
   - - meta
     - name: keywords
       content: CLI, command line, bastion host CLI, Next Terminal, open source bastion
   - - meta
     - property: og:title
-      content: "CLI Tool — Next Terminal FAQ"
+      content: "CLI Reference — Next Terminal"
   - - meta
     - property: og:description
-      content: "CLI tool for Next Terminal open source bastion host — command-line operations for assets, users and bastion administration."
+      content: "Next Terminal CLI reference for status, users, login locks, client certificates, system configuration and geodata management."
 ---
 
-# CLI Tool
+# CLI Reference
+
+The examples below use Docker Compose. For a native installation, run the installed binary directly, for example `nt status` (or the corresponding binary path in your deployment), without the `docker compose exec next-terminal` prefix.
+
+::: tip Check the help from your installed version
+Commands and flags can change between releases. The help output shown here is illustrative; use `nt -h` and `nt <command> -h` in your own deployment as the authoritative reference.
+:::
 
 ## Show Help
 
@@ -266,7 +272,7 @@ docker compose exec next-terminal nt config get <key>
 docker compose exec next-terminal nt config set <key> <value>
 ```
 
-> Full property list: [System Property Table](./property)
+> Full property list: [System Property Table](/usage/system-properties)
 
 ## GeoIP Data Management
 

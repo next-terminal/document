@@ -1,6 +1,6 @@
 ---
 layout: doc
-title: "System Property Table — Next Terminal FAQ"
+title: "System Property Reference — Next Terminal"
 description: "System property reference for Next Terminal open source bastion host — configuration keys and descriptions for self-hosted deployment."
 head:
   - - meta
@@ -8,17 +8,21 @@ head:
       content: system property, bastion host config, Next Terminal, open source bastion
   - - meta
     - property: og:title
-      content: "System Property Table — Next Terminal FAQ"
+      content: "System Property Reference — Next Terminal"
   - - meta
     - property: og:description
       content: "System property reference for Next Terminal open source bastion host — configuration keys and descriptions for self-hosted deployment."
 ---
 
-# System Property Table
+# System Property Reference
 
-This document lists all configurable properties in Next Terminal that can be managed via CLI (`property` table).
+This document is a low-level reference for configuration keys stored in the `property` table and exposed by the CLI. Configure a setting in the Web UI whenever a corresponding form is available: the UI provides validation and avoids accidental changes to unrelated keys.
 
-> Tip: If settings are broken and you do not want to edit database manually, you can delete the entire `property` table and restart the system. It will reset to install-time defaults.
+Values and available keys can change between releases. Before using automation, confirm a key with `nt config get <key>` on the target version. See [CLI Reference](/usage/cli) for command syntax.
+
+::: danger Do not delete the entire `property` table
+Deleting the table resets unrelated authentication, mail, recording, gateway and integration settings. Use `nt config get` and `nt config set` to inspect or repair a specific key. Create a [system backup](/usage/backup) before changing configuration, and edit the database directly only when you have a tested restore path.
+:::
 
 ## Mail Service
 

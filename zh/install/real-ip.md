@@ -51,12 +51,6 @@ head:
 只要链路中可能有多级代理，永远选 `x-forwarded-for`。它能记录完整代理链，遇到 CDN+Nginx、WAF+负载均衡等组合时仍然能正确还原真实 IP，而 `x-real-ip` 只会记录最后一跳设置的值。
 :::
 
-::: warning Docker userland-proxy 可能导致拿不到真实 IP
-如果 NextTerminal 通过 Docker 端口映射对外暴露，且所有访问者都显示为 Docker 网关或宿主机侧地址，例如 `172.17.0.1`、`172.18.0.1`，优先检查 Docker 的 `userland-proxy`。一旦 `userland-proxy` 隐藏了原始网络对端地址，且请求里没有标准的 `X-Forwarded-For` / `X-Real-IP` 请求头，NextTerminal 无法仅靠自身配置还原真实客户端 IP。
-
-解决方法见：[禁用 Docker userland-proxy](./disable-docker-userland-proxy)。
-:::
-
 ## 按访问链路选择配置
 
 先确认访问链路，再对照下表填写两处配置。

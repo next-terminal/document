@@ -1,6 +1,6 @@
 ---
 layout: doc
-title: "Native Upgrade to v3.2.0+ — Next Terminal FAQ"
+title: "Native Upgrade to v3.2.0+ — Next Terminal"
 description: "Upgrade native (non-container) installation to Next Terminal v3.2.0 or later — binary, config and service steps for self-hosted bastion host."
 head:
   - - meta
@@ -8,7 +8,7 @@ head:
       content: native upgrade, v3.2.0, bastion host upgrade, Next Terminal, open source bastion
   - - meta
     - property: og:title
-      content: "Native Upgrade to v3.2.0+ — Next Terminal FAQ"
+      content: "Native Upgrade to v3.2.0+ — Next Terminal"
   - - meta
     - property: og:description
       content: "Upgrade native (non-container) installation to Next Terminal v3.2.0 or later — binary, config and service steps for self-hosted bastion host."

@@ -40,7 +40,7 @@ const head: DefaultTheme.Config['head'] = [
 const enNav: DefaultTheme.NavItem[] = [
     {text: 'Installation', link: '/install/system-requirements', activeMatch: '^/install/'},
     {text: 'User Guide', link: '/usage/readme', activeMatch: '^/usage/'},
-    {text: 'FAQ', link: '/faq/readme', activeMatch: '^/faq/'},
+    {text: 'Troubleshooting', link: '/faq/readme', activeMatch: '^/faq/'},
     {text: 'Blog', link: '/blog/rdp-black-screen-failed', activeMatch: '^/blog/'},
     {text: 'API Docs', link: '/api/certificate', activeMatch: '^/api/'},
     {text: 'Official Website', link: 'https://www.next-terminal.com/'}
@@ -49,7 +49,7 @@ const enNav: DefaultTheme.NavItem[] = [
 const zhNav: DefaultTheme.NavItem[] = [
     {text: '安装文档', link: '/zh/install/system-requirements', activeMatch: '^/zh/install/'},
     {text: '使用文档', link: '/zh/usage/readme', activeMatch: '^/zh/usage/'},
-    {text: '常见问题', link: '/zh/faq/readme', activeMatch: '^/zh/faq/'},
+    {text: '故障排查', link: '/zh/faq/readme', activeMatch: '^/zh/faq/'},
     {text: '博客文章', link: '/zh/blog/rdp-black-screen-failed', activeMatch: '^/zh/blog/'},
     {text: 'API 文档', link: '/zh/api/certificate', activeMatch: '^/zh/api/'},
     {text: '官网地址', link: 'https://www.next-terminal.com/'}
@@ -62,12 +62,17 @@ const enInstallSidebar: DefaultTheme.SidebarItem[] = [
         items: [
             {text: 'System Requirements', link: '/install/system-requirements'},
             {text: 'Container Installation', link: '/install/container-install'},
-            {text: 'Primary/Standby HA Deployment', link: '/install/ha-primary-standby-guide'},
-            {text: 'Production HA Checklist', link: '/install/ha-production-checklist'},
             {text: 'Configuration File', link: '/install/config-desc'},
             {text: 'Reverse Proxy', link: '/install/reverse-proxy'},
-            {text: 'Disable Docker userland-proxy', link: '/install/disable-docker-userland-proxy'},
-            {text: 'Real Client IP', link: '/install/real-ip'}
+            {text: 'Real Client IP', link: '/install/real-ip'},
+            {
+                text: 'Upgrade and Migration',
+                items: [
+                    {text: 'Native Installation Upgrade', link: '/install/native-upgrade'},
+                    {text: 'PostgreSQL 16 to 18', link: '/install/postgresql-16-to-18'},
+                    {text: 'Upgrade 1.x to 2.x (Historical)', link: '/install/v1-to-v2'}
+                ]
+            }
         ]
     }
 ]
@@ -125,6 +130,14 @@ const enUsageSidebar: DefaultTheme.SidebarItem[] = [
                     {text: 'RDP/VNC Error Codes', link: '/usage/error-codes'},
                     {text: 'Audit Logs', link: '/usage/audit'}
                 ]
+            },
+            {
+                text: 'Maintenance and Reference',
+                items: [
+                    {text: 'Backup and Restore', link: '/usage/backup'},
+                    {text: 'CLI Reference', link: '/usage/cli'},
+                    {text: 'System Property Reference', link: '/usage/system-properties'}
+                ]
             }
         ]
     }
@@ -132,15 +145,16 @@ const enUsageSidebar: DefaultTheme.SidebarItem[] = [
 
 const enFaqSidebar: DefaultTheme.SidebarItem[] = [
     {
-        text: 'FAQ',
+        text: 'Troubleshooting',
         collapsed: false,
         items: [
-            {text: 'FAQ', link: '/faq/readme'},
-            {text: 'CLI', link: '/faq/cli'},
-            {text: 'System Properties', link: '/faq/property'},
-            {text: 'Migrate PostgreSQL 16 to 18', link: '/faq/postgresql-16-to-18'},
-            {text: 'Upgrade v1 to v2', link: '/faq/v1tov2'},
-            {text: 'Upgrade Native Installation to v3.2.0+', link: '/faq/v3.2.0-native-upgrade'}
+            {text: 'Troubleshooting Overview', link: '/faq/readme'},
+            {text: 'Authentication', link: '/faq/authentication'},
+            {text: 'SSH Connections', link: '/faq/ssh'},
+            {text: 'RDP and VNC', link: '/faq/rdp-vnc'},
+            {text: 'File Management', link: '/faq/file-management'},
+            {text: 'Web Assets', link: '/faq/web-assets'},
+            {text: 'Network and Gateways', link: '/faq/network-gateway'}
         ]
     }
 ]
@@ -192,12 +206,17 @@ const zhInstallSidebar: DefaultTheme.SidebarItem[] = [
         items: [
             {text: '系统需求', link: '/zh/install/system-requirements'},
             {text: '容器安装', link: '/zh/install/container-install'},
-            {text: '主备高可用部署', link: '/zh/install/ha-primary-standby-guide'},
-            {text: '生产级高可用 Checklist', link: '/zh/install/ha-production-checklist'},
             {text: '配置文件', link: '/zh/install/config-desc'},
             {text: '反向代理', link: '/zh/install/reverse-proxy'},
-            {text: '禁用 Docker userland-proxy', link: '/zh/install/disable-docker-userland-proxy'},
-            {text: '获取真实IP', link: '/zh/install/real-ip'}
+            {text: '获取真实 IP', link: '/zh/install/real-ip'},
+            {
+                text: '升级与迁移',
+                items: [
+                    {text: '原生安装升级', link: '/zh/install/native-upgrade'},
+                    {text: 'PostgreSQL 16 迁移到 18', link: '/zh/install/postgresql-16-to-18'},
+                    {text: '1.x 升级到 2.x（历史版本）', link: '/zh/install/v1-to-v2'}
+                ]
+            }
         ]
     }
 ]
@@ -255,6 +274,14 @@ const zhUsageSidebar: DefaultTheme.SidebarItem[] = [
                     {text: 'RDP/VNC 错误码', link: '/zh/usage/error-codes'},
                     {text: '日志审计', link: '/zh/usage/audit'}
                 ]
+            },
+            {
+                text: '维护与参考',
+                items: [
+                    {text: '备份与恢复', link: '/zh/usage/backup'},
+                    {text: '命令行参考', link: '/zh/usage/cli'},
+                    {text: '系统属性参考', link: '/zh/usage/system-properties'}
+                ]
             }
         ]
     }
@@ -262,15 +289,16 @@ const zhUsageSidebar: DefaultTheme.SidebarItem[] = [
 
 const zhFaqSidebar: DefaultTheme.SidebarItem[] = [
     {
-        text: '常见问题',
+        text: '故障排查',
         collapsed: false,
         items: [
-            {text: 'FAQ', link: '/zh/faq/readme'},
-            {text: '命令行', link: '/zh/faq/cli'},
-            {text: '系统配置表', link: '/zh/faq/property'},
-            {text: 'PostgreSQL 16 迁移到 18', link: '/zh/faq/postgresql-16-to-18'},
-            {text: 'v1 升级 v2', link: '/zh/faq/v1tov2'},
-            {text: '原生安装升级到 v3.2.0+', link: '/zh/faq/v3.2.0-native-upgrade'}
+            {text: '故障排查总览', link: '/zh/faq/readme'},
+            {text: '登录与认证', link: '/zh/faq/authentication'},
+            {text: 'SSH 连接', link: '/zh/faq/ssh'},
+            {text: 'RDP 与 VNC', link: '/zh/faq/rdp-vnc'},
+            {text: '文件管理', link: '/zh/faq/file-management'},
+            {text: 'Web 资产', link: '/zh/faq/web-assets'},
+            {text: '网络与网关', link: '/zh/faq/network-gateway'}
         ]
     }
 ]

@@ -1,6 +1,6 @@
 ---
 layout: doc
-title: "从 PostgreSQL 16 迁移到 PostgreSQL 18 — Next Terminal FAQ"
+title: "从 PostgreSQL 16 迁移到 PostgreSQL 18 — Next Terminal"
 description: "Next Terminal 开源堡垒机从 PostgreSQL 16 迁移到 18 的步骤 — 升级、dump/restore 与容器卷处理。"
 head:
   - - meta
@@ -8,7 +8,7 @@ head:
       content: PostgreSQL迁移, PostgreSQL 18, 堡垒机升级, Next Terminal, 数据库迁移
   - - meta
     - property: og:title
-      content: "从 PostgreSQL 16 迁移到 PostgreSQL 18 — Next Terminal FAQ"
+      content: "从 PostgreSQL 16 迁移到 PostgreSQL 18 — Next Terminal"
   - - meta
     - property: og:description
       content: "Next Terminal 开源堡垒机从 PostgreSQL 16 迁移到 18 的步骤 — 升级、dump/restore 与容器卷处理。"

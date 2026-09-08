@@ -1,6 +1,6 @@
 ---
 layout: doc
-title: "Migrate PostgreSQL 16 to 18 — Next Terminal FAQ"
+title: "Migrate PostgreSQL 16 to 18 — Next Terminal"
 description: "Migrate PostgreSQL from 16 to 18 for Next Terminal open source bastion host — upgrade steps, dump/restore and container volume handling."
 head:
   - - meta
@@ -8,7 +8,7 @@ head:
       content: PostgreSQL migration, PostgreSQL 18, bastion host upgrade, Next Terminal, database migration
   - - meta
     - property: og:title
-      content: "Migrate PostgreSQL 16 to 18 — Next Terminal FAQ"
+      content: "Migrate PostgreSQL 16 to 18 — Next Terminal"
   - - meta
     - property: og:description
       content: "Migrate PostgreSQL from 16 to 18 for Next Terminal open source bastion host — upgrade steps, dump/restore and container volume handling."

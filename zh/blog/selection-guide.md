@@ -47,7 +47,7 @@ head:
 
 ### 1. 部署与升级：能否 1 人维护
 
-- **Next Terminal**：单镜像集成 Guacamole，官方提供 `docker-compose.yaml` 与 `config.yaml`，按[容器安装](/zh/install/container-install)即可起服，升级就是重建镜像，数据卷与配置文件即备份边界，PostgreSQL 16/18 双轨支持，迁移路径见[主备高可用部署](/zh/install/ha-primary-standby-guide)。
+- **Next Terminal**：官方 Compose 部署由应用、guacd 和 PostgreSQL 等依赖组成，可按照[容器安装](/zh/install/container-install)部署；升级前需要分别保护数据库、录像、映射盘文件和配置。PostgreSQL 16/18 均受支持，主版本迁移参阅 [PostgreSQL 16 迁移到 18](/zh/install/postgresql-16-to-18)。
 - **JumpServer**：组件多（Web、数据库、Guacamole、存储等），首次部署与版本升级需按官方清单逐项核对，适合有变更流程的团队。
 - **Teleport**：部署本身不重，但要发挥价值需配套配置 CA、角色、SSO 与 Kubernetes 集成，初期理解成本高于纯堡垒机。
 
@@ -85,7 +85,7 @@ ssh -p 2222 admin@bastion.example.com
 ```
 
 - **终端体验**：Next Terminal 的 Web 终端开箱可用，本地重度用户可配合 [Termark 本地客户端](/zh/usage/termark)获得更接近原生终端的体验。
-- **稳定性**：生产环境建议参考[生产级高可用 Checklist](/zh/install/ha-production-checklist)与[获取真实 IP](/zh/install/real-ip)，避免 NAT/代理层导致的会话与审计异常。
+- **稳定性**：生产环境需要同时规划数据库、存储和统一入口的可用性，并正确配置[获取真实 IP](/zh/install/real-ip)，避免代理链路导致会话或审计异常。
 - **排错成本**：轻量架构的问题面更小，日志与配置集中在 `config.yaml` 与容器日志中，定位更快。
 
 ### 5. 总拥有成本：不仅看授权费

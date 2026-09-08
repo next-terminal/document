@@ -1,6 +1,6 @@
 ---
 layout: doc
-title: "系统备份与恢复 — Next Terminal FAQ"
+title: "系统备份与恢复 — Next Terminal"
 description: "Next Terminal 开源堡垒机的备份与恢复指南 — 数据卷、PostgreSQL 与配置文件备份，保障私有化堡垒机可恢复性。"
 head:
   - - meta
@@ -8,7 +8,7 @@ head:
       content: 备份, 恢复, 堡垒机备份, Next Terminal, 开源堡垒机, PostgreSQL
   - - meta
     - property: og:title
-      content: "系统备份与恢复 — Next Terminal FAQ"
+      content: "系统备份与恢复 — Next Terminal"
   - - meta
     - property: og:description
       content: "Next Terminal 开源堡垒机的备份与恢复指南 — 数据卷、PostgreSQL 与配置文件备份，保障私有化堡垒机可恢复性。"
@@ -64,6 +64,18 @@ Next Terminal 已内置备份与恢复功能。管理员登录后，进入“系
 docker compose restart next-terminal
 ```
 
+## 恢复后验证
+
+服务重启后，不要只检查登录页面，还应完成以下验证：
+
+1. 使用备份时已经存在的账号登录。
+2. 检查用户、资产、凭据、授权策略和系统设置。
+3. 分别抽查 SSH、RDP 等典型资产连接。
+4. 确认历史会话记录可以查询，并验证单独恢复的录屏文件可以播放。
+5. 确认单独恢复的 Windows 挂载盘文件可以访问。
+
+`.ntbak` 只恢复数据库数据和 CA 材料。会话录屏和挂载盘文件仍取决于另行备份并恢复的 `data/recordings` 与 `data/drive` 目录。
+
 ## PostgreSQL client 版本
 
 系统通过 Next Terminal 镜像内置的 `pg_dump` 和 `pg_restore` 执行数据库备份与恢复。Next Terminal 镜像必须与 PostgreSQL 服务端主版本匹配：
@@ -73,4 +85,4 @@ docker compose restart next-terminal
 | PostgreSQL 16 | `dushixiang/next-terminal:latest` | PostgreSQL 16 |
 | PostgreSQL 18 | `dushixiang/next-terminal:latest-pg18` | PostgreSQL 18 |
 
-如果需要将 PostgreSQL 16 迁移到 PostgreSQL 18，请参考[从 PostgreSQL 16 迁移到 PostgreSQL 18](/zh/faq/postgresql-16-to-18)。
+如果需要将 PostgreSQL 16 迁移到 PostgreSQL 18，请参考[从 PostgreSQL 16 迁移到 PostgreSQL 18](/zh/install/postgresql-16-to-18)。

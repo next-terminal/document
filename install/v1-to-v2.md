@@ -1,6 +1,6 @@
 ---
 layout: doc
-title: "Upgrade 1.x to 2.x — Next Terminal FAQ"
+title: "Upgrade 1.x to 2.x — Next Terminal"
 description: "Upgrade guide from Next Terminal 1.x to 2.x for open source bastion host — breaking changes and migration steps."
 head:
   - - meta
@@ -8,13 +8,17 @@ head:
       content: upgrade, migration, bastion host upgrade, Next Terminal v2, open source bastion
   - - meta
     - property: og:title
-      content: "Upgrade 1.x to 2.x — Next Terminal FAQ"
+      content: "Upgrade 1.x to 2.x — Next Terminal"
   - - meta
     - property: og:description
       content: "Upgrade guide from Next Terminal 1.x to 2.x for open source bastion host — breaking changes and migration steps."
 ---
 
 # Upgrade Guide: 1.x to 2.x
+
+::: warning Historical document
+This guide applies only to migration from the discontinued 1.x series to 2.x. It is not an upgrade guide for current Next Terminal releases. For a current native installation, see [Native Installation Upgrade](/install/native-upgrade).
+:::
 
 ## ⚠️ Important
 Version 2.x is **not compatible** with 1.x.

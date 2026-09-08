@@ -1,129 +1,49 @@
 ---
 layout: doc
-title: "常见问题 — Next Terminal"
-description: "Next Terminal 开源堡垒机的常见问题 — 部署、资产访问、审计与排障，私有化堡垒机 FAQ。"
-head:
-  - - meta
-    - name: keywords
-      content: 常见问题, 堡垒机FAQ, Next Terminal, 开源堡垒机, 跳板机
-  - - meta
-    - property: og:title
-      content: "常见问题 — Next Terminal"
-  - - meta
-    - property: og:description
-      content: "Next Terminal 开源堡垒机的常见问题 — 部署、资产访问、审计与排障，私有化堡垒机 FAQ。"
+title: "故障排查 — Next Terminal"
+description: "按登录、SSH、RDP/VNC、文件管理、Web 资产和网关症状查找 Next Terminal 常见问题与解决办法。"
 ---
 
-# 常见问题
+# 故障排查
 
-## 查看密码/密钥需要进行二次认证？
+本区域按照用户看到的故障现象组织内容。正常配置和使用流程请优先查阅[使用文档](/zh/usage/readme)；备份、升级和迁移位于安装或系统维护文档。
 
-为了安全考虑，查看密码/密钥需要进行二次认证，绑定OTP或Passkey之后即可查看。
+## 按症状查找
 
-## 访问realvnc提示验证失败？
+| 问题类型 | 常见现象 | 排障文档 |
+| --- | --- | --- |
+| 登录与账号 | 账号被锁、无法查看密码、OTP/Passkey 问题 | [登录与认证](./authentication) |
+| SSH | 认证失败、私钥不兼容、频繁断开、乱码 | [SSH 连接](./ssh) |
+| Windows / RDP / VNC | 黑屏、断开、域认证、剪贴板、RealVNC 失败 | [RDP 与 VNC](./rdp-vnc) |
+| 文件管理 | SFTP 为空、没有文件按钮、Windows 找不到上传文件 | [文件管理](./file-management) |
+| Web 资产 | 域名错误、WebSocket 失败、Grafana Origin 报错 | [Web 资产](./web-assets) |
+| 网络与网关 | 资产离线、网关在线但资产不通、IPv6、WOL | [网络与网关](./network-gateway) |
 
-1. 把密码类型修改为VNC
-2. 把加密类型修改为 Prefer On
-3. 勾选 「Allow connegtions from legacy VNC Viewerusers」
+## 通用排查顺序
 
-参考 
-1. https://help.realvnc.com/hc/en-us/community/posts/7565341003805-Can-t-connect-to-VNC-server-using-Guacamole-client
-2. https://help.realvnc.com/hc/en-us/articles/6661259023389-VNC-Password-storage-in-RealVNC-Server
+1. 记录完整错误信息、发生时间、当前用户和资产名称。
+2. 确认问题影响单个用户、单个资产，还是所有用户和资产。
+3. 使用管理员账号测试同一资产，区分连接配置与用户授权问题。
+4. 检查[资源授权和访问策略](/zh/usage/authorization)是否有效。
+5. 检查 Next Terminal 或所选网关到目标地址和端口的连通性。
+6. 在[日志审计](/zh/usage/audit)中查询访问、会话、命令或文件记录。
+7. 修改配置后建立新会话；已有会话不一定加载最新设置。
 
+## 提交问题时应提供
 
-## 连接rdp协议的windows7或者windows server 2008直接断开？
+- Next Terminal 版本与部署方式。
+- 浏览器或本地客户端名称和版本。
+- 资产协议、目标系统版本和接入方式。
+- 是否使用安全网关、SSH 网关或网关链。
+- 完整错误信息和发生时间。
+- 可复现步骤，以及管理员账号是否同样失败。
+- 相关日志；提供前请移除密码、令牌、私钥、Cookie 和内部敏感地址。
 
-因为freerdp的一个问题导致的，把 设置>RDP 下面的禁用字形缓存打开即可。
-详情可参考 https://issues.apache.org/jira/browse/GUACAMOLE-1191
+## 系统维护与参考
 
-## 使用 SSH RSA 证书无法登录，提示 ssh: no key found
-
-PuTTY 生成的密钥无法直接使用，需要导出后再使用。
-
-## 原生安装如何升级？
-
-下载打包后的压缩文件，替换其中的 next-terminal 文件即可。
-
-## web资产接入grafana不可用
-
-web资产接入grafana后，wss报错且ui显示错误: *origin not allowed*
-解决办法:
-编辑grafana web资产： Custom Header --> 选中Retain hostname  --> 保存
-
-## 资产状态检测原理是什么？
-
-tcp连接到目标IP和端口进行测试的，默认超时时间是3秒，在计划任务中每隔一个小时检测一次。如果资产状态检测为不在线，可以自行登录next-terminal所在服务器使用telnet进行测试。
-
-## SSH 协议文件管理内容是空的？
-
-SSH 协议会自动使用 SFTP 协议进行文件管理，需要确保 SFTP 服务已经开启。
-
-SFTP 通常作为 SSH 的一个子系统自动启用。你可以通过以下命令确认：
-
-```shell
-grep Subsystem /etc/ssh/sshd_config
-```
-输出中应包含类似以下内容：
-```shell
-Subsystem sftp /usr/lib/openssh/sftp-server
-```
-或：
-```shell
-Subsystem sftp internal-sftp
-```
-如果该行被注释（以 # 开头）或缺失，说明可能未启用 SFTP 功能。
-
-## 连接 MacOS 中文乱码？
-
-点击编辑资产，打开 `高级设置 > 连接设置`， 在环境变量中添加以下内容：
-
-```shell
-LANG=zh_CN.UTF-8
-```
-
-## SSH 连接后大概5秒钟就自动断开？网络设备连接后无法输入？
-
-可能是由于SSH连接的存活检测导致，点击编辑资产，打开 `高级设置 > 连接设置`，选中 `连接时禁用存活检查` 即可。
-
-已知必现该问题的系统有：RouterOS，XX 交换机。
-
-## 如何从 Sqlite 迁移到 PostgreSQL？
-
-执行以下命令：
-```shell
-docker run --rm -it \
-  -v ./data/nt.db:/db/nt.db \
-  ghcr.io/dimitri/pgloader:latest \
-  pgloader "sqlite:///db/nt.db" \
-           "pgsql://PG用户名:PG密码@PG主机/PG数据库名"
-```
-
-## 如何从 MySQL 迁移到 PostgreSQL？
-执行以下命令：
-```shell
-docker run --rm -it \
-  ghcr.io/dimitri/pgloader:latest \
-  pgloader "mysql://MYSQL用户名:MYSQL密码@MYSQL主机/MYSQL数据库名" \
-           "pgsql://PG用户名:PG密码@PG主机/PG数据库名"
-
-```
-
-## SSH 连接失败？
-
-如果提示信息如下，就代表你的密码或者密钥有问题，请仔细检查。
-
-```shell
-ssh:hindshake failed: ssh: unable to authenticate, attempted methds [none],no supported methods remain
-```
-
-## Docker 配置 IPv6 太复杂了不会搞怎么办？**
-
-使用双栈 IP 的 Linux 设备作为 SSH 网关或者在该设备上部署安全网关，资产中使用网关作为跳板进行访问。
-
-## WOL 无法唤醒局域网设备？
-
-这是因为容器部署的 NT 和你的资产不在同一个广播域，有下面几种解决方案
-
-1. 更改 NT 的部署方式为原生安装。
-2. 更改 docker-compose 的网络模式为 host 模式。
-3. 在外部安装一个「安全网关」，资产中使用网关作为跳板进行访问。
+- [系统备份与恢复](/zh/usage/backup)
+- [命令行工具参考](/zh/usage/cli)
+- [系统属性配置参考](/zh/usage/system-properties)
+- [原生安装升级](/zh/install/native-upgrade)
+- [PostgreSQL 16 迁移到 18](/zh/install/postgresql-16-to-18)
+- [从 1.x 升级到 2.x（历史）](/zh/install/v1-to-v2)

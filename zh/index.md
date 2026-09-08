@@ -17,7 +17,7 @@ head:
 - 部署前先检查[系统需求](/zh/install/system-requirements)。
 - 使用 [Docker Compose 容器部署](/zh/install/container-install)，并初始化管理员。
 - 配置[反向代理](/zh/install/reverse-proxy)，同时正确获取[客户端真实 IP](/zh/install/real-ip)。
-- 有可用性要求时，参考[主备高可用部署](/zh/install/ha-primary-standby-guide)。
+- 生产环境需要同时规划数据库、录像存储、映射盘存储和统一入口的可用性。
 
 ## 快速开始使用
 
@@ -35,7 +35,7 @@ head:
 ## 维护与故障排查
 
 - 从[常见问题与排障入口](/zh/faq/readme)开始定位问题。
-- 检查[配置文件说明](/zh/install/config-desc)和[系统配置表](/zh/faq/property)。
-- 升级前先备份；只有决定迁移数据库大版本时，才执行 [PostgreSQL 16 迁移到 18](/zh/faq/postgresql-16-to-18) 指南。
+- 检查[配置文件说明](/zh/install/config-desc)和[系统配置表](/zh/usage/system-properties)。
+- 升级前先备份；只有决定迁移数据库大版本时，才执行 [PostgreSQL 16 迁移到 18](/zh/install/postgresql-16-to-18) 指南。
 
 产品定位和能力概览请访问 [Next Terminal 官网](https://www.next-terminal.com/)。具体功能与操作方式以你当前运行版本对应的文档为准。

@@ -51,12 +51,6 @@ Both A and B accept the same set of values:
 Whenever multiple proxy hops are possible, prefer `x-forwarded-for`. It records the full chain and survives CDN + Nginx, WAF + load-balancer, and similar mixed deployments. `x-real-ip` carries only the last hop's value.
 :::
 
-::: warning Docker userland-proxy can hide the real IP
-If NextTerminal is exposed through Docker published ports and every visitor appears as a Docker gateway or host-side address, such as `172.17.0.1` or `172.18.0.1`, check Docker's `userland-proxy` first. Once `userland-proxy` has hidden the original network peer address and no standard `X-Forwarded-For` / `X-Real-IP` header exists, NextTerminal cannot reconstruct the real client IP from its own configuration.
-
-See [Disable Docker userland-proxy](./disable-docker-userland-proxy) for the fix.
-:::
-
 ## Pick Your Configuration by Access Path
 
 Identify your access path first, then fill in both A and B from the row that matches.

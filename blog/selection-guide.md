@@ -47,7 +47,7 @@ SMBs typically manage tens to low hundreds of assets, lean on SSH/RDP, need "goo
 
 ### 1. Deployment and Upgrades: Can One Person Maintain It?
 
-- **Next Terminal**: A single image bundles Guacamole. The official `docker-compose.yaml` and `config.yaml` get you up per [container installation](/install/container-install); an upgrade is rebuilding the image, with volumes and the config file as the backup boundary. PostgreSQL 16 and 18 are both supported; the migration path is covered in the [primary/standby HA guide](/install/ha-primary-standby-guide).
+- **Next Terminal**: The official Compose deployment combines the application with its guacd and PostgreSQL dependencies. Start with [container installation](/install/container-install), and protect the database, recordings, mapped-drive files, and configuration before upgrades. PostgreSQL 16 and 18 are supported; their major-version migration is covered in the [PostgreSQL 16 to 18 guide](/install/postgresql-16-to-18).
 - **JumpServer**: Many components (web, database, Guacamole, storage). First install and upgrades require checklist-driven verification — manageable with a change process, heavy without one.
 - **Teleport**: Deployment itself is not heavy, but realizing its value means configuring CAs, roles, SSO, and Kubernetes integration — higher conceptual cost than a pure bastion host.
 
@@ -85,7 +85,7 @@ ssh -p 2222 admin@bastion.example.com
 ```
 
 - **Terminal experience**: The web terminal works out of the box; heavy local users can pair it with [Termark](/usage/termark) for a native-terminal feel.
-- **Stability**: For production, follow the [production HA checklist](/install/ha-production-checklist) and [real client IP](/install/real-ip) to avoid NAT/proxy issues that break sessions or audit.
+- **Stability**: For production, design database, storage, and ingress availability together, and review [real client IP](/install/real-ip) handling to avoid proxy-related session or audit issues.
 - **Troubleshooting cost**: A leaner architecture means a smaller problem surface. Logs and config center on `config.yaml` and container logs, so root-cause analysis is faster.
 
 ### 5. Total Cost of Ownership: Beyond the License

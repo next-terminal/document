@@ -1,6 +1,6 @@
 ---
 layout: doc
-title: "原生安装升级到 v3.2.0+ — Next Terminal FAQ"
+title: "原生安装升级到 v3.2.0+ — Next Terminal"
 description: "将原生（非容器）安装升级到 Next Terminal v3.2.0 及以上版本 — 二进制、配置与服务步骤。"
 head:
   - - meta
@@ -8,7 +8,7 @@ head:
       content: 原生升级, v3.2.0, 堡垒机升级, Next Terminal, 开源堡垒机
   - - meta
     - property: og:title
-      content: "原生安装升级到 v3.2.0+ — Next Terminal FAQ"
+      content: "原生安装升级到 v3.2.0+ — Next Terminal"
   - - meta
     - property: og:description
       content: "将原生（非容器）安装升级到 Next Terminal v3.2.0 及以上版本 — 二进制、配置与服务步骤。"

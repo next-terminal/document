@@ -1,6 +1,6 @@
 ---
 layout: doc
-title: "System Backup and Restore — Next Terminal FAQ"
+title: "System Backup and Restore — Next Terminal"
 description: "Backup and restore guide for Next Terminal open source bastion host — data volumes, PostgreSQL and config backup for self-hosted recovery."
 head:
   - - meta
@@ -8,7 +8,7 @@ head:
       content: backup, restore, bastion host backup, Next Terminal, open source bastion, PostgreSQL
   - - meta
     - property: og:title
-      content: "System Backup and Restore — Next Terminal FAQ"
+      content: "System Backup and Restore — Next Terminal"
   - - meta
     - property: og:description
       content: "Backup and restore guide for Next Terminal open source bastion host — data volumes, PostgreSQL and config backup for self-hosted recovery."
@@ -64,6 +64,18 @@ After the restore finishes, restart Next Terminal:
 docker compose restart next-terminal
 ```
 
+## Verify After Restore
+
+After the service restarts, verify more than just the sign-in page:
+
+1. Sign in with an account that existed when the backup was created.
+2. Check users, assets, credentials, authorization policies, and system settings.
+3. Open representative SSH, RDP, or other asset connections.
+4. Confirm that historical session records are listed and that separately restored recordings can be played.
+5. Confirm that separately restored Windows mounted-drive files are available.
+
+The `.ntbak` file restores database data and CA material only. Session recordings and mounted-drive files remain dependent on the separately backed-up `data/recordings` and `data/drive` directories.
+
 ## PostgreSQL Client Version
 
 The system runs database backups and restores with `pg_dump` and `pg_restore` included in the Next Terminal image. The Next Terminal image must match the PostgreSQL server major version:
@@ -73,4 +85,4 @@ The system runs database backups and restores with `pg_dump` and `pg_restore` in
 | PostgreSQL 16 | `dushixiang/next-terminal:latest` | PostgreSQL 16 |
 | PostgreSQL 18 | `dushixiang/next-terminal:latest-pg18` | PostgreSQL 18 |
 
-To migrate from PostgreSQL 16 to PostgreSQL 18, see [Migrate from PostgreSQL 16 to PostgreSQL 18](/faq/postgresql-16-to-18).
+To migrate from PostgreSQL 16 to PostgreSQL 18, see [Migrate from PostgreSQL 16 to PostgreSQL 18](/install/postgresql-16-to-18).

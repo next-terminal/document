@@ -1,20 +1,26 @@
 ---
 layout: doc
-title: "命令行工具 — Next Terminal FAQ"
-description: "Next Terminal 开源堡垒机的命令行工具 — 通过 CLI 管理资产、用户与堡垒机运维。"
+title: "命令行工具参考 — Next Terminal"
+description: "Next Terminal 命令行工具参考：查看状态、管理用户与登录锁、客户端证书、系统配置和地理数据。"
 head:
   - - meta
     - name: keywords
       content: 命令行, CLI, 堡垒机CLI, Next Terminal, 开源堡垒机
   - - meta
     - property: og:title
-      content: "命令行工具 — Next Terminal FAQ"
+      content: "命令行工具参考 — Next Terminal"
   - - meta
     - property: og:description
-      content: "Next Terminal 开源堡垒机的命令行工具 — 通过 CLI 管理资产、用户与堡垒机运维。"
+      content: "Next Terminal 命令行工具参考：查看状态、管理用户与登录锁、客户端证书、系统配置和地理数据。"
 ---
 
-# 命令行工具
+# 命令行工具参考
+
+以下示例使用 Docker Compose。原生安装时请直接执行已安装的命令，例如 `nt status`（或部署中对应的二进制路径），无需添加 `docker compose exec next-terminal` 前缀。
+
+::: tip 以当前安装版本的帮助信息为准
+不同版本的命令和参数可能变化。本文展示的帮助输出仅供参考，实际使用时请通过 `nt -h` 和 `nt <command> -h` 查看当前版本支持的选项。
+:::
 
 ### 查看帮助
 
@@ -258,7 +264,7 @@ docker compose exec next-terminal nt config get <key>
 docker compose exec next-terminal nt config set <key> <value>
 ```
 
-> 📋 完整的系统配置项列表请参考：[系统属性配置表](./property)
+> 完整的系统配置项列表请参考：[系统属性配置表](/zh/usage/system-properties)。
 
 ### GeoIP 数据管理
 

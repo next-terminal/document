@@ -17,7 +17,7 @@ Use this documentation to deploy Next Terminal, connect your first asset, config
 - [Check system requirements](/install/system-requirements) before choosing a host.
 - [Install with Docker Compose](/install/container-install) and initialize the administrator account.
 - [Configure a reverse proxy](/install/reverse-proxy) and preserve the [real client IP](/install/real-ip).
-- Plan availability with the [primary/standby deployment guide](/install/ha-primary-standby-guide).
+- For production, design database, recording storage, mapped-drive storage, and ingress availability together.
 
 ## Start using Next Terminal
 
@@ -35,7 +35,7 @@ Use this documentation to deploy Next Terminal, connect your first asset, config
 ## Maintain and troubleshoot
 
 - Start with the [FAQ and troubleshooting hub](/faq/readme).
-- Review [configuration options](/install/config-desc) and [system properties](/faq/property).
-- Back up before upgrades and follow the dedicated [PostgreSQL 16 to 18 migration guide](/faq/postgresql-16-to-18) only if you choose to migrate database major versions.
+- Review [configuration options](/install/config-desc) and [system properties](/usage/system-properties).
+- Back up before upgrades and follow the dedicated [PostgreSQL 16 to 18 migration guide](/install/postgresql-16-to-18) only if you choose to migrate database major versions.
 
 For product positioning and capabilities, visit the [Next Terminal official website](https://www.next-terminal.com/). Version-specific behavior should always be checked against the documentation for the version you run.
