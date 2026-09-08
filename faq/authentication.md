@@ -38,3 +38,11 @@ Require the user to enroll a new factor promptly.
 ## Passkey does not work
 
 Verify that the current hostname matches the configured Passkey domain, HTTPS is in use, the credential exists on the current authenticator, and a domain change has not invalidated the registration. See [Passkey](/usage/passkey).
+
+If the user has lost every registered authenticator, verify the user's identity and clear all registered Passkeys from the CLI:
+
+```shell
+docker compose exec next-terminal nt user passkeyclr <user-id>
+```
+
+This operation deletes all Passkeys for that user. Require the user to register a new Passkey promptly, and review relevant administrative and sign-in logs after recovery. See the [CLI Reference](/usage/cli#clear-all-user-passkeys).

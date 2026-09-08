@@ -52,3 +52,11 @@ docker compose exec next-terminal nt user otpclr <用户ID>
 - 更换域名后需要按新域名重新配置和绑定。
 
 详细配置参阅 [Passkey](/zh/usage/passkey)。
+
+如果用户已经丢失所有注册 Passkey 的设备，应先核验用户身份，再通过命令行清除该用户的全部 Passkey：
+
+```shell
+docker compose exec next-terminal nt user passkeyclr <用户ID>
+```
+
+该操作会删除用户注册的所有 Passkey。恢复后应要求用户尽快重新绑定，并复核相关管理日志和登录日志。命令说明参阅[命令行工具参考](/zh/usage/cli)。

@@ -64,9 +64,10 @@ Usage:
   next-terminal user [command]
 
 Available Commands:
-  list        查看用户列表
-  otpclr      清除用户OTP
-  passwd      修改用户密码
+  list        List all users
+  otpclr      Clear user OTP code
+  passkeyclr  Clear all user Passkeys
+  passwd      Change user password
 
 Flags:
   -h, --help   help for user
@@ -97,6 +98,22 @@ docker compose exec next-terminal nt user list
 ```shell
 docker compose exec next-terminal nt user otpclr 35093131-204a-4db7-b61c-c6f7a7aa5ae4
 ```
+
+**清除用户的所有 Passkey**
+
+执行前必须先核验用户身份。该命令会删除指定用户注册的全部 Passkey，而不是只删除当前设备：
+
+```shell
+docker compose exec next-terminal nt user passkeyclr 35093131-204a-4db7-b61c-c6f7a7aa5ae4
+```
+
+也可以使用别名 `passkey-clear`：
+
+```shell
+docker compose exec next-terminal nt user passkey-clear 35093131-204a-4db7-b61c-c6f7a7aa5ae4
+```
+
+清除后，应要求用户通过经过批准的恢复方式登录，并尽快重新绑定 Passkey。
 
 **修改用户密码**
 

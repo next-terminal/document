@@ -66,8 +66,9 @@ Usage:
   next-terminal user [command]
 
 Available Commands:
-  list        List users
-  otpclr      Clear user OTP
+  list        List all users
+  otpclr      Clear user OTP code
+  passkeyclr  Clear all user Passkeys
   passwd      Change user password
 
 Flags:
@@ -100,6 +101,22 @@ Example output:
 ```shell
 docker compose exec next-terminal nt user otpclr 35093131-204a-4db7-b61c-c6f7a7aa5ae4
 ```
+
+### Clear all user Passkeys
+
+Use this command only after verifying the user's identity. It deletes every Passkey registered by the specified user, not just one authenticator:
+
+```shell
+docker compose exec next-terminal nt user passkeyclr 35093131-204a-4db7-b61c-c6f7a7aa5ae4
+```
+
+`passkey-clear` is also accepted as an alias:
+
+```shell
+docker compose exec next-terminal nt user passkey-clear 35093131-204a-4db7-b61c-c6f7a7aa5ae4
+```
+
+After the reset, require the user to sign in through an approved recovery method and register a new Passkey promptly.
 
 ### Change user password
 
