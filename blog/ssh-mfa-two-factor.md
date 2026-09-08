@@ -91,7 +91,7 @@ Once you've decided to adopt MFA, the next question is **which door verifies it*
 
 For teams with many servers, members, and roles, the second option wins decisively. Enforced MFA only has teeth when it's centralized at the entry point — scattered across individual machines, something always slips through: one box never configured, one old sshd that doesn't support the method you need.
 
-That's why bastion hosts exist in the "privileged access management (PAM)" sense: they collapse authentication, authorization, and auditing from N machines down to one point. Open-source Next Terminal, for instance, lets you attach OTP second-factor auth (/usage/otp) and passkeys (/usage/passkey) at login, applying the second factor uniformly to asset access (/usage/access) while mapping logins and operations to the audit records that compliance reviews expect (/usage/compliance). The "centralized verification at the entry point" pattern is the same across comparable products — you can reproduce it with any bastion host.
+That's why bastion hosts exist in the "privileged access management (PAM)" sense: they collapse authentication, authorization, and auditing from N machines down to one point. Open-source Next Terminal, for instance, lets you attach OTP second-factor auth (/usage/otp) and passkeys (/usage/passkey) at login, applying the second factor uniformly to asset access (/usage/access) while mapping logins and operations to the audit records that compliance reviews expect (/usage/audit). The "centralized verification at the entry point" pattern is the same across comparable products — you can reproduce it with any bastion host.
 
 ## Three costs to think through before rolling out
 

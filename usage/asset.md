@@ -1,78 +1,83 @@
 ---
 layout: doc
-title: "Asset Management — Next Terminal"
-description: "Asset management in Next Terminal open source bastion host — SSH/RDP/VNC/Telnet assets, groups, credentials and authorization for unified access."
-head:
-  - - meta
-    - name: keywords
-      content: asset management, bastion host, SSH asset, RDP asset, Next Terminal, open source bastion
-  - - meta
-    - property: og:title
-      content: "Asset Management — Next Terminal"
-  - - meta
-    - property: og:description
-      content: "Asset management in Next Terminal open source bastion host — SSH/RDP/VNC/Telnet assets, groups, credentials and authorization for unified access."
+title: "Asset Management Overview — Next Terminal"
+description: "Understand SSH, RDP, VNC, Telnet, Web and database assets in Next Terminal, then continue with the guide for the relevant protocol."
 ---
 
-# Asset Management
+# Asset Management Overview
 
-### Supported Protocols
-- RDP (Windows Remote Desktop)
-- SSH (Secure shell for Linux/Unix)
-- VNC (Graphical remote control)
-- Telnet (Traditional terminal protocol)
+Next Terminal calls every managed remote resource an asset. Because configuration, access methods and available tools differ significantly by protocol, this page covers only shared concepts and directs you to protocol-specific guides.
 
-### Add an Asset
-1. Click **Add Asset**.
-2. Select the protocol type.
-3. Fill in connection information:
-   - Enter username/password directly, or
-   - Select pre-created credential records.
-4. Save.
+## Choose a guide by asset type
+
+| Resource | Guide | Main capabilities |
+| --- | --- | --- |
+| Linux, Unix and network devices | [SSH Assets](/usage/ssh) | Web terminal, SFTP file management, snippets and SSH client access |
+| Windows servers and desktops | [Windows / RDP Assets](/usage/rdp) | Web desktop, clipboard, network drive, RemoteApp and native RDP clients |
+| Graphical control and legacy terminals | [VNC and Telnet Assets](/usage/vnc-telnet) | VNC graphical sessions and Telnet terminals |
+| Internal websites | [Web Assets](/usage/website) | Authentication, reverse proxy, authorization and private publishing |
+| Databases | [Database Audit](/usage/database) | Database proxy, SQL approval and audit |
+
+## Common asset workflow
+
+1. Confirm that Next Terminal or the selected gateway can reach the target address and port.
+2. Prepare a target-system password or private key; create a reusable [Credential](/usage/credential) when appropriate.
+3. Open **Asset Management > Assets** and click **Create**.
+4. Select a protocol and enter the name, address, port and account.
+5. Complete the protocol-specific advanced settings.
+6. Save the asset and test it as an administrator.
+7. Use [Resource Authorization](/usage/authorization) to assign it to users or departments.
+8. Connect through the browser, a proxy server or Termark.
 
 ![Asset list](images/asset-list.png)
-![Asset add form](images/asset-post.png)
 
-### Advanced Features
+## Shared fields
 
-#### RemoteApp Configuration
+| Field | Purpose |
+| --- | --- |
+| Name | Name shown in administration and user asset lists |
+| Alias | Target name for SSH proxy direct mode; starts with a letter and uses letters, numbers, underscores or hyphens |
+| Group | Hierarchy used in the asset tree and group authorization |
+| Protocol | Determines the port, authentication, session type and advanced settings |
+| Network address | Target IP/hostname and port reachable through the actual connection path |
+| Account type | Direct password, SSH private key or saved credential |
+| Gateway chain | Forwarding path used when the target cannot be reached directly |
+| Tags | Cross-group properties such as environment, region and owner |
+| Notes | Operational context; never store passwords or tokens here |
 
-1. Use [RemoteApp Tool](https://github.com/kimmknight/remoteapptool) to configure the server side.
-2. In asset settings, fill in:
-   - **Remote Application**: format `||application_name` (for example `||notepad`)
-   - **Working Directory** (optional)
-   - **Startup Parameters** (optional)
+![Create an asset](images/asset-post.png)
 
-Windows example:
-![assets-rdp](images/asset-rdp-remote-app-win.png)
+## Groups, tags and bulk operations
 
-System parameter example:
-![assets-rdp](images/asset-rdp-remote-app-setting.png)
+- Use **groups** for stable hierarchy, such as `Production / Shanghai / Windows`.
+- Use **tags** for cross-cutting properties, such as `critical`, `finance` or `vendor`.
+- For **bulk import**, download the current template, test a small batch, then verify protocol, port, credential, group and gateway values.
+- Use **bulk edit** carefully to update shared properties such as gateways.
 
-After successful connection:
-![assets-rdp](images/asset-rdp-remote-app-view.png)
+<!-- TODO(image): Add current screenshots for group editing, tag filters, bulk import and bulk edit. -->
 
-#### Network Drive
+## Choose a network path
 
-> **Purpose**: Solve RDP file transfer limitations.
+- Directly reachable from the Next Terminal server: do not select a gateway.
+- Located in a VPC, office network or remote site: use a [Security Gateway](/usage/agent-gateway).
+- Reachable through an existing SSH jump host: use an [SSH Gateway](/usage/ssh-gateway).
+- With a gateway chain, enter the address reachable from the final gateway, not the address visible only from the user's computer.
 
-How to enable:
-1. Edit the asset.
-2. Enable **Device Mapping**.
-3. Configure storage as a mapped network drive.
+## Why a newly created asset may still be unavailable
 
-![img.png](images/asset-rdp-drive.png)
+Creating an asset stores connection information but does not grant every user access. Check that:
 
-### Credentials
+1. An administrator can connect successfully.
+2. The user or department has resource authorization.
+3. The authorization has not expired.
+4. Its access strategy permits required actions such as upload, download and clipboard use.
+5. The selected access method supports the protocol.
 
-Credentials provide centralized account/password management. After creating credentials, select account type **Credential** when creating assets, then choose the saved credential for reuse.
+## Related functions
 
-![img.png](images/credential.png)
-
-### Command Snippets
-
-Command snippets are useful for saving complex commands and running them directly in terminal sessions.
-
-![img.png](images/snippet-list.png)
-
-![img_1.png](images/snippet-use.png)
+- [Credentials](/usage/credential)
+- [Resource Authorization and Access Strategies](/usage/authorization)
+- [File Management](/usage/file-management)
+- [Browser Access Workspace](/usage/access)
+- [Security Gateway](/usage/agent-gateway)
+- [SSH Gateway](/usage/ssh-gateway)

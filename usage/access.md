@@ -1,40 +1,47 @@
 ---
 layout: doc
-title: "Asset Access — Next Terminal"
-description: "Access authorized assets via Next Terminal open source bastion host — Web terminal, SSH proxy and RDP proxy with unified audit and recording."
-head:
-  - - meta
-    - name: keywords
-      content: asset access, bastion host, SSH proxy, RDP proxy, Next Terminal, session audit
-  - - meta
-    - property: og:title
-      content: "Asset Access — Next Terminal"
-  - - meta
-    - property: og:description
-      content: "Access authorized assets via Next Terminal open source bastion host — Web terminal, SSH proxy and RDP proxy with unified audit and recording."
+title: "Browser Access Workspace — Next Terminal"
+description: "Find and open authorized SSH, RDP, VNC and Telnet assets in the Next Terminal browser workspace and use session tools."
 ---
 
-Once everything is ready, you can start accessing assets.
+# Browser Access Workspace
 
-Note: file management is only supported for `SSH` and `RDP` protocols.
+The browser workspace is the common entry point for users to open authorized assets. This page covers shared navigation; protocol-specific tools are documented separately.
 
-## SSH
+## Prerequisites
 
-There are four buttons on the right side:
+- The administrator created and successfully tested the asset.
+- The current account has [Resource Authorization](/usage/authorization).
+- The Next Terminal server or gateway can reach the target.
 
-- **Share Session**: Share the current session with others. They can access it without logging in, and both sides can operate in the same session.
-- **File Manager**: Upload, download, delete, create files, and more. This depends on the `sftp` protocol.
-- **Status Monitoring**: Requires your target host to support common commands such as `/bin/cat`, `/bin/df`, `/bin/ip`, etc.
-- **Command Snippets**: Save frequently used command snippets for quick reuse.
+## Find and open an asset
 
-![img.png](images/ssh_terminal.png)
+Use the group tree and search field. The list contains resources authorized to the current account and available through the workspace. Click an asset to open it in a tab; multiple sessions can remain open in separate tabs.
 
-## RDP
+<!-- TODO(image): Add the current workspace, asset search and multiple-session tabs. -->
 
-For the `RDP` protocol, file management is done through a `network drive` as shown below.
+## Use by protocol
 
-This means when downloading files, you first copy files from other disks to the `network drive`; when uploading files, upload to the `network drive` first, then copy them to the target disk.
+- [SSH Assets](/usage/ssh): terminal, SFTP filesystem, snippets, monitoring and AI assistant.
+- [Windows / RDP Assets](/usage/rdp): desktop, clipboard, key combinations, network drive and RemoteApp.
+- [VNC and Telnet Assets](/usage/vnc-telnet): graphical VNC desktop or Telnet terminal.
+- [Web Assets](/usage/website): authenticated and authorized access to internal sites.
+- [Database Audit](/usage/database): database-client proxy access rather than a browser SQL session.
 
-Using this mechanism, you can keep a set of commonly used files in your own `network drive` and copy them directly when accessing RDP assets.
+## Session sharing
 
-![rdp_fs.png](images/rdp_fs.png)
+SSH, RDP and VNC sessions can provide a sharing entry. Verify the recipient and close sharing when collaboration ends. Shared activity remains subject to audit and data-access policies.
+
+## Files and clipboard
+
+SSH file management directly operates the target SFTP filesystem. RDP uses Next Terminal storage and a Windows mapped drive. RDP/VNC clipboard availability depends on strategy and browser permission. See [File Management](/usage/file-management).
+
+## Connection troubleshooting order
+
+1. Confirm the asset still appears for the user.
+2. Check authorization expiration and strategy.
+3. Ask whether an administrator also fails; if so, inspect address, credential and gateway.
+4. For RDP/VNC, consult [Error Codes](/usage/error-codes).
+5. Review access and session logs.
+
+For native clients, use the [SSH Proxy Server](/usage/ssh-server), [RDP Proxy Server](/usage/rdp-server) or [Termark](/usage/termark).

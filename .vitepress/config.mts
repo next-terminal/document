@@ -79,16 +79,35 @@ const enUsageSidebar: DefaultTheme.SidebarItem[] = [
         items: [
             {text: 'Quick Start', link: '/usage/readme'},
             {
-                text: 'Resource Management',
+                text: 'Protocol Guides',
                 items: [
-                    {text: 'Assets', link: '/usage/asset'},
+                    {text: 'Asset Overview', link: '/usage/asset'},
+                    {text: 'SSH Assets', link: '/usage/ssh'},
+                    {text: 'Windows / RDP Assets', link: '/usage/rdp'},
+                    {text: 'VNC and Telnet Assets', link: '/usage/vnc-telnet'},
                     {text: 'Web Assets', link: '/usage/website'},
-                    {text: 'HTTPS mTLS', link: '/usage/mtls'},
                     {text: 'Database Audit', link: '/usage/database'}
                 ]
             },
             {
-                text: 'Access Gateways',
+                text: 'Shared Functions',
+                items: [
+                    {text: 'Credentials', link: '/usage/credential'},
+                    {text: 'Resource Authorization', link: '/usage/authorization'},
+                    {text: 'File Management', link: '/usage/file-management'},
+                    {text: 'Browser Access Workspace', link: '/usage/access'}
+                ]
+            },
+            {
+                text: 'Native Client Access',
+                items: [
+                    {text: 'SSH Proxy Server', link: '/usage/ssh-server'},
+                    {text: 'RDP Proxy Server', link: '/usage/rdp-server'},
+                    {text: 'Termark', link: '/usage/termark'}
+                ]
+            },
+            {
+                text: 'Network and Gateways',
                 items: [
                     {text: 'Security Gateway', link: '/usage/agent-gateway'},
                     {text: 'Security Gateway Configuration', link: '/usage/agent-gateway-config'},
@@ -96,25 +115,17 @@ const enUsageSidebar: DefaultTheme.SidebarItem[] = [
                 ]
             },
             {
-                text: 'Access Assets',
+                text: 'Security and System',
                 items: [
-                    {text: 'Asset Access', link: '/usage/access'},
-                    {text: 'SSH Proxy Server', link: '/usage/ssh-server'},
-                    {text: 'RDP Proxy Server', link: '/usage/rdp-server'},
-                    {text: 'Termark', link: '/usage/termark'},
-                    {text: 'RDP/VNC Error Codes', link: '/usage/error-codes'}
-                ]
-            },
-            {
-                text: 'System Settings',
-                items: [
+                    {text: 'HTTPS mTLS', link: '/usage/mtls'},
                     {text: 'Passkey', link: '/usage/passkey'},
                     {text: '2FA (TOTP)', link: '/usage/otp'},
                     {text: 'OIDC Identity Server', link: '/usage/oidc_server'},
-                    {text: 'License Binding', link: '/usage/license'}
+                    {text: 'License Binding', link: '/usage/license'},
+                    {text: 'RDP/VNC Error Codes', link: '/usage/error-codes'},
+                    {text: 'Audit Logs', link: '/usage/audit'}
                 ]
-            },
-            {text: 'Compliance', link: '/usage/compliance'}
+            }
         ]
     }
 ]
@@ -198,42 +209,53 @@ const zhUsageSidebar: DefaultTheme.SidebarItem[] = [
         items: [
             {text: '快速开始', link: '/zh/usage/readme'},
             {
-                text: '资源管理',
+                text: '按协议使用',
                 items: [
-                    {text: '资产管理', link: '/zh/usage/asset'},
-                    {text: 'Web资产', link: '/zh/usage/website'},
-                    {text: 'HTTPS 证书双向认证', link: '/zh/usage/mtls'},
+                    {text: '资产管理总览', link: '/zh/usage/asset'},
+                    {text: 'SSH 资产', link: '/zh/usage/ssh'},
+                    {text: 'Windows / RDP 资产', link: '/zh/usage/rdp'},
+                    {text: 'VNC 与 Telnet 资产', link: '/zh/usage/vnc-telnet'},
+                    {text: 'Web 资产', link: '/zh/usage/website'},
                     {text: '数据库审计', link: '/zh/usage/database'}
                 ]
             },
             {
-                text: '接入网关',
+                text: '通用功能',
+                items: [
+                    {text: '授权凭证', link: '/zh/usage/credential'},
+                    {text: '资源授权与访问策略', link: '/zh/usage/authorization'},
+                    {text: '文件管理', link: '/zh/usage/file-management'},
+                    {text: '浏览器访问工作区', link: '/zh/usage/access'}
+                ]
+            },
+            {
+                text: '本地客户端接入',
+                items: [
+                    {text: 'SSH 代理服务器', link: '/zh/usage/ssh-server'},
+                    {text: 'RDP 代理服务器', link: '/zh/usage/rdp-server'},
+                    {text: 'Termark 本地客户端', link: '/zh/usage/termark'}
+                ]
+            },
+            {
+                text: '网络与网关',
                 items: [
                     {text: '安全网关', link: '/zh/usage/agent-gateway'},
                     {text: '安全网关配置文件', link: '/zh/usage/agent-gateway-config'},
-                    {text: 'SSH网关', link: '/zh/usage/ssh-gateway'}
+                    {text: 'SSH 网关', link: '/zh/usage/ssh-gateway'}
                 ]
             },
             {
-                text: '访问资产',
+                text: '安全与系统',
                 items: [
-                    {text: '资产访问', link: '/zh/usage/access'},
-                    {text: 'SSH代理服务器', link: '/zh/usage/ssh-server'},
-                    {text: 'RDP代理服务器', link: '/zh/usage/rdp-server'},
-                    {text: 'Termark 本地客户端', link: '/zh/usage/termark'},
-                    {text: 'RDP/VNC 错误码', link: '/zh/usage/error-codes'}
-                ]
-            },
-            {
-                text: '系统设置',
-                items: [
+                    {text: 'HTTPS 证书双向认证', link: '/zh/usage/mtls'},
                     {text: '通行令牌（Passkey）', link: '/zh/usage/passkey'},
-                    {text: '2fa(TOTP)', link: '/zh/usage/otp'},
+                    {text: '双因素认证（TOTP）', link: '/zh/usage/otp'},
                     {text: 'OIDC 身份服务器', link: '/zh/usage/oidc_server'},
-                    {text: '绑定授权', link: '/zh/usage/license'}
+                    {text: '绑定授权', link: '/zh/usage/license'},
+                    {text: 'RDP/VNC 错误码', link: '/zh/usage/error-codes'},
+                    {text: '日志审计', link: '/zh/usage/audit'}
                 ]
-            },
-            {text: '合规与审计', link: '/zh/usage/compliance'}
+            }
         ]
     }
 ]

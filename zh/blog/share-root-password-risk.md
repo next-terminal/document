@@ -100,7 +100,7 @@ ssh username:asset-name@host -p 2022
 
 Next Terminal 提供的审计能力包括：
 
-- **会话审计与录像**：SSH/RDP 等会话可录像并回放，文本与图形会话都能追溯（见 [合规与审计](/zh/usage/compliance)）。
+- **会话审计与录像**：SSH/RDP 等会话可录像并回放，文本与图形会话都能追溯（见 [日志审计](/zh/usage/audit)）。
 - **文件操作日志**：SFTP 上传下载等文件操作留痕。
 - **SQL 审计**：数据库操作记录到人（[数据库审计](/zh/usage/database)）。
 - **访问日志分析**：聚合分析访问行为，辅助发现异常（增强版能力）。

@@ -87,6 +87,6 @@ Strong authentication is the most critical piece. Passwords are inherently unrel
 
 The difference between TOTP and Passkey: TOTP still relies on a shared secret that merely rotates every 30 seconds, while Passkey authenticates with a public-private key pair whose private key never leaves the device — fundamentally leaving no "password" to steal.
 
-Login logs are also evidence. Frameworks such as MLPS and ISO 27001 require login behavior to be traceable — who logged in, when, and from where. Centralizing login logs puts both incident response and audit in one place; see the mapping in [Compliance and Auditing](/usage/compliance).
+Login logs are also evidence. Frameworks such as MLPS and ISO 27001 require login behavior to be traceable — who logged in, when, and from where. Centralizing login logs puts both incident response and audit in one place; see the mapping in [Audit Logs](/usage/audit).
 
 > In an **open-source bastion host** like Next Terminal, SSH assets are accessed through the bastion, where you can layer [OTP two-factor authentication](/usage/otp) and [passkeys](/usage/passkey) on login and record every access in the [asset access](/usage/access) log. With the [SSH gateway](/usage/ssh-gateway), the `ssh user@host` habit is preserved too — once the entry point is unified, brute force turns into repeatedly bumping against a single gate.

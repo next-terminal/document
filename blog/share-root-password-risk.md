@@ -100,7 +100,7 @@ Permissions and blocking answer "who is allowed to do what"; auditing answers "w
 
 Next Terminal's auditing capabilities include:
 
-- **Session audit and recording**: SSH/RDP sessions can be recorded and replayed, covering both text and graphical sessions (see [Compliance & Audit](/usage/compliance)).
+- **Session audit and recording**: SSH/RDP sessions can be recorded and replayed, covering both text and graphical sessions (see [Audit Logs](/usage/audit)).
 - **File operation logs**: SFTP uploads/downloads and other file operations are logged.
 - **SQL auditing**: database operations are attributed to a person ([Database Audit](/usage/database)).
 - **Access log analysis**: aggregated analysis of access behavior to surface anomalies (enhanced edition).

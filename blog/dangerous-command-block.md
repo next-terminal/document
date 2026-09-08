@@ -79,7 +79,7 @@ No rule set stops 100% of attacks and slips, and some rules misfire. So the seco
 
 The job of command auditing is to answer "can we reconstruct what happened later": who ran this command, in which session, from what source address, and what did they do right before and after. Ideally you go from one command back to a full sequence of operations, not just a log line saying "someone deleted a file."
 
-Beyond individual commands, session- and asset-level records are common too: session recordings replay what was on the screen, database operations can be logged by statement and by person ([database auditing](/usage/database)), and the whole set can be archived to satisfy internal-audit and compliance retention requirements ([compliance & auditing](/usage/compliance)). Auditing's endpoint isn't "we have logs"; it's "when something happens, we can produce an account."
+Beyond individual commands, session- and asset-level records are common too: session recordings replay what was on the screen, database operations can be logged by statement and by person ([database auditing](/usage/database)), and the whole set can be archived to satisfy internal-audit and compliance retention requirements ([compliance & auditing](/usage/audit)). Auditing's endpoint isn't "we have logs"; it's "when something happens, we can produce an account."
 
 ## 6. One way to wire it: command filtering and auditing on a bastion host
 
