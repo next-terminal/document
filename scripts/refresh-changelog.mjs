@@ -1,4 +1,4 @@
-import {writeFile} from 'node:fs/promises'
+import {writeSnapshotIfChanged} from './write-snapshot.mjs'
 import {pathToFileURL} from 'node:url'
 import {normalizeVersions, renderVersionsHTML, versionsSignature} from '../.vitepress/theme/marketing/runtime/changelog.js'
 
@@ -32,7 +32,7 @@ export async function refreshChangelog() {
         }
     }
     snapshot.ok = Boolean(snapshot.en || snapshot.zh)
-    await writeFile(snapshotPath, JSON.stringify(snapshot, null, 2) + '\n')
+    await writeSnapshotIfChanged(snapshotPath, snapshot)
     const summary = Object.keys(LANGS).map((locale) => (snapshot[locale] ? `${locale}:${snapshot[locale].count}` : `${locale}:skip`))
     console.log(`Changelog snapshot refreshed (${summary.join(' ')})`)
     return snapshot

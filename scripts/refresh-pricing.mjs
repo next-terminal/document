@@ -1,4 +1,4 @@
-import {writeFile} from 'node:fs/promises'
+import {writeSnapshotIfChanged} from './write-snapshot.mjs'
 import {pathToFileURL} from 'node:url'
 
 const licenseApiBase = process.env.LICENSE_API_BASE ?? 'https://license.next-terminal.com'
@@ -87,9 +87,9 @@ export async function refreshPricing() {
                 product: {slug: productKey},
                 plans,
             }
-            await writeFile(
+            await writeSnapshotIfChanged(
                 new URL('../.vitepress/theme/marketing/config/pricing-snapshot.json', import.meta.url),
-                JSON.stringify(snapshot, null, 2) + '\n',
+                snapshot,
             )
             const priced = Object.values(plans).flatMap((row) => Object.values(row)).filter((item) => item.amount !== null)
             console.log(`Updated ${priced.length} published prices from ${storeBase}`)
