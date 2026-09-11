@@ -7,7 +7,9 @@
   "scripts": {
     "docs:dev": "vitepress dev",
     "docs:build": "vitepress build",
-    "docs:preview": "vitepress preview"
+    "docs:preview": "vitepress preview",
+    "pricing:refresh": "node scripts/refresh-pricing.mjs",
+    "test:pricing": "node --test scripts/test_pricing.mjs"
   },
   "dependencies": {
     "vitepress": "^2.0.0-alpha.17"

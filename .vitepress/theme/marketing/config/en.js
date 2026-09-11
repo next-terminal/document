@@ -1,0 +1,87 @@
+// English marketing content: copied verbatim from the Astro site's website/src/i18n/en.ts.
+export const pricingContent = {
+    meta: {
+        title: 'Pricing | Open Source Bastion Host Next Terminal | Free 100 Assets Lifetime',
+        description: 'Next Terminal open source bastion host pricing: free unlimited users / 100 assets, plus paid personal and unlimited enterprise licenses with monthly, yearly and lifetime terms.',
+    },
+    pricing: {
+        title: 'Choose a Plan',
+        lead: 'The prices below are the latest official pricing. Checkout is handled by the store.',
+        freeEdition: 'Free',
+        freeEditionDesc: 'Unlimited users / 100 assets. Core capabilities are free to use.',
+        freeEditionCta: 'Get Started',
+        syncWarning: 'Store pricing is syncing. If checkout is unavailable, try again later or contact support.',
+        syncing: 'Store Syncing',
+        tableTitle: 'License Pricing',
+        currencyUnit: 'Prices in CNY',
+        tier: 'License Tier',
+        cycles: {
+            monthly: 'Monthly',
+            yearly: 'Yearly',
+            lifetime: 'Lifetime License',
+        },
+        suffixes: {
+            monthly: '/month',
+            yearly: '/year',
+            lifetime: '',
+        },
+        buy: 'Buy',
+        plans: [
+            {key: 'personal-enhanced-100', label: 'Personal Enhanced: 1 user / 100 assets', addon: true},
+            {key: 'assets-200', label: 'Unlimited users / 200 assets'},
+            {key: 'assets-500', label: 'Unlimited users / 500 assets'},
+            {key: 'assets-1000', label: 'Unlimited users / 1,000 assets'},
+        ],
+        addon: {
+            cta: 'Add-on available',
+            title: 'Personal Enhanced — add-on quotas',
+            desc: 'After buying the base plan, add quotas self-service in the license portal.',
+            thItem: 'Add-on',
+            thDelta: 'Quota',
+            thYearly: 'Yearly',
+            thLifetime: 'Lifetime',
+            rowUserItem: 'Users',
+            rowUserDelta: '+1 user',
+            rowAssetItem: 'Assets',
+            rowAssetDelta: '+50 assets',
+            hint: 'Up to 5 users · Yearly add-ons share the current expiry; lifetime add-ons are permanent.',
+        },
+        coreTitle: 'Core Capabilities',
+        coreFeatures: [
+            'Asset, database asset, website, credential, and certificate management',
+            'SSH, RDP, VNC, TELNET, HTTP, and database access',
+            'Web asset reverse proxy and temporary allowlist',
+            'File upload, download, and directory upload',
+            'User, department, role permissions, and sign-in policies',
+            'Basic authorization management',
+            'Online session, operation, login, file, and SQL auditing',
+            'Command snippets, Ping/TCPing, and system monitoring',
+            'SSH, RDP, and MySQL proxy services',
+            'Basic recording and playback',
+            'System backup, upgrade, and basic system settings',
+        ],
+        enhancedTitle: 'Enhanced Capabilities',
+        enhancedGroups: [
+            {
+                title: 'Enterprise Identity',
+                items: ['LDAP integration', 'OIDC sign-in', 'WeCom sign-in', 'OIDC Client'],
+            },
+            {
+                title: 'Access Control and Collaboration',
+                items: ['Access policies', 'Command filtering and rule management', 'Session sharing', 'Online file editing', 'Batch file download', 'Scheduled tasks'],
+            },
+            {
+                title: 'Gateway and Proxy Enhancements',
+                items: ['SSH gateway', 'Security gateway', 'Gateway groups and token management', 'SSH port forwarding', 'RDP proxy access', 'Gateway default inheritance config'],
+            },
+            {
+                title: 'Audit Analytics and Branding',
+                items: ['Offline session recording', 'Recording transcoding', 'Access log analytics', 'Custom branding, logo, and copyright', 'Access watermark', 'SSH terminal themes'],
+            },
+            {
+                title: 'Advanced System Capabilities',
+                items: ['Asset access entry configuration', 'Auto disconnect idle access sessions', 'IP geolocation', 'WOL LAN device wake-up', 'Read-only SQL blocking policy', 'Offline license'],
+            },
+        ],
+    },
+};

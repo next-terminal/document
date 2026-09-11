@@ -1,0 +1,87 @@
+// 中文营销页内容：文案逐字取自原 Astro 站 website/src/i18n/zh.ts，避免两站文案漂移。
+export const pricingContent = {
+    meta: {
+        title: '价格与授权｜开源堡垒机 Next Terminal | 免费版 100资产 永久授权',
+        description: 'Next Terminal 开源堡垒机官方定价：免费版不限用户/100资产，付费提供个人增强版与不限用户企业版，支持月付/年付/永久授权，私有化堡垒机与运维审计。',
+    },
+    pricing: {
+        title: '选择套餐',
+        lead: '以下为最新官方定价，订单支付由商城系统处理。',
+        freeEdition: '免费版',
+        freeEditionDesc: '不限用户 / 100 资产，基础能力免费使用',
+        freeEditionCta: '开始使用',
+        syncWarning: '商城价格同步中，如无法下单请稍后重试或联系客服。',
+        syncing: '商城价格同步中',
+        tableTitle: '授权价格表',
+        currencyUnit: '价格单位：人民币',
+        tier: '授权规格',
+        cycles: {
+            monthly: '月付',
+            yearly: '年付',
+            lifetime: '永久授权',
+        },
+        suffixes: {
+            monthly: '元/月',
+            yearly: '元/年',
+            lifetime: '元',
+        },
+        buy: '购买',
+        plans: [
+            {key: 'personal-enhanced-100', label: '个人增强版：1 用户 / 100 资产', addon: true},
+            {key: 'assets-200', label: '不限用户 / 200 资产'},
+            {key: 'assets-500', label: '不限用户 / 500 资产'},
+            {key: 'assets-1000', label: '不限用户 / 1,000 资产'},
+        ],
+        addon: {
+            cta: '可增购',
+            title: '个人增强版增购说明',
+            desc: '购买基础版后可在授权服务中自助增购，无需联系客服。',
+            thItem: '增购项',
+            thDelta: '规格',
+            thYearly: '年付',
+            thLifetime: '永久授权',
+            rowUserItem: '用户',
+            rowUserDelta: '+1 用户',
+            rowAssetItem: '资产',
+            rowAssetDelta: '+50 资产',
+            hint: '最多 5 名用户 · 年付增购与当前授权共用到期，永久增购永久有效。',
+        },
+        coreTitle: '基础能力',
+        coreFeatures: [
+            '资产、数据库资产、网站、凭证和证书管理',
+            'SSH、RDP、VNC、TELNET、HTTP 和数据库访问',
+            'Web 资产反向代理和临时白名单',
+            '文件上传、下载和目录上传',
+            '用户、部门、角色权限和登录策略',
+            '基础授权管理',
+            '在线会话、操作日志、登录日志、文件日志和 SQL 审计',
+            '命令片段、Ping/TCPing 和系统监控',
+            'SSH、RDP 和 MySQL 代理服务',
+            '基础录屏和回放',
+            '系统备份、升级和基础系统设置',
+        ],
+        enhancedTitle: '增强能力',
+        enhancedGroups: [
+            {
+                title: '企业身份集成',
+                items: ['LDAP 接入', 'OIDC 登录', '企业微信登录', 'OIDC Client'],
+            },
+            {
+                title: '访问控制与协作',
+                items: ['访问策略', '命令过滤和规则管理', '会话分享', '文件在线编辑', '文件批量下载', '计划任务'],
+            },
+            {
+                title: '网关与代理增强',
+                items: ['SSH 网关', '安全网关', '网关分组和 Token 管理', 'SSH 端口转发', 'RDP 代理访问', '网关默认继承配置'],
+            },
+            {
+                title: '审计分析与品牌',
+                items: ['离线会话记录', '录屏转码', '访问日志统计分析', '自定义品牌、Logo 和版权', '资产接入水印', 'SSH 终端主题'],
+            },
+            {
+                title: '高级系统能力',
+                items: ['资产接入入口配置', '接入超时自动断开', 'IP 地理位置', 'WOL 局域网设备唤醒', 'SQL 只读拦截策略', '离线授权许可'],
+            },
+        ],
+    },
+};

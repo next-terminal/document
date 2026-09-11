@@ -1,0 +1,50 @@
+{
+  "ok": true,
+  "fetchedAt": "2026-09-11T08:33:58.536Z",
+  "storeBase": "https://store.next-terminal.com",
+  "product": {
+    "slug": "next-terminal"
+  },
+  "plans": {
+    "personal-enhanced-100": {
+      "yearly": {
+        "amount": 9900,
+        "checkoutURL": "https://store.next-terminal.com/checkout/next-terminal?price=assets-personal-100-12m"
+      },
+      "lifetime": {
+        "amount": 29900,
+        "checkoutURL": "https://store.next-terminal.com/checkout/next-terminal?price=assets-personal-100-lifetime"
+      }
+    },
+    "assets-200": {
+      "monthly": {
+        "amount": 14900,
+        "checkoutURL": "https://store.next-terminal.com/checkout/next-terminal?price=assets-200-1m"
+      },
+      "yearly": {
+        "amount": 149900,
+        "checkoutURL": "https://store.next-terminal.com/checkout/next-terminal?price=assets-200-12m"
+      }
+    },
+    "assets-500": {
+      "monthly": {
+        "amount": 29900,
+        "checkoutURL": "https://store.next-terminal.com/checkout/next-terminal?price=assets-500-1m"
+      },
+      "yearly": {
+        "amount": 299900,
+        "checkoutURL": "https://store.next-terminal.com/checkout/next-terminal?price=assets-500-12m"
+      }
+    },
+    "assets-1000": {
+      "monthly": {
+        "amount": 49900,
+        "checkoutURL": "https://store.next-terminal.com/checkout/next-terminal?price=assets-1000-1m"
+      },
+      "yearly": {
+        "amount": 499900,
+        "checkoutURL": "https://store.next-terminal.com/checkout/next-terminal?price=assets-1000-12m"
+      }
+    }
+  }
+}

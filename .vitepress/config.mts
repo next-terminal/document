@@ -1,8 +1,14 @@
 import {existsSync} from 'node:fs'
 import {resolve} from 'node:path'
 import {defineConfig, type DefaultTheme} from 'vitepress'
+import {refreshPricing} from '../scripts/refresh-pricing.mjs'
 
-const docsOrigin = 'https://docs.next-terminal.com'
+// 合并阶段用 SITE_ORIGIN 切换：先保持 docs 子域，切域名时改为 https://www.next-terminal.com
+const docsOrigin = process.env.SITE_ORIGIN ?? 'https://docs.next-terminal.com'
+
+// 构建前刷新价格快照；失败重试 3 次后中断构建，避免发布空价格/旧价格
+if (process.argv.includes('build')) await refreshPricing()
+
 
 function routeFromRelativePath(relativePath: string) {
     const path = relativePath.replace(/(^|\/)index\.md$/, '$1').replace(/\.md$/, '')
@@ -359,7 +365,7 @@ export default defineConfig({
     description: 'Next Terminal open source bastion host and PAM — unified SSH/RDP/VNC/Telnet access, asset authorization, session audit and recording. A JumpServer/Teleport alternative for teams.',
     head,
     sitemap: {
-        hostname: 'https://docs.next-terminal.com'
+        hostname: docsOrigin
     },
     transformPageData(pageData) {
         if (!pageData.description) {
@@ -377,8 +383,11 @@ export default defineConfig({
         const result: DefaultTheme.Config['head'] = [
             ['link', {rel: 'canonical', href: canonical}],
             ['meta', {property: 'og:url', content: canonical}],
-            ['meta', {property: 'og:locale', content: chinese ? 'zh_CN' : 'en_US'}],
-            ['script', {type: 'application/ld+json'}, JSON.stringify({
+            ['meta', {property: 'og:locale', content: chinese ? 'zh_CN' : 'en_US'}]
+        ]
+        // 营销页自带 Product JSON-LD，避免再套一层 TechArticle
+        if (pageData.frontmatter.layout !== 'marketing') {
+            result.push(['script', {type: 'application/ld+json'}, JSON.stringify({
                 '@context': 'https://schema.org',
                 '@type': 'TechArticle',
                 headline: pageData.title,
@@ -386,8 +395,8 @@ export default defineConfig({
                 url: canonical,
                 inLanguage: chinese ? 'zh-CN' : 'en-US',
                 publisher: {'@type': 'Organization', name: 'Next Terminal', url: 'https://www.next-terminal.com/'}
-            })]
-        ]
+            })])
+        }
         if (alternate) {
             const englishRoute = chinese ? alternate : route
             const chineseRoute = chinese ? route : alternate
