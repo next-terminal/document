@@ -23,19 +23,19 @@ function alternatePath(relativePath: string) {
     return existsSync(resolve(process.cwd(), source)) ? routeFromRelativePath(source) : undefined
 }
 
+// 分享卡片图：仓库内已有、线上可访问的界面截图。历史配置指向不存在的 /logo.svg（favicon 同）与
+// /images/website-dark.png（Astro 站 JSON-LD 与 og:image 都指向它，线上 404），分享预览一直是空白。
+const OG_IMAGE = 'https://www.next-terminal.com/images/website-light.png'
+const OG_IMAGE_WIDTH = '1732'
+const OG_IMAGE_HEIGHT = '1083'
+
 const head: DefaultTheme.Config['head'] = [
-    ['link', {rel: 'icon', href: '/logo.svg'}],
+    ['link', {rel: 'icon', href: '/favicon.svg'}],
     ['meta', {
         name: 'keywords',
         content: 'Next Terminal, bastion host, 堡垒机, 开源堡垒机, open source bastion, jump server, 跳板机, PAM, privileged access management, 运维审计, operations audit, SSH, RDP, VNC, Telnet, Web SSH, session audit, JumpServer alternative, Teleport alternative'
     }],
-    ['meta', {property: 'og:title', content: 'Next Terminal Documentation - Secure Remote Access and Operations Audit'}],
-    ['meta', {
-        property: 'og:description',
-        content: 'Official documentation for installing Next Terminal, managing assets, configuring secure remote access, and auditing operations.'
-    }],
     ['meta', {property: 'og:type', content: 'website'}],
-    ['meta', {property: 'og:image', content: `${docsOrigin}/logo.svg`}],
     [
         'script',
         {
@@ -386,7 +386,17 @@ export default defineConfig({
         const result: DefaultTheme.Config['head'] = [
             ['link', {rel: 'canonical', href: canonical}],
             ['meta', {property: 'og:url', content: canonical}],
-            ['meta', {property: 'og:locale', content: chinese ? 'zh_CN' : 'en_US'}]
+            ['meta', {property: 'og:locale', content: chinese ? 'zh_CN' : 'en_US'}],
+            // 逐页的分享卡片（原来是全站一句文档简介 + 一张 404 的图）
+            ['meta', {property: 'og:title', content: pageData.title}],
+            ['meta', {property: 'og:description', content: pageData.description ?? ''}],
+            ['meta', {property: 'og:image', content: OG_IMAGE}],
+            ['meta', {property: 'og:image:width', content: OG_IMAGE_WIDTH}],
+            ['meta', {property: 'og:image:height', content: OG_IMAGE_HEIGHT}],
+            ['meta', {property: 'og:image:alt', content: 'Next Terminal'}],
+            ['meta', {name: 'twitter:card', content: 'summary_large_image'}],
+            ['meta', {name: 'twitter:title', content: pageData.title}],
+            ['meta', {name: 'twitter:image', content: OG_IMAGE}]
         ]
         // 营销页自带 Product JSON-LD，避免再套一层 TechArticle
         if (pageData.frontmatter.layout !== 'marketing') {
@@ -472,16 +482,6 @@ export default defineConfig({
             link: '/zh/',
             title: 'Next Terminal',
             description: 'Next Terminal 开源堡垒机与运维审计系统 — 支持 SSH/RDP/VNC/Telnet 统一接入、资产授权、会话审计与录像，JumpServer/Teleport 的轻量替代。',
-            head: [
-                ['meta', {property: 'og:title', content: 'Next Terminal 开源堡垒机 — 统一接入与运维审计 | JumpServer替代'}],
-                [
-                    'meta',
-                    {
-                        property: 'og:description',
-                        content: 'Next Terminal 是一款轻量开源堡垒机与运维审计系统，支持 SSH/RDP/VNC/Telnet/Web 统一接入、会话录像与审计，适合中小团队私有化部署。'
-                    }
-                ]
-            ],
             themeConfig: {
                 lastUpdated: {
                     text: '最后更新'
