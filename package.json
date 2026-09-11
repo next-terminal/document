@@ -9,9 +9,11 @@
     "docs:build": "vitepress build",
     "docs:preview": "vitepress preview",
     "pricing:refresh": "node scripts/refresh-pricing.mjs",
+    "changelog:refresh": "node scripts/refresh-changelog.mjs",
     "test:pricing": "node --test scripts/test_pricing.mjs"
   },
   "dependencies": {
+    "marked": "^18.0.12",
     "vitepress": "^2.0.0-alpha.17"
   },
   "devDependencies": {

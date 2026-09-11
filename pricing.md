@@ -1,5 +1,7 @@
 ---
 layout: marketing
+marketingLocale: en
+marketingPage: pricing
 title: "Pricing | Open Source Bastion Host Next Terminal | Free 100 Assets Lifetime"
 titleTemplate: false
 description: "Next Terminal open source bastion host pricing: free unlimited users / 100 assets, plus paid personal and unlimited enterprise licenses with monthly, yearly and lifetime terms."

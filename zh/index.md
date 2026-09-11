@@ -1,41 +1,19 @@
 ---
-layout: doc
-title: Next Terminal 官方文档
-description: Next Terminal 开源堡垒机与运维审计文档 — 支持 SSH/RDP/VNC/Telnet 统一接入、资产授权、会话审计与录像，JumpServer/Teleport 的轻量替代，适合中小团队私有化部署。
+layout: marketing
+marketingLocale: zh
+marketingPage: home
+title: 'Next Terminal 开源堡垒机｜轻量跳板机与运维审计 | JumpServer/Teleport 替代'
+titleTemplate: false
+description: 'Next Terminal 是面向中小团队的开源堡垒机与跳板机，支持 SSH/RDP/VNC/SFTP/Telnet/HTTP 统一接入、资产授权、会话审计与录像、命令拦截、Passkey/TOTP/LDAP/OIDC 多因素认证，私有化部署，JumpServer 与 Teleport 的轻量替代。'
 head:
-  - - meta
-    - name: keywords
-      content: 开源堡垒机, 堡垒机, 跳板机, JumpServer替代, Teleport替代, 堡垒机部署, 运维审计, 会话审计, PAM, Next Terminal, SSH堡垒机, RDP审计
+  - - script
+    - type: application/ld+json
+    - '{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"Next Terminal","url":"https://www.next-terminal.com/zh/","inLanguage":"zh-CN","description":"Next Terminal 是面向中小团队的开源堡垒机与跳板机，支持 SSH/RDP/VNC/SFTP/Telnet/HTTP 统一接入、资产授权、会话审计与录像、命令拦截、Passkey/TOTP/LDAP/OIDC 多因素认证，私有化部署，JumpServer 与 Teleport 的轻量替代。"},{"@type":"SoftwareApplication","name":"Next Terminal","applicationCategory":"SecurityApplication","applicationSubCategory":"Bastion Host","operatingSystem":"Linux","url":"https://www.next-terminal.com/zh/","image":"https://www.next-terminal.com/images/website-dark.png","description":"支持多协议远程访问、资产授权、会话审计和安全认证的开源堡垒机与跳板机，JumpServer/Teleport 的轻量替代。","featureList":["多协议统一访问","资产与凭证管理","权限与访问策略","会话审计与回放","危险命令拦截","企业身份与强认证"],"publisher":{"@type":"Organization","name":"Next Terminal","url":"https://www.next-terminal.com/zh/"},"keywords":"开源堡垒机,堡垒机,跳板机,JumpServer替代,Teleport替代,运维审计,Next Terminal,PAM"}]}'
 ---
 
-# Next Terminal 官方文档
+<script setup>
+import Page from "../.vitepress/theme/marketing/components/HomePage.vue"
+import {homeContent} from "../.vitepress/theme/marketing/config/home.js"
+</script>
 
-通过这套文档完成 Next Terminal 部署、第一台资产接入、安全访问配置与日常维护。Next Terminal 将 SSH、RDP、VNC、SFTP、Telnet、Web 资产、权限控制与运维审计收敛到一套私有化部署的统一入口。
-
-## 安装与运维
-
-- 部署前先检查[系统需求](/zh/install/system-requirements)。
-- 使用 [Docker Compose 容器部署](/zh/install/container-install)，并初始化管理员。
-- 配置[反向代理](/zh/install/reverse-proxy)，同时正确获取[客户端真实 IP](/zh/install/real-ip)。
-- 生产环境需要同时规划数据库、录像存储、映射盘存储和统一入口的可用性。
-
-## 快速开始使用
-
-- 根据[快速开始](/zh/usage/readme)登录系统并了解控制面板。
-- 添加并整理[资产与凭证](/zh/usage/asset)。
-- 通过[资产访问工作区](/zh/usage/access)、[SSH 代理服务器](/zh/usage/ssh-server)或 [RDP 代理服务器](/zh/usage/rdp-server)建立连接。
-- 通过 [Web 资产](/zh/usage/website)发布内部应用，或使用[安全网关](/zh/usage/agent-gateway)连接内网资产。
-
-## 身份与访问安全
-
-- 启用 [Passkey](/zh/usage/passkey) 或 [TOTP 双因素认证](/zh/usage/otp)。
-- 使用 [OIDC 身份服务器](/zh/usage/oidc_server)对接应用登录。
-- 需要客户端证书认证时，配置 [HTTPS 双向认证](/zh/usage/mtls)。
-
-## 维护与故障排查
-
-- 从[常见问题与排障入口](/zh/faq/readme)开始定位问题。
-- 检查[配置文件说明](/zh/install/config-desc)和[系统配置表](/zh/usage/system-properties)。
-- 升级前先备份；只有决定迁移数据库大版本时，才执行 [PostgreSQL 16 迁移到 18](/zh/install/postgresql-16-to-18) 指南。
-
-产品定位和能力概览请访问 [Next Terminal 官网](https://www.next-terminal.com/)。具体功能与操作方式以你当前运行版本对应的文档为准。
+<Page :content="homeContent.zh" locale="zh" />

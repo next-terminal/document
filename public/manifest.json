@@ -1,0 +1,39 @@
+{
+  "name": "Next Terminal 开源堡垒机｜轻量跳板机与运维审计",
+  "short_name": "Next Terminal",
+  "description": "Next Terminal 是面向中小团队的开源堡垒机与跳板机，支持 SSH/RDP/VNC/SFTP/Telnet/HTTP 统一接入、资产授权、会话审计与录像、命令拦截、Passkey/TOTP/LDAP/OIDC 多因素认证，私有化部署，JumpServer/Teleport 轻量替代。",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1063ff",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "categories": [
+    "security",
+    "utilities",
+    "productivity"
+  ],
+  "lang": "zh-CN",
+  "dir": "ltr"
+}

@@ -1,41 +1,19 @@
 ---
-layout: doc
-title: Next Terminal Documentation
-description: Next Terminal open source bastion host and PAM documentation — install, SSH/RDP/VNC/Telnet access, asset management, session audit and recording. A JumpServer/Teleport alternative.
+layout: marketing
+marketingLocale: en
+marketingPage: home
+title: 'Next Terminal Open Source Bastion Host | Lightweight Jump Server & PAM | JumpServer/Teleport Alternative'
+titleTemplate: false
+description: 'Next Terminal is an open source bastion host and jump server for teams. Unified SSH/RDP/VNC/SFTP/Telnet/HTTP access, asset authorization, session audit and recording, command interception, and Passkey/TOTP/LDAP/OIDC MFA. Self-hosted JumpServer and Teleport alternative.'
 head:
-  - - meta
-    - name: keywords
-      content: Next Terminal, bastion host, open source bastion host, JumpServer alternative, Teleport alternative, PAM, jump server, SSH bastion, RDP audit, operations audit, session recording
+  - - script
+    - type: application/ld+json
+    - '{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"Next Terminal","url":"https://www.next-terminal.com/","inLanguage":"en","description":"Next Terminal is an open source bastion host and jump server for teams. Unified SSH/RDP/VNC/SFTP/Telnet/HTTP access, asset authorization, session audit and recording, command interception, and Passkey/TOTP/LDAP/OIDC MFA. Self-hosted JumpServer and Teleport alternative."},{"@type":"SoftwareApplication","name":"Next Terminal","applicationCategory":"SecurityApplication","applicationSubCategory":"Bastion Host","operatingSystem":"Linux","url":"https://www.next-terminal.com/","image":"https://www.next-terminal.com/images/website-dark.png","description":"Open source bastion host and jump server with multi-protocol remote access, asset authorization, session auditing and recording, and strong authentication. A lightweight JumpServer/Teleport alternative.","featureList":["Multi-protocol access","Assets and credentials","Permissions and policies","Session audit and replay","Risky command interception","Enterprise identity and strong auth"],"publisher":{"@type":"Organization","name":"Next Terminal","url":"https://www.next-terminal.com/"},"keywords":"open source bastion host,bastion host,jump server,JumpServer alternative,Teleport alternative,PAM,operations audit,Next Terminal"}]}'
 ---
 
-# Next Terminal Documentation
+<script setup>
+import Page from "./.vitepress/theme/marketing/components/HomePage.vue"
+import {homeContent} from "./.vitepress/theme/marketing/config/home.js"
+</script>
 
-Use this documentation to deploy Next Terminal, connect your first asset, configure secure access, and maintain an existing installation. Next Terminal brings SSH, RDP, VNC, SFTP, Telnet, Web assets, permissions, and operations audit into one self-hosted access platform.
-
-## Install and operate
-
-- [Check system requirements](/install/system-requirements) before choosing a host.
-- [Install with Docker Compose](/install/container-install) and initialize the administrator account.
-- [Configure a reverse proxy](/install/reverse-proxy) and preserve the [real client IP](/install/real-ip).
-- For production, design database, recording storage, mapped-drive storage, and ingress availability together.
-
-## Start using Next Terminal
-
-- Follow the [quick start](/usage/readme) to sign in and understand the dashboard.
-- Add and organize [assets and credentials](/usage/asset).
-- Connect through the [asset access workspace](/usage/access), [SSH proxy server](/usage/ssh-server), or [RDP proxy server](/usage/rdp-server).
-- Publish internal applications as [Web assets](/usage/website) or reach private networks through a [security gateway](/usage/agent-gateway).
-
-## Identity and access security
-
-- Enable [Passkey sign-in](/usage/passkey) or [TOTP two-factor authentication](/usage/otp).
-- Integrate applications with the [OIDC identity server](/usage/oidc_server).
-- Configure [HTTPS mutual TLS](/usage/mtls) when client-certificate authentication is required.
-
-## Maintain and troubleshoot
-
-- Start with the [FAQ and troubleshooting hub](/faq/readme).
-- Review [configuration options](/install/config-desc) and [system properties](/usage/system-properties).
-- Back up before upgrades and follow the dedicated [PostgreSQL 16 to 18 migration guide](/install/postgresql-16-to-18) only if you choose to migrate database major versions.
-
-For product positioning and capabilities, visit the [Next Terminal official website](https://www.next-terminal.com/). Version-specific behavior should always be checked against the documentation for the version you run.
+<Page :content="homeContent.en" locale="en" />

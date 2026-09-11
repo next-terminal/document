@@ -2,12 +2,15 @@ import {existsSync} from 'node:fs'
 import {resolve} from 'node:path'
 import {defineConfig, type DefaultTheme} from 'vitepress'
 import {refreshPricing} from '../scripts/refresh-pricing.mjs'
+import {refreshChangelog} from '../scripts/refresh-changelog.mjs'
 
 // 合并阶段用 SITE_ORIGIN 切换：先保持 docs 子域，切域名时改为 https://www.next-terminal.com
 const docsOrigin = process.env.SITE_ORIGIN ?? 'https://docs.next-terminal.com'
 
 // 构建前刷新价格快照；失败重试 3 次后中断构建，避免发布空价格/旧价格
 if (process.argv.includes('build')) await refreshPricing()
+// 构建前刷新更新日志快照；拉不到只退化（与旧站一致），不中断构建
+if (process.argv.includes('build')) await refreshChangelog()
 
 
 function routeFromRelativePath(relativePath: string) {
@@ -44,20 +47,20 @@ const head: DefaultTheme.Config['head'] = [
 ]
 
 const enNav: DefaultTheme.NavItem[] = [
-    {text: 'Installation', link: '/install/system-requirements', activeMatch: '^/install/'},
-    {text: 'User Guide', link: '/usage/readme', activeMatch: '^/usage/'},
-    {text: 'Troubleshooting', link: '/faq/readme', activeMatch: '^/faq/'},
-    {text: 'Blog', link: '/blog/rdp-black-screen-failed', activeMatch: '^/blog/'},
-    {text: 'API Docs', link: '/api/certificate', activeMatch: '^/api/'},
+    {text: 'Installation', link: '/docs/install/system-requirements', activeMatch: '^/install/'},
+    {text: 'User Guide', link: '/docs/usage/readme', activeMatch: '^/usage/'},
+    {text: 'Troubleshooting', link: '/docs/faq/readme', activeMatch: '^/faq/'},
+    {text: 'Blog', link: '/docs/blog/rdp-black-screen-failed', activeMatch: '^/blog/'},
+    {text: 'API Docs', link: '/docs/api/certificate', activeMatch: '^/api/'},
     {text: 'Official Website', link: 'https://www.next-terminal.com/'}
 ]
 
 const zhNav: DefaultTheme.NavItem[] = [
-    {text: '安装文档', link: '/zh/install/system-requirements', activeMatch: '^/zh/install/'},
-    {text: '使用文档', link: '/zh/usage/readme', activeMatch: '^/zh/usage/'},
-    {text: '故障排查', link: '/zh/faq/readme', activeMatch: '^/zh/faq/'},
-    {text: '博客文章', link: '/zh/blog/rdp-black-screen-failed', activeMatch: '^/zh/blog/'},
-    {text: 'API 文档', link: '/zh/api/certificate', activeMatch: '^/zh/api/'},
+    {text: '安装文档', link: '/zh/docs/install/system-requirements', activeMatch: '^/zh/install/'},
+    {text: '使用文档', link: '/zh/docs/usage/readme', activeMatch: '^/zh/usage/'},
+    {text: '故障排查', link: '/zh/docs/faq/readme', activeMatch: '^/zh/faq/'},
+    {text: '博客文章', link: '/zh/docs/blog/rdp-black-screen-failed', activeMatch: '^/zh/blog/'},
+    {text: 'API 文档', link: '/zh/docs/api/certificate', activeMatch: '^/zh/api/'},
     {text: '官网地址', link: 'https://www.next-terminal.com/'}
 ]
 
@@ -66,17 +69,17 @@ const enInstallSidebar: DefaultTheme.SidebarItem[] = [
         text: 'Installation',
         collapsed: false,
         items: [
-            {text: 'System Requirements', link: '/install/system-requirements'},
-            {text: 'Container Installation', link: '/install/container-install'},
-            {text: 'Configuration File', link: '/install/config-desc'},
-            {text: 'Reverse Proxy', link: '/install/reverse-proxy'},
-            {text: 'Real Client IP', link: '/install/real-ip'},
+            {text: 'System Requirements', link: '/docs/install/system-requirements'},
+            {text: 'Container Installation', link: '/docs/install/container-install'},
+            {text: 'Configuration File', link: '/docs/install/config-desc'},
+            {text: 'Reverse Proxy', link: '/docs/install/reverse-proxy'},
+            {text: 'Real Client IP', link: '/docs/install/real-ip'},
             {
                 text: 'Upgrade and Migration',
                 items: [
-                    {text: 'Native Installation Upgrade', link: '/install/native-upgrade'},
-                    {text: 'PostgreSQL 16 to 18', link: '/install/postgresql-16-to-18'},
-                    {text: 'Upgrade 1.x to 2.x (Historical)', link: '/install/v1-to-v2'}
+                    {text: 'Native Installation Upgrade', link: '/docs/install/native-upgrade'},
+                    {text: 'PostgreSQL 16 to 18', link: '/docs/install/postgresql-16-to-18'},
+                    {text: 'Upgrade 1.x to 2.x (Historical)', link: '/docs/install/v1-to-v2'}
                 ]
             }
         ]
@@ -88,61 +91,61 @@ const enUsageSidebar: DefaultTheme.SidebarItem[] = [
         text: 'User Guide',
         collapsed: false,
         items: [
-            {text: 'Quick Start', link: '/usage/readme'},
+            {text: 'Quick Start', link: '/docs/usage/readme'},
             {
                 text: 'Protocol Guides',
                 items: [
-                    {text: 'Asset Overview', link: '/usage/asset'},
-                    {text: 'SSH Assets', link: '/usage/ssh'},
-                    {text: 'Windows / RDP Assets', link: '/usage/rdp'},
-                    {text: 'VNC and Telnet Assets', link: '/usage/vnc-telnet'},
-                    {text: 'Web Assets', link: '/usage/website'},
-                    {text: 'Database Audit', link: '/usage/database'}
+                    {text: 'Asset Overview', link: '/docs/usage/asset'},
+                    {text: 'SSH Assets', link: '/docs/usage/ssh'},
+                    {text: 'Windows / RDP Assets', link: '/docs/usage/rdp'},
+                    {text: 'VNC and Telnet Assets', link: '/docs/usage/vnc-telnet'},
+                    {text: 'Web Assets', link: '/docs/usage/website'},
+                    {text: 'Database Audit', link: '/docs/usage/database'}
                 ]
             },
             {
                 text: 'Shared Functions',
                 items: [
-                    {text: 'Credentials', link: '/usage/credential'},
-                    {text: 'Resource Authorization', link: '/usage/authorization'},
-                    {text: 'File Management', link: '/usage/file-management'},
-                    {text: 'Browser Access Workspace', link: '/usage/access'}
+                    {text: 'Credentials', link: '/docs/usage/credential'},
+                    {text: 'Resource Authorization', link: '/docs/usage/authorization'},
+                    {text: 'File Management', link: '/docs/usage/file-management'},
+                    {text: 'Browser Access Workspace', link: '/docs/usage/access'}
                 ]
             },
             {
                 text: 'Native Client Access',
                 items: [
-                    {text: 'SSH Proxy Server', link: '/usage/ssh-server'},
-                    {text: 'RDP Proxy Server', link: '/usage/rdp-server'},
-                    {text: 'Termark', link: '/usage/termark'}
+                    {text: 'SSH Proxy Server', link: '/docs/usage/ssh-server'},
+                    {text: 'RDP Proxy Server', link: '/docs/usage/rdp-server'},
+                    {text: 'Termark', link: '/docs/usage/termark'}
                 ]
             },
             {
                 text: 'Network and Gateways',
                 items: [
-                    {text: 'Security Gateway', link: '/usage/agent-gateway'},
-                    {text: 'Security Gateway Configuration', link: '/usage/agent-gateway-config'},
-                    {text: 'SSH Gateway', link: '/usage/ssh-gateway'}
+                    {text: 'Security Gateway', link: '/docs/usage/agent-gateway'},
+                    {text: 'Security Gateway Configuration', link: '/docs/usage/agent-gateway-config'},
+                    {text: 'SSH Gateway', link: '/docs/usage/ssh-gateway'}
                 ]
             },
             {
                 text: 'Security and System',
                 items: [
-                    {text: 'HTTPS mTLS', link: '/usage/mtls'},
-                    {text: 'Passkey', link: '/usage/passkey'},
-                    {text: '2FA (TOTP)', link: '/usage/otp'},
-                    {text: 'OIDC Identity Server', link: '/usage/oidc_server'},
-                    {text: 'License Binding', link: '/usage/license'},
-                    {text: 'RDP/VNC Error Codes', link: '/usage/error-codes'},
-                    {text: 'Audit Logs', link: '/usage/audit'}
+                    {text: 'HTTPS mTLS', link: '/docs/usage/mtls'},
+                    {text: 'Passkey', link: '/docs/usage/passkey'},
+                    {text: '2FA (TOTP)', link: '/docs/usage/otp'},
+                    {text: 'OIDC Identity Server', link: '/docs/usage/oidc_server'},
+                    {text: 'License Binding', link: '/docs/usage/license'},
+                    {text: 'RDP/VNC Error Codes', link: '/docs/usage/error-codes'},
+                    {text: 'Audit Logs', link: '/docs/usage/audit'}
                 ]
             },
             {
                 text: 'Maintenance and Reference',
                 items: [
-                    {text: 'Backup and Restore', link: '/usage/backup'},
-                    {text: 'CLI Reference', link: '/usage/cli'},
-                    {text: 'System Property Reference', link: '/usage/system-properties'}
+                    {text: 'Backup and Restore', link: '/docs/usage/backup'},
+                    {text: 'CLI Reference', link: '/docs/usage/cli'},
+                    {text: 'System Property Reference', link: '/docs/usage/system-properties'}
                 ]
             }
         ]
@@ -154,13 +157,13 @@ const enFaqSidebar: DefaultTheme.SidebarItem[] = [
         text: 'Troubleshooting',
         collapsed: false,
         items: [
-            {text: 'Troubleshooting Overview', link: '/faq/readme'},
-            {text: 'Authentication', link: '/faq/authentication'},
-            {text: 'SSH Connections', link: '/faq/ssh'},
-            {text: 'RDP and VNC', link: '/faq/rdp-vnc'},
-            {text: 'File Management', link: '/faq/file-management'},
-            {text: 'Web Assets', link: '/faq/web-assets'},
-            {text: 'Network and Gateways', link: '/faq/network-gateway'}
+            {text: 'Troubleshooting Overview', link: '/docs/faq/readme'},
+            {text: 'Authentication', link: '/docs/faq/authentication'},
+            {text: 'SSH Connections', link: '/docs/faq/ssh'},
+            {text: 'RDP and VNC', link: '/docs/faq/rdp-vnc'},
+            {text: 'File Management', link: '/docs/faq/file-management'},
+            {text: 'Web Assets', link: '/docs/faq/web-assets'},
+            {text: 'Network and Gateways', link: '/docs/faq/network-gateway'}
         ]
     }
 ]
@@ -170,22 +173,22 @@ const enBlogSidebar: DefaultTheme.SidebarItem[] = [
         text: 'Blog',
         collapsed: false,
         items: [
-            {text: 'SSH Brute-Force Attacks: How to Read Login Logs and Defend Your Server', link: '/blog/ssh-brute-force'},
-            {text: 'How ssh -L/-R/-D Punch Through the Firewall: SSH Port Forwarding, Abuse, and Audit', link: '/blog/ssh-port-forwarding'},
-            {text: 'What Is the "Authentication Private Key" in SSH, and What Does It Actually Authenticate?', link: '/blog/ssh-authentication'},
-            {text: '2026 Open Source Bastion Host Selection Guide: JumpServer vs Teleport vs Next Terminal', link: '/blog/selection-guide'},
-            {text: 'Secure Web Asset Publishing: Replace VPN with Next Terminal', link: '/blog/web-asset-gateway'},
-            {text: 'RDP Black Screen or Connection Failed? 5 Steps to Fix Windows Remote Desktop', link: '/blog/rdp-black-screen-failed'},
-            {text: 'Sign in to Proxmox VE with Next Terminal OIDC', link: '/blog/pve-oidc/readme'},
-            {text: 'Database Won\'t Expose to Public? 3 Secure Remote Access Methods', link: '/blog/db-remote-access'},
-            {text: 'Still Sharing Root Passwords? Permissions and Auditing for Teams', link: '/blog/share-root-password-risk'},
-            {text: 'Access Intranet Without VPN: 3 Secure Alternatives Compared', link: '/blog/intranet-without-vpn'},
-            {text: 'rm -rf / Wasn\'t a Slip: Blocking Dangerous Commands and Auditing Ops', link: '/blog/dangerous-command-block'},
-            {text: 'Is Key-Based SSH Login Enough? What Two-Factor Authentication Actually Adds', link: '/blog/ssh-mfa-two-factor'},
-            {text: 'What Really Happened on That Server? SSH Session Recording and Audit', link: '/blog/ssh-session-recording'},
-            {text: 'Does ssh -A Hand Your Keys to the Jump Host? SSH Agent Forwarding and Safer Alternatives', link: '/blog/ssh-agent-forwarding'},
-            {text: 'Employee Left, but Their SSH Key Still Lives on Dozens of Servers: Key Rotation and Access Revocation', link: '/blog/ssh-key-rotation'},
-            {text: 'Root for a One-Off Fix: Least Privilege and Just-in-Time Privileged Access', link: '/blog/temporary-root-access'}
+            {text: 'SSH Brute-Force Attacks: How to Read Login Logs and Defend Your Server', link: '/docs/blog/ssh-brute-force'},
+            {text: 'How ssh -L/-R/-D Punch Through the Firewall: SSH Port Forwarding, Abuse, and Audit', link: '/docs/blog/ssh-port-forwarding'},
+            {text: 'What Is the "Authentication Private Key" in SSH, and What Does It Actually Authenticate?', link: '/docs/blog/ssh-authentication'},
+            {text: '2026 Open Source Bastion Host Selection Guide: JumpServer vs Teleport vs Next Terminal', link: '/docs/blog/selection-guide'},
+            {text: 'Secure Web Asset Publishing: Replace VPN with Next Terminal', link: '/docs/blog/web-asset-gateway'},
+            {text: 'RDP Black Screen or Connection Failed? 5 Steps to Fix Windows Remote Desktop', link: '/docs/blog/rdp-black-screen-failed'},
+            {text: 'Sign in to Proxmox VE with Next Terminal OIDC', link: '/docs/blog/pve-oidc/readme'},
+            {text: 'Database Won\'t Expose to Public? 3 Secure Remote Access Methods', link: '/docs/blog/db-remote-access'},
+            {text: 'Still Sharing Root Passwords? Permissions and Auditing for Teams', link: '/docs/blog/share-root-password-risk'},
+            {text: 'Access Intranet Without VPN: 3 Secure Alternatives Compared', link: '/docs/blog/intranet-without-vpn'},
+            {text: 'rm -rf / Wasn\'t a Slip: Blocking Dangerous Commands and Auditing Ops', link: '/docs/blog/dangerous-command-block'},
+            {text: 'Is Key-Based SSH Login Enough? What Two-Factor Authentication Actually Adds', link: '/docs/blog/ssh-mfa-two-factor'},
+            {text: 'What Really Happened on That Server? SSH Session Recording and Audit', link: '/docs/blog/ssh-session-recording'},
+            {text: 'Does ssh -A Hand Your Keys to the Jump Host? SSH Agent Forwarding and Safer Alternatives', link: '/docs/blog/ssh-agent-forwarding'},
+            {text: 'Employee Left, but Their SSH Key Still Lives on Dozens of Servers: Key Rotation and Access Revocation', link: '/docs/blog/ssh-key-rotation'},
+            {text: 'Root for a One-Off Fix: Least Privilege and Just-in-Time Privileged Access', link: '/docs/blog/temporary-root-access'}
         ]
     }
 ]
@@ -194,16 +197,16 @@ const enApiSidebar: DefaultTheme.SidebarItem[] = [
     {
         text: 'API Docs',
         collapsed: false,
-        items: [{text: 'Certificate Management', link: '/api/certificate'}]
+        items: [{text: 'Certificate Management', link: '/docs/api/certificate'}]
     }
 ]
 
 const enSidebar: DefaultTheme.Sidebar = {
-    '/install/': enInstallSidebar,
-    '/usage/': enUsageSidebar,
-    '/faq/': enFaqSidebar,
-    '/blog/': enBlogSidebar,
-    '/api/': enApiSidebar
+    '/docs/install/': enInstallSidebar,
+    '/docs/usage/': enUsageSidebar,
+    '/docs/faq/': enFaqSidebar,
+    '/docs/blog/': enBlogSidebar,
+    '/docs/api/': enApiSidebar
 }
 
 const zhInstallSidebar: DefaultTheme.SidebarItem[] = [
@@ -211,17 +214,17 @@ const zhInstallSidebar: DefaultTheme.SidebarItem[] = [
         text: '安装文档',
         collapsed: false,
         items: [
-            {text: '系统需求', link: '/zh/install/system-requirements'},
-            {text: '容器安装', link: '/zh/install/container-install'},
-            {text: '配置文件', link: '/zh/install/config-desc'},
-            {text: '反向代理', link: '/zh/install/reverse-proxy'},
-            {text: '获取真实 IP', link: '/zh/install/real-ip'},
+            {text: '系统需求', link: '/zh/docs/install/system-requirements'},
+            {text: '容器安装', link: '/zh/docs/install/container-install'},
+            {text: '配置文件', link: '/zh/docs/install/config-desc'},
+            {text: '反向代理', link: '/zh/docs/install/reverse-proxy'},
+            {text: '获取真实 IP', link: '/zh/docs/install/real-ip'},
             {
                 text: '升级与迁移',
                 items: [
-                    {text: '原生安装升级', link: '/zh/install/native-upgrade'},
-                    {text: 'PostgreSQL 16 迁移到 18', link: '/zh/install/postgresql-16-to-18'},
-                    {text: '1.x 升级到 2.x（历史版本）', link: '/zh/install/v1-to-v2'}
+                    {text: '原生安装升级', link: '/zh/docs/install/native-upgrade'},
+                    {text: 'PostgreSQL 16 迁移到 18', link: '/zh/docs/install/postgresql-16-to-18'},
+                    {text: '1.x 升级到 2.x（历史版本）', link: '/zh/docs/install/v1-to-v2'}
                 ]
             }
         ]
@@ -233,61 +236,61 @@ const zhUsageSidebar: DefaultTheme.SidebarItem[] = [
         text: '使用文档',
         collapsed: false,
         items: [
-            {text: '快速开始', link: '/zh/usage/readme'},
+            {text: '快速开始', link: '/zh/docs/usage/readme'},
             {
                 text: '按协议使用',
                 items: [
-                    {text: '资产管理总览', link: '/zh/usage/asset'},
-                    {text: 'SSH 资产', link: '/zh/usage/ssh'},
-                    {text: 'Windows / RDP 资产', link: '/zh/usage/rdp'},
-                    {text: 'VNC 与 Telnet 资产', link: '/zh/usage/vnc-telnet'},
-                    {text: 'Web 资产', link: '/zh/usage/website'},
-                    {text: '数据库审计', link: '/zh/usage/database'}
+                    {text: '资产管理总览', link: '/zh/docs/usage/asset'},
+                    {text: 'SSH 资产', link: '/zh/docs/usage/ssh'},
+                    {text: 'Windows / RDP 资产', link: '/zh/docs/usage/rdp'},
+                    {text: 'VNC 与 Telnet 资产', link: '/zh/docs/usage/vnc-telnet'},
+                    {text: 'Web 资产', link: '/zh/docs/usage/website'},
+                    {text: '数据库审计', link: '/zh/docs/usage/database'}
                 ]
             },
             {
                 text: '通用功能',
                 items: [
-                    {text: '授权凭证', link: '/zh/usage/credential'},
-                    {text: '资源授权与访问策略', link: '/zh/usage/authorization'},
-                    {text: '文件管理', link: '/zh/usage/file-management'},
-                    {text: '浏览器访问工作区', link: '/zh/usage/access'}
+                    {text: '授权凭证', link: '/zh/docs/usage/credential'},
+                    {text: '资源授权与访问策略', link: '/zh/docs/usage/authorization'},
+                    {text: '文件管理', link: '/zh/docs/usage/file-management'},
+                    {text: '浏览器访问工作区', link: '/zh/docs/usage/access'}
                 ]
             },
             {
                 text: '本地客户端接入',
                 items: [
-                    {text: 'SSH 代理服务器', link: '/zh/usage/ssh-server'},
-                    {text: 'RDP 代理服务器', link: '/zh/usage/rdp-server'},
-                    {text: 'Termark 本地客户端', link: '/zh/usage/termark'}
+                    {text: 'SSH 代理服务器', link: '/zh/docs/usage/ssh-server'},
+                    {text: 'RDP 代理服务器', link: '/zh/docs/usage/rdp-server'},
+                    {text: 'Termark 本地客户端', link: '/zh/docs/usage/termark'}
                 ]
             },
             {
                 text: '网络与网关',
                 items: [
-                    {text: '安全网关', link: '/zh/usage/agent-gateway'},
-                    {text: '安全网关配置文件', link: '/zh/usage/agent-gateway-config'},
-                    {text: 'SSH 网关', link: '/zh/usage/ssh-gateway'}
+                    {text: '安全网关', link: '/zh/docs/usage/agent-gateway'},
+                    {text: '安全网关配置文件', link: '/zh/docs/usage/agent-gateway-config'},
+                    {text: 'SSH 网关', link: '/zh/docs/usage/ssh-gateway'}
                 ]
             },
             {
                 text: '安全与系统',
                 items: [
-                    {text: 'HTTPS 证书双向认证', link: '/zh/usage/mtls'},
-                    {text: '通行令牌（Passkey）', link: '/zh/usage/passkey'},
-                    {text: '双因素认证（TOTP）', link: '/zh/usage/otp'},
-                    {text: 'OIDC 身份服务器', link: '/zh/usage/oidc_server'},
-                    {text: '绑定授权', link: '/zh/usage/license'},
-                    {text: 'RDP/VNC 错误码', link: '/zh/usage/error-codes'},
-                    {text: '日志审计', link: '/zh/usage/audit'}
+                    {text: 'HTTPS 证书双向认证', link: '/zh/docs/usage/mtls'},
+                    {text: '通行令牌（Passkey）', link: '/zh/docs/usage/passkey'},
+                    {text: '双因素认证（TOTP）', link: '/zh/docs/usage/otp'},
+                    {text: 'OIDC 身份服务器', link: '/zh/docs/usage/oidc_server'},
+                    {text: '绑定授权', link: '/zh/docs/usage/license'},
+                    {text: 'RDP/VNC 错误码', link: '/zh/docs/usage/error-codes'},
+                    {text: '日志审计', link: '/zh/docs/usage/audit'}
                 ]
             },
             {
                 text: '维护与参考',
                 items: [
-                    {text: '备份与恢复', link: '/zh/usage/backup'},
-                    {text: '命令行参考', link: '/zh/usage/cli'},
-                    {text: '系统属性参考', link: '/zh/usage/system-properties'}
+                    {text: '备份与恢复', link: '/zh/docs/usage/backup'},
+                    {text: '命令行参考', link: '/zh/docs/usage/cli'},
+                    {text: '系统属性参考', link: '/zh/docs/usage/system-properties'}
                 ]
             }
         ]
@@ -299,13 +302,13 @@ const zhFaqSidebar: DefaultTheme.SidebarItem[] = [
         text: '故障排查',
         collapsed: false,
         items: [
-            {text: '故障排查总览', link: '/zh/faq/readme'},
-            {text: '登录与认证', link: '/zh/faq/authentication'},
-            {text: 'SSH 连接', link: '/zh/faq/ssh'},
-            {text: 'RDP 与 VNC', link: '/zh/faq/rdp-vnc'},
-            {text: '文件管理', link: '/zh/faq/file-management'},
-            {text: 'Web 资产', link: '/zh/faq/web-assets'},
-            {text: '网络与网关', link: '/zh/faq/network-gateway'}
+            {text: '故障排查总览', link: '/zh/docs/faq/readme'},
+            {text: '登录与认证', link: '/zh/docs/faq/authentication'},
+            {text: 'SSH 连接', link: '/zh/docs/faq/ssh'},
+            {text: 'RDP 与 VNC', link: '/zh/docs/faq/rdp-vnc'},
+            {text: '文件管理', link: '/zh/docs/faq/file-management'},
+            {text: 'Web 资产', link: '/zh/docs/faq/web-assets'},
+            {text: '网络与网关', link: '/zh/docs/faq/network-gateway'}
         ]
     }
 ]
@@ -315,22 +318,22 @@ const zhBlogSidebar: DefaultTheme.SidebarItem[] = [
         text: '博客文章',
         collapsed: false,
         items: [
-            {text: '服务器 SSH 一直被人暴力破解？先看懂登录日志，再谈防护', link: '/zh/blog/ssh-brute-force'},
-            {text: 'ssh -L/-R/-D 是怎么打穿防火墙的？SSH 端口转发原理与滥用审计', link: '/zh/blog/ssh-port-forwarding'},
-            {text: 'SSH 里的“认证私钥”到底是什么，它认证的是谁？', link: '/zh/blog/ssh-authentication'},
-            {text: '2026 开源堡垒机选型指南：如何为中小团队选 JumpServer / Teleport / Next Terminal', link: '/zh/blog/selection-guide'},
-            {text: 'Web 资产安全发布：用 Next Terminal 替代 VPN 暴露内网系统', link: '/zh/blog/web-asset-gateway'},
-            {text: 'RDP 连不上/黑屏/凭证失效？Windows 远程桌面 5 步排查', link: '/zh/blog/rdp-black-screen-failed'},
-            {text: '使用 Next Terminal OIDC 登录 Proxmox VE', link: '/zh/blog/pve-oidc/readme'},
-            {text: '数据库不敢开公网？MySQL/PostgreSQL 安全远程访问 3 种方式', link: '/zh/blog/db-remote-access'},
-            {text: '还在共享 root 密码？多人运维的权限与审计怎么做', link: '/zh/blog/share-root-password-risk'},
-            {text: '不开 VPN 怎么安全访问内网系统？3 种方案对比', link: '/zh/blog/intranet-without-vpn'},
-            {text: 'rm -rf / 是怎么误执行的？高危命令拦截与操作审计怎么做', link: '/zh/blog/dangerous-command-block'},
-            {text: '密钥登录也会被攻破？SSH 双因子认证到底补上了什么', link: '/zh/blog/ssh-mfa-two-factor'},
-            {text: '服务器上到底发生了什么？SSH 会话审计与操作回放怎么做', link: '/zh/blog/ssh-session-recording'},
-            {text: 'ssh -A 是把钥匙交给跳板机吗？SSH Agent 转发原理、滥用与更稳的替代', link: '/zh/blog/ssh-agent-forwarding'},
-            {text: '员工离职后他的 SSH 密钥还散在几十台机器上？密钥轮换与权限回收怎么做', link: '/zh/blog/ssh-key-rotation'},
-            {text: '运维临时要 root，给还是不给？最小权限与临时提权怎么落地', link: '/zh/blog/temporary-root-access'}
+            {text: '服务器 SSH 一直被人暴力破解？先看懂登录日志，再谈防护', link: '/zh/docs/blog/ssh-brute-force'},
+            {text: 'ssh -L/-R/-D 是怎么打穿防火墙的？SSH 端口转发原理与滥用审计', link: '/zh/docs/blog/ssh-port-forwarding'},
+            {text: 'SSH 里的“认证私钥”到底是什么，它认证的是谁？', link: '/zh/docs/blog/ssh-authentication'},
+            {text: '2026 开源堡垒机选型指南：如何为中小团队选 JumpServer / Teleport / Next Terminal', link: '/zh/docs/blog/selection-guide'},
+            {text: 'Web 资产安全发布：用 Next Terminal 替代 VPN 暴露内网系统', link: '/zh/docs/blog/web-asset-gateway'},
+            {text: 'RDP 连不上/黑屏/凭证失效？Windows 远程桌面 5 步排查', link: '/zh/docs/blog/rdp-black-screen-failed'},
+            {text: '使用 Next Terminal OIDC 登录 Proxmox VE', link: '/zh/docs/blog/pve-oidc/readme'},
+            {text: '数据库不敢开公网？MySQL/PostgreSQL 安全远程访问 3 种方式', link: '/zh/docs/blog/db-remote-access'},
+            {text: '还在共享 root 密码？多人运维的权限与审计怎么做', link: '/zh/docs/blog/share-root-password-risk'},
+            {text: '不开 VPN 怎么安全访问内网系统？3 种方案对比', link: '/zh/docs/blog/intranet-without-vpn'},
+            {text: 'rm -rf / 是怎么误执行的？高危命令拦截与操作审计怎么做', link: '/zh/docs/blog/dangerous-command-block'},
+            {text: '密钥登录也会被攻破？SSH 双因子认证到底补上了什么', link: '/zh/docs/blog/ssh-mfa-two-factor'},
+            {text: '服务器上到底发生了什么？SSH 会话审计与操作回放怎么做', link: '/zh/docs/blog/ssh-session-recording'},
+            {text: 'ssh -A 是把钥匙交给跳板机吗？SSH Agent 转发原理、滥用与更稳的替代', link: '/zh/docs/blog/ssh-agent-forwarding'},
+            {text: '员工离职后他的 SSH 密钥还散在几十台机器上？密钥轮换与权限回收怎么做', link: '/zh/docs/blog/ssh-key-rotation'},
+            {text: '运维临时要 root，给还是不给？最小权限与临时提权怎么落地', link: '/zh/docs/blog/temporary-root-access'}
         ]
     }
 ]
@@ -347,17 +350,17 @@ const zhApiSidebar: DefaultTheme.SidebarItem[] = [
     {
         text: 'API 文档',
         collapsed: false,
-        items: [{text: '证书管理', link: '/zh/api/certificate'}]
+        items: [{text: '证书管理', link: '/zh/docs/api/certificate'}]
     }
 ]
 
 const zhSidebar: DefaultTheme.Sidebar = {
-    '/zh/install/': zhInstallSidebar,
-    '/zh/usage/': zhUsageSidebar,
-    '/zh/faq/': zhFaqSidebar,
-    '/zh/blog/': zhBlogSidebar,
+    '/zh/docs/install/': zhInstallSidebar,
+    '/zh/docs/usage/': zhUsageSidebar,
+    '/zh/docs/faq/': zhFaqSidebar,
+    '/zh/docs/blog/': zhBlogSidebar,
     '/zh/services/': zhServicesSidebar,
-    '/zh/api/': zhApiSidebar
+    '/zh/docs/api/': zhApiSidebar
 }
 
 export default defineConfig({
