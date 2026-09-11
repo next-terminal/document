@@ -3,6 +3,146 @@
   "outputDirectory": ".vitepress/dist",
   "redirects": [
     {
+      "source": "/blog/v3.0.0",
+      "destination": "https://www.next-terminal.com/changelog",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/v3.0.0.html",
+      "destination": "https://www.next-terminal.com/changelog",
+      "statusCode": 301
+    },
+    {
+      "source": "/zh/blog/v3.0.0",
+      "destination": "https://www.next-terminal.com/changelog",
+      "statusCode": 301
+    },
+    {
+      "source": "/zh/blog/v3.0.0.html",
+      "destination": "https://www.next-terminal.com/changelog",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/v3.2.0",
+      "destination": "https://www.next-terminal.com/changelog",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/v3.2.0.html",
+      "destination": "https://www.next-terminal.com/changelog",
+      "statusCode": 301
+    },
+    {
+      "source": "/zh/blog/v3.2.0",
+      "destination": "https://www.next-terminal.com/changelog",
+      "statusCode": 301
+    },
+    {
+      "source": "/zh/blog/v3.2.0.html",
+      "destination": "https://www.next-terminal.com/changelog",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/v3.3.6",
+      "destination": "https://www.next-terminal.com/changelog",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/v3.3.6.html",
+      "destination": "https://www.next-terminal.com/changelog",
+      "statusCode": 301
+    },
+    {
+      "source": "/zh/blog/v3.3.6",
+      "destination": "https://www.next-terminal.com/changelog",
+      "statusCode": 301
+    },
+    {
+      "source": "/zh/blog/v3.3.6.html",
+      "destination": "https://www.next-terminal.com/changelog",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/v37-highlights",
+      "destination": "https://www.next-terminal.com/changelog",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/v37-highlights.html",
+      "destination": "https://www.next-terminal.com/changelog",
+      "statusCode": 301
+    },
+    {
+      "source": "/zh/blog/v37-highlights",
+      "destination": "https://www.next-terminal.com/changelog",
+      "statusCode": 301
+    },
+    {
+      "source": "/zh/blog/v37-highlights.html",
+      "destination": "https://www.next-terminal.com/changelog",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/rdp-audit",
+      "destination": "https://www.next-terminal.com/docs/blog/",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/rdp-audit.html",
+      "destination": "https://www.next-terminal.com/docs/blog/",
+      "statusCode": 301
+    },
+    {
+      "source": "/zh/blog/rdp-audit",
+      "destination": "https://www.next-terminal.com/zh/docs/blog/",
+      "statusCode": 301
+    },
+    {
+      "source": "/zh/blog/rdp-audit.html",
+      "destination": "https://www.next-terminal.com/zh/docs/blog/",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/secure-access",
+      "destination": "https://www.next-terminal.com/docs/blog/",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/secure-access.html",
+      "destination": "https://www.next-terminal.com/docs/blog/",
+      "statusCode": 301
+    },
+    {
+      "source": "/zh/blog/secure-access",
+      "destination": "https://www.next-terminal.com/zh/docs/blog/",
+      "statusCode": 301
+    },
+    {
+      "source": "/zh/blog/secure-access.html",
+      "destination": "https://www.next-terminal.com/zh/docs/blog/",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/zero-trust",
+      "destination": "https://www.next-terminal.com/docs/blog/",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/zero-trust.html",
+      "destination": "https://www.next-terminal.com/docs/blog/",
+      "statusCode": 301
+    },
+    {
+      "source": "/zh/blog/zero-trust",
+      "destination": "https://www.next-terminal.com/zh/docs/blog/",
+      "statusCode": 301
+    },
+    {
+      "source": "/zh/blog/zero-trust.html",
+      "destination": "https://www.next-terminal.com/zh/docs/blog/",
+      "statusCode": 301
+    },
+    {
       "source": "/zh/",
       "destination": "https://www.next-terminal.com/zh/docs/",
       "statusCode": 302
