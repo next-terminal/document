@@ -21,6 +21,15 @@ public=ROOT/'public'
 for name in ('robots.txt','llms.txt'):
  if not (public/name).exists(): errors.append(f'public/{name} missing')
 if (public/'robots.txt').exists() and 'https://docs.next-terminal.com/sitemap.xml' not in (public/'robots.txt').read_text(): errors.append('docs robots sitemap wrong')
+# 文档站已永久合并进 www：本域所有跳转必须是 301（永久），302 不传递权重
+edgeone=json.loads((ROOT/'edgeone.json').read_text(encoding='utf-8'))
+permanent={'/','/*','/zh','/zh/','/zh/*','/sitemap.xml','/robots.txt','/llms.txt','/favicon.svg','/favicon.ico','/images/*'}
+sources={r.get('source') for r in edgeone.get('redirects',[])}
+for rule in edgeone.get('redirects',[]):
+ if rule.get('source') in permanent and rule.get('statusCode')!=301:
+  errors.append(f"docs host redirect {rule.get('source')} must be 301, got {rule.get('statusCode')}")
+missing=permanent-sources
+if missing: errors.append(f'edgeone.json missing docs host redirects: {sorted(missing)}')
 try:
  subprocess.run(['yarn','docs:build'],cwd=ROOT,check=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True,timeout=180)
  out=ROOT/'.vitepress/dist'

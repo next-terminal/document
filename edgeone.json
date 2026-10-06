@@ -145,57 +145,57 @@
     {
       "source": "/zh/",
       "destination": "https://www.next-terminal.com/zh/docs/",
-      "statusCode": 302
+      "statusCode": 301
     },
     {
       "source": "/zh",
       "destination": "https://www.next-terminal.com/zh/docs/",
-      "statusCode": 302
+      "statusCode": 301
     },
     {
       "source": "/zh/*",
       "destination": "https://www.next-terminal.com/zh/docs/:splat",
-      "statusCode": 302
+      "statusCode": 301
     },
     {
       "source": "/sitemap.xml",
       "destination": "https://www.next-terminal.com/sitemap.xml",
-      "statusCode": 302
+      "statusCode": 301
     },
     {
       "source": "/robots.txt",
       "destination": "https://www.next-terminal.com/robots.txt",
-      "statusCode": 302
+      "statusCode": 301
     },
     {
       "source": "/llms.txt",
       "destination": "https://www.next-terminal.com/llms.txt",
-      "statusCode": 302
+      "statusCode": 301
     },
     {
       "source": "/favicon.svg",
       "destination": "https://www.next-terminal.com/favicon.svg",
-      "statusCode": 302
+      "statusCode": 301
     },
     {
       "source": "/favicon.ico",
       "destination": "https://www.next-terminal.com/favicon.svg",
-      "statusCode": 302
+      "statusCode": 301
     },
     {
       "source": "/images/*",
       "destination": "https://www.next-terminal.com/images/:splat",
-      "statusCode": 302
+      "statusCode": 301
     },
     {
       "source": "/",
       "destination": "https://www.next-terminal.com/docs/",
-      "statusCode": 302
+      "statusCode": 301
     },
     {
       "source": "/*",
       "destination": "https://www.next-terminal.com/docs/:splat",
-      "statusCode": 302
+      "statusCode": 301
     }
   ]
 }
